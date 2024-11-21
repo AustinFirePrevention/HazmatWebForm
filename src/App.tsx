@@ -58,37 +58,35 @@ function App() {
 
   return (
     <>
+      <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
         <div className="section mb-4">
           <h2 onClick={() => setIsPermitDetailsCollapsed(!isPermitDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            Permit Details {isPermitDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}
+            Permit Details <button type='button' className='btn btn-primary'>{isPermitDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
           </h2>
           {!isPermitDetailsCollapsed && (
             <>
-              <div className="alert alert-warning">
-                <strong>Payment options for AFD services have recently changed</strong>
-              </div>
               <div className="alert alert-info">
-                Payments for our services are now processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
-              </div>
-              <div className="alert alert-info">
-                <strong>If you do not have an AB+C account, please register at the </strong>
+                Payments are processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
+                <strong>Register at the </strong>
                 <strong>
                   <a title="AB+C Registration Link" href="https://abc.austintexas.gov/austin-ui/portal/home" target="_blank" rel="noopener">
                     Austin Build + Connect
-                  </a> website before proceeding with this application.
+                  </a> website to proceed.&nbsp;
                 </strong>
+                </div>
+                <div className="alert alert-warning">
+                Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.
               </div>
-              <div className="alert alert-info">
-                Once you have created your account, please locate your Austin Build + Connect ID number by going to "My Profile" from the AB+C menu pane and enter the ID number below.
-              </div>
-              <div className="alert alert-info">
-                Is important to note that the bills are not added to the account automatically, we will have to manually add them after the application is reviewed and approved. We will e-mail the address associated with the account when the fees are ready to be paid.
-                <strong>Note to all applicants: Please make sure to follow the process outlined in this form and do not send applications and payment by mail.</strong>
+              <div className="alert alert-danger">
+                <strong>Do not send applications and payment by mail.</strong>
               </div>
               <div className="mb-3">
                 <label className="form-label">Austin Build + Connect ID:</label>
                 <input type="text" className="form-control" name="abc_id" />
+                <small className="form-text text-muted">
+                  To locate your Austin Build + Connect ID number, go to "My Profile" from the AB+C menu pane.
+                </small>
               </div>
               <div className="mb-3">
                 <label className="form-label">Austin Build + Connect Email:</label>
@@ -114,7 +112,7 @@ function App() {
         </div>
         <div className="section mb-4">
           <h2 onClick={() => setIsBusinessDetailsCollapsed(!isBusinessDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            Business Details {isBusinessDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}
+            Business Details <button type='button' className='btn btn-primary'>{isBusinessDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
           </h2>
           {!isBusinessDetailsCollapsed && (
             <>
@@ -164,7 +162,7 @@ function App() {
         />
         <div className="section mb-4">
           <h2 onClick={() => setIsRequestingPartyCollapsed(!isRequestingPartyCollapsed)} style={{ cursor: 'pointer' }}>
-            Requesting Party {isRequestingPartyCollapsed ? <FaChevronDown /> : <FaChevronUp />}
+            Requesting Party <button type='button' className='btn btn-primary'>{isRequestingPartyCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
           </h2>
           {!isRequestingPartyCollapsed && (
             <>

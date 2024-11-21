@@ -8,7 +8,7 @@ export function ContactDetails({ prefix, title, note }: ContactDetailsProps) {
     return (
         <div className="contact-details mb-4">
             <h2 onClick={() => setIsCollapsed(!isCollapsed)} style={{ cursor: 'pointer' }}>
-                {title} {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
+                {title} <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
             </h2>
             {!isCollapsed && (
                 <>

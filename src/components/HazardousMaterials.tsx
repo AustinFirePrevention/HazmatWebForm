@@ -5,7 +5,6 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 export function HazardousMaterials({ materials, setMaterials }: { materials: any[]; setMaterials: (materials: any[]) => void; }) {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
-    console.log(collapsedMaterials);
     const addMaterial = () => {
         const newMaterial = { id: Date.now() };
         setMaterials([...materials, newMaterial]);
@@ -24,7 +23,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
     return (
         <div className="hazardous-materials mb-4">
             <h2 onClick={() => setIsCollapsed(!isCollapsed)} style={{ cursor: 'pointer' }}>
-                Hazardous Materials {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
+                Hazardous Materials <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
             </h2>
             {!isCollapsed && (
                 <>
@@ -110,7 +109,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
                     </div>
                     {materials.map((material, index) => (
                         <div key={material.id}>
-                            <MaterialCard toggleCollapseState={()=>toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
+                            <MaterialCard toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                         </div>
                     ))}
                     <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>

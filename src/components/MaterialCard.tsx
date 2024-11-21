@@ -3,7 +3,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export function MaterialCard({ material, index, removeMaterial, isCollapsed, toggleCollapseState }: { material: any; index: number; removeMaterial: (id: number) => void; isCollapsed: boolean; toggleCollapseState: () => void; }) {
     const [materialName, setMaterialName] = useState(material.name || '');
-    const materialSummary = `${index + 1}. ${materialName} - ${material.location || 'Unknown Location'} - ${material.quantity || 0} ${material.units || 'units'}`;
+    const materialSummary = `${index + 1}. ${materialName|| "Material"} - ${material.location || 'Unknown Location'} - ${material.quantity || 0} ${material.units || 'units'}`;
 
     return (
         <div className="card mb-4">
