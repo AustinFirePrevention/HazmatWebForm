@@ -4,16 +4,22 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export function HazardousMaterials({ materials, setMaterials }: { materials: any[]; setMaterials: (materials: any[]) => void; }) {
     const [isCollapsed, setIsCollapsed] = useState(true);
-
+    const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
+    console.log(collapsedMaterials);
     const addMaterial = () => {
         const newMaterial = { id: Date.now() };
         setMaterials([...materials, newMaterial]);
+        setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     };
 
     const removeMaterial = (id: number) => {
         setMaterials(materials.filter(material => material.id !== id));
+        setCollapsedMaterials(collapsedMaterials.filter((_, i) => i !== materials.findIndex(material => material.id === id)));
     };
 
+    const toggleCollapseState = (index: number) => {
+        setCollapsedMaterials(collapsedMaterials.map((isCollapsed, i) => i === index ? !isCollapsed : isCollapsed));
+    }
 
     return (
         <div className="hazardous-materials mb-4">
@@ -104,7 +110,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
                     </div>
                     {materials.map((material, index) => (
                         <div key={material.id}>
-                            <MaterialCard material={material} index={index} removeMaterial={removeMaterial} />
+                            <MaterialCard toggleCollapseState={()=>toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                         </div>
                     ))}
                     <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>

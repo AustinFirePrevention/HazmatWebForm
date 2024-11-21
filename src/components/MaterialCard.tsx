@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
-export function MaterialCard({ material, index, removeMaterial }: { material: any; index: number; removeMaterial: (id: number) => void; }) {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+export function MaterialCard({ material, index, removeMaterial, isCollapsed, toggleCollapseState }: { material: any; index: number; removeMaterial: (id: number) => void; isCollapsed: boolean; toggleCollapseState: () => void; }) {
     const [materialName, setMaterialName] = useState(material.name || '');
     const materialSummary = `${index + 1}. ${materialName} - ${material.location || 'Unknown Location'} - ${material.quantity || 0} ${material.units || 'units'}`;
 
@@ -10,7 +9,7 @@ export function MaterialCard({ material, index, removeMaterial }: { material: an
         <div className="card mb-4">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <h3 className="card-title">{isCollapsed ? materialSummary : `${index + 1}. ${materialName || "Material"}`}</h3>
-                <button type="button" className="btn btn-link" onClick={() => setIsCollapsed(!isCollapsed)}>
+                <button type="button" className="btn btn-primary" onClick={() => toggleCollapseState()}>
                     {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
                 </button>
             </div>
