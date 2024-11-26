@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { MaterialCard } from './MaterialCard';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
-export function HazardousMaterials({ materials, setMaterials }: { materials: any[]; setMaterials: (materials: any[]) => void; }) {
+export function HazardousMaterials() {
+    const [materials, setMaterials] = useState<any[]>([]);
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
     const addMaterial = () => {
@@ -109,7 +110,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
                     </div>
                     {materials.map((material, index) => (
                         <div key={material.id}>
-                            <MaterialCard setMaterial={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
+                            <MaterialCard setMaterials={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                         </div>
                     ))}
                     <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>

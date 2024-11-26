@@ -16,7 +16,6 @@ const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a1
 
 function App() {
   const [isAgentSameAsPrimary, setIsAgentSameAsPrimary] = useState('no')
-  const [materials, setMaterials] = useState([{ id: Date.now() }])
   const [isPermitDetailsCollapsed, setIsPermitDetailsCollapsed] = useState(false);
   const [isBusinessDetailsCollapsed, setIsBusinessDetailsCollapsed] = useState(true);
   const [isRequestingPartyCollapsed, setIsRequestingPartyCollapsed] = useState(true);
@@ -69,8 +68,6 @@ function App() {
         data[key] = value
       }
     })
-
-    data.materials = materialsArray
 
     // Calculate totals using FeeProcessor
     const feeResults = FeeProcessor(materialsArray);
@@ -223,7 +220,7 @@ function App() {
         </div>
         <ContactDetails prefix="responsible_official" title="Responsible Official - Business Owner, Manager, President, etc." />
         <ContactDetails prefix="emergency_contact" title="Emergency Contact - 24 hour contact" />
-        <HazardousMaterials materials={materials} setMaterials={setMaterials} />
+        <HazardousMaterials />
         <div className="section mb-4">
           <div className="mb-3">
             <label className="form-label">Facilities Storage Map:</label>

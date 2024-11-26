@@ -157,7 +157,6 @@ export function FeeProcessor(materials: Material[]) {
 
     processor.total = Object.values(processor.fees).reduce((acc, fee) => acc + fee, 0);
 
-
     return processor;
 }
 
