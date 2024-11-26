@@ -33,27 +33,28 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                             className="form-control"
                             name={`material_name_${material.id}`}
                             onChange={(e) => updateMaterial('name', e.target.value)}
+                            required
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Location:</label>
-                        <input type="text" className="form-control" name={`material_location_${material.id}`} onChange={(e) => updateMaterial('location', e.target.value)} />
+                        <input type="text" className="form-control" name={`material_location_${material.id}`} onChange={(e) => updateMaterial('location', e.target.value)} required />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">NFPA 704 Health Hazard Rating (0-4):</label>
-                        <input type="number" className="form-control" name={`material_health_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('health_hazard', parseInt(e.target.value))} />
+                        <input type="number" className="form-control" name={`material_health_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('health_hazard', parseInt(e.target.value))} required />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">NFPA 704 Fire Hazard Rating (0-4):</label>
-                        <input type="number" className="form-control" name={`material_fire_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('fire_hazard', parseInt(e.target.value))} />
+                        <input type="number" className="form-control" name={`material_fire_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('fire_hazard', parseInt(e.target.value))} required />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">NFPA 704 Instability Hazard Rating (0-4):</label>
-                        <input type="number" className="form-control" name={`material_instability_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('instability_hazard', parseInt(e.target.value))} />
+                        <input type="number" className="form-control" name={`material_instability_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('instability_hazard', parseInt(e.target.value))} required />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Units:</label>
-                        <select className="form-select" name={`material_units_${material.id}`} onChange={(e) => updateMaterial('units', e.target.value)}>
+                        <select className="form-select" name={`material_units_${material.id}`} onChange={(e) => updateMaterial('units', e.target.value)} required>
                             <option value="gallons">Gallons</option>
                             <option value="cubic_feet">Cubic Feet</option>
                             <option value="pounds">Pounds</option>
@@ -62,7 +63,7 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Quantity:</label>
-                        <input type="number" className="form-control" name={`material_quantity_${material.id}`} step="0.01" onChange={(e) => updateMaterial('quantity', parseInt(e.target.value))} />
+                        <input type="number" className="form-control" name={`material_quantity_${material.id}`} step="0.01" onChange={(e) => updateMaterial('quantity', parseInt(e.target.value))} required />
                     </div>
                 </div>
             </Collapse>

@@ -16,41 +16,37 @@
 
 const FEES = [130, 260, 390, 520, 650]
 
-const LIQUID_FEES = [1, 55, 550, 2750, 5000]
-const GAS_FEES = [100, 200, 2000, 10000, 20000]
-const SOLID_FEES = [1, 250, 2500, 12500, 250000]
-const ESS_FEES = [1, 250, 2500, 125000, 250000]
+const LIQUID_QUANTITIES = [1, 55, 550, 2750, 5000]
+const GAS_QUANTITIES = [100, 200, 2000, 10000, 20000]
+const SOLID_QUANTITIES = [1, 250, 2500, 12500, 250000]
+const ESS_QUANTITIES = [1, 250, 2500, 125000, 250000]
 
 
 
-function hazardFee(state: ValidStates, quantity: number) {
-    let feeSchedule;
+function hazardFee(hazardType: hazardType, quantity: number) {
     let fee = 0;
 
-    switch (state) {
-        case "liquid":
-            feeSchedule = LIQUID_FEES;
-            break;
-        case "gas":
-            feeSchedule = GAS_FEES;
-            break;
-        case "solid":
-            feeSchedule = SOLID_FEES;
-            break;
-        case "ESS":
-            feeSchedule = ESS_FEES;
-            break;
-        default:
-            throw new Error("state is malformed");
+    const feeSchedule =
+        hazardType === "healthLiquid" ? LIQUID_QUANTITIES :
+            hazardType === "fireLiquid" ? LIQUID_QUANTITIES :
+                hazardType === "instabilityLiquid" ? LIQUID_QUANTITIES :
+                    hazardType === "healthGas" ? GAS_QUANTITIES :
+                        hazardType === "fireGas" ? GAS_QUANTITIES :
+                            hazardType === "instabilityGas" ? GAS_QUANTITIES :
+                                hazardType === "healthSolid" ? SOLID_QUANTITIES :
+                                    hazardType === "fireSolid" ? SOLID_QUANTITIES :
+                                        hazardType === "instabilitySolid" ? SOLID_QUANTITIES :
+                                            hazardType === "ESS" ? ESS_QUANTITIES : null;
+
+    if (!feeSchedule) {
+        throw new Error(`Invalid hazard type: "${hazardType}"`);
     }
 
     for (let i = 0; i < feeSchedule.length; i++) {
         if (quantity >= feeSchedule[i]) {
             fee = FEES[i];
-            break;
         }
     }
-
     return fee;
 }
 
@@ -95,16 +91,18 @@ function convertAndVerifyMaterial(material: Material): ConvertedMaterial {
         units === "gallons" ? "liquid" :
             units === "cubic_feet" ? "gas" :
                 units === "pounds" ? "solid" :
-                    units === "kilowatt_hours" ? "ESS" :
-                        null;
+                    units === "kilowatt_hours" ? "ESS" : null;
 
     if (!state) {
         throw new Error(`Invalid units: ${units}. Expected one of: gallons, cubic_feet, pounds, kilowatt_hours`);
     }
 
     if (isNaN(health_hazard) || isNaN(fire_hazard) || isNaN(instability_hazard) || isNaN(quantity)) {
-        throw new Error("Invalid material data: conversion resulted in NaN");
+        if (state !== "ESS") {
+            throw new Error("Invalid material data: conversion resulted in NaN");
+        }
     }
+
 
     return {
         health_hazard,
@@ -152,7 +150,12 @@ export function FeeProcessor(materials: Material[]) {
         const hazardType = getCurrentHazardType(health_hazard, fire_hazard, instability_hazard);
         const key = getKey(hazardType, state);
         processor.aggregateAmounts[key] += quantity;
-        processor.fees[key] += hazardFee(state, quantity);
+
+    });
+
+    Object.entries(processor.aggregateAmounts).forEach(([key, quantity]) => {
+
+        processor.fees[key as hazardType] = hazardFee(key as hazardType, quantity);
     });
 
     processor.total = Object.values(processor.fees).reduce((acc, fee) => acc + fee, 0);
@@ -161,5 +164,5 @@ export function FeeProcessor(materials: Material[]) {
 }
 
 function getKey(hazardType: hazardCategories, state: ValidStates) {
-    return `${hazardType}${state.charAt(0).toUpperCase() + state.slice(1)}` as hazardType;
+    return state === "ESS" ? "ESS" : `${hazardType}${state.charAt(0).toUpperCase() + state.slice(1)}` as hazardType;
 }

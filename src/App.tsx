@@ -116,29 +116,29 @@ function App() {
               </div>
               <div className="mb-3">
                 <label className="form-label">Austin Build + Connect ID:</label>
-                <input type="text" className="form-control" name="abc_id" />
+                <input type="text" className="form-control" name="abc_id" required />
                 <small className="form-text text-muted">
                   To locate your Austin Build + Connect ID number, go to "My Profile" from the AB+C menu pane.
                 </small>
               </div>
               <div className="mb-3">
                 <label className="form-label">Austin Build + Connect Email:</label>
-                <input type="text" className="form-control" name="abc_email" />
+                <input type="text" className="form-control" name="abc_email" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Type of Application:</label>
-                <select className="form-select" name="application_type">
+                <select className="form-select" name="application_type" required>
                   <option value="type1">Type 1</option>
                   <option value="type2">Type 2</option>
                 </select>
               </div>
               <div className="mb-3">
                 <label className="form-label">Aboveground Hazardous Materials Permit Number:</label>
-                <input type="text" className="form-control" name="permit_number" />
+                <input type="text" className="form-control" name="permit_number" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Building Permit Number:</label>
-                <input type="text" className="form-control" name="building_permit" />
+                <input type="text" className="form-control" name="building_permit" required />
               </div>
             </>
           )}
@@ -151,11 +151,11 @@ function App() {
             <>
               <div className="mb-3">
                 <label className="form-label">Business Name:</label>
-                <input type="text" className="form-control" name="business_name" />
+                <input type="text" className="form-control" name="business_name" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Street Address:</label>
-                <input type="text" className="form-control" name="street_address" />
+                <input type="text" className="form-control" name="street_address" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Suite Number:</label>
@@ -163,27 +163,27 @@ function App() {
               </div>
               <div className="mb-3">
                 <label className="form-label">City:</label>
-                <input type="text" className="form-control" name="city" />
+                <input type="text" className="form-control" name="city" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Zip:</label>
-                <input type="text" className="form-control" name="zip" />
+                <input type="text" className="form-control" name="zip" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Main Phone Number:</label>
-                <input type="text" className="form-control" name="main_phone_number" />
+                <input type="text" className="form-control" name="main_phone_number" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Email Address:</label>
-                <input type="text" className="form-control" name="email_address" />
+                <input type="text" className="form-control" name="email_address" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Principal Business Activity:</label>
-                <input type="text" className="form-control" name="business_activity" />
+                <input type="text" className="form-control" name="business_activity" required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Hours of Operations:</label>
-                <input type="text" className="form-control" name="hours_of_operation" />
+                <input type="text" className="form-control" name="hours_of_operation" required />
               </div>
             </>
           )}
