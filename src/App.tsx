@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { FeeProcessor } from './helpers/FeeProcessor';
 import { Modal, Button } from 'react-bootstrap';
 import { SummaryModalContent } from './components/SummaryModal';
+import PermitDetails from './components/PermitDetails';
+import BusinessDetails from './components/BusinessDetails';
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -15,10 +16,6 @@ export interface ContactDetailsProps {
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
-  const [isAgentSameAsPrimary, setIsAgentSameAsPrimary] = useState('no')
-  const [isPermitDetailsCollapsed, setIsPermitDetailsCollapsed] = useState(false);
-  const [isBusinessDetailsCollapsed, setIsBusinessDetailsCollapsed] = useState(true);
-  const [isRequestingPartyCollapsed, setIsRequestingPartyCollapsed] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [totals, setTotals] = useState({
     aggregateAmounts: {
@@ -93,131 +90,13 @@ function App() {
     <>
       <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
-        <div className="section mb-4">
-          <h2 onClick={() => setIsPermitDetailsCollapsed(!isPermitDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            <button type='button' className='btn btn-primary'>{isPermitDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Permit Details
-          </h2>
-          {!isPermitDetailsCollapsed && (
-            <>
-              <div className="alert alert-info">
-                Payments are processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
-                <strong>Register at the </strong>
-                <strong>
-                  <a title="AB+C Registration Link" href="https://abc.austintexas.gov/austin-ui/portal/home" target="_blank" rel="noopener">
-                    Austin Build + Connect
-                  </a> website to proceed.&nbsp;
-                </strong>
-              </div>
-              <div className="alert alert-warning">
-                Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.
-              </div>
-              <div className="alert alert-danger">
-                <strong>Do not send applications and payment by mail.</strong>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Austin Build + Connect ID:</label>
-                <input type="text" className="form-control" name="abc_id" required />
-                <small className="form-text text-muted">
-                  To locate your Austin Build + Connect ID number, go to "My Profile" from the AB+C menu pane.
-                </small>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Austin Build + Connect Email:</label>
-                <input type="text" className="form-control" name="abc_email" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Type of Application:</label>
-                <select className="form-select" name="application_type" required>
-                  <option value="type1">Type 1</option>
-                  <option value="type2">Type 2</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Aboveground Hazardous Materials Permit Number:</label>
-                <input type="text" className="form-control" name="permit_number" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Building Permit Number:</label>
-                <input type="text" className="form-control" name="building_permit" required />
-              </div>
-            </>
-          )}
-        </div>
-        <div className="section mb-4">
-          <h2 onClick={() => setIsBusinessDetailsCollapsed(!isBusinessDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            <button type='button' className='btn btn-primary'>{isBusinessDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Business Details
-          </h2>
-          {!isBusinessDetailsCollapsed && (
-            <>
-              <div className="mb-3">
-                <label className="form-label">Business Name:</label>
-                <input type="text" className="form-control" name="business_name" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Street Address:</label>
-                <input type="text" className="form-control" name="street_address" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Suite Number:</label>
-                <input type="text" className="form-control" name="suite_no" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">City:</label>
-                <input type="text" className="form-control" name="city" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Zip:</label>
-                <input type="text" className="form-control" name="zip" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Main Phone Number:</label>
-                <input type="text" className="form-control" name="main_phone_number" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Email Address:</label>
-                <input type="text" className="form-control" name="email_address" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Principal Business Activity:</label>
-                <input type="text" className="form-control" name="business_activity" required />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Hours of Operations:</label>
-                <input type="text" className="form-control" name="hours_of_operation" required />
-              </div>
-            </>
-          )}
-        </div>
+        <PermitDetails />
+        <BusinessDetails />
         <ContactDetails
           prefix="primary_contact"
           title="Primary Contact"
           note="This person is responsible for obtaining the initial permit, renewing it every 3 years, and answering application questions. They will be listed as an emergency contact."
         />
-        <div className="section mb-4">
-          <h2 onClick={() => setIsRequestingPartyCollapsed(!isRequestingPartyCollapsed)} style={{ cursor: 'pointer' }}>
-            <button type='button' className='btn btn-primary'>{isRequestingPartyCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Requesting Party
-          </h2>
-          {!isRequestingPartyCollapsed && (
-            <>
-              <p>Agent, contractor, or permitted business representative completing this application.</p>
-              <div className="mb-3">
-                <label className="form-label">Business representative or agent completing this application is the same as the primary contact:</label>
-                <select
-                  className="form-select"
-                  name="is_agent_same_as_primary_contact"
-                  value={isAgentSameAsPrimary}
-                  onChange={(e) => setIsAgentSameAsPrimary(e.target.value)}
-                >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              {isAgentSameAsPrimary === 'no' && (
-                <ContactDetails prefix="requesting_party" title="Requesting Party" />
-              )}
-            </>
-          )}
-        </div>
         <ContactDetails prefix="responsible_official" title="Responsible Official - Business Owner, Manager, President, etc." />
         <ContactDetails prefix="emergency_contact" title="Emergency Contact - 24 hour contact" />
         <HazardousMaterials />
