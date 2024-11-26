@@ -23,7 +23,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
     return (
         <div className="hazardous-materials mb-4">
             <h2 onClick={() => setIsCollapsed(!isCollapsed)} style={{ cursor: 'pointer' }}>
-                Hazardous Materials <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
+                <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Hazardous Materials
             </h2>
             {!isCollapsed && (
                 <>
@@ -109,7 +109,7 @@ export function HazardousMaterials({ materials, setMaterials }: { materials: any
                     </div>
                     {materials.map((material, index) => (
                         <div key={material.id}>
-                            <MaterialCard toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
+                            <MaterialCard setMaterial={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                         </div>
                     ))}
                     <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>

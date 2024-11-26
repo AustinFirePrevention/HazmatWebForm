@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FeeProcessor } from './helpers/FeeProcessor';
+import { Modal, Button } from 'react-bootstrap';
+import { SummaryModalContent } from './components/SummaryModal';
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -17,6 +20,34 @@ function App() {
   const [isPermitDetailsCollapsed, setIsPermitDetailsCollapsed] = useState(false);
   const [isBusinessDetailsCollapsed, setIsBusinessDetailsCollapsed] = useState(true);
   const [isRequestingPartyCollapsed, setIsRequestingPartyCollapsed] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [totals, setTotals] = useState({
+    aggregateAmounts: {
+      healthLiquid: 0,
+      fireLiquid: 0,
+      instabilityLiquid: 0,
+      healthGas: 0,
+      fireGas: 0,
+      instabilityGas: 0,
+      healthSolid: 0,
+      fireSolid: 0,
+      instabilitySolid: 0,
+      ESS: 0,
+    },
+    fees: {
+      healthLiquid: 0,
+      fireLiquid: 0,
+      instabilityLiquid: 0,
+      healthGas: 0,
+      fireGas: 0,
+      instabilityGas: 0,
+      healthSolid: 0,
+      fireSolid: 0,
+      instabilitySolid: 0,
+      ESS: 0,
+    },
+    total: 0,
+  });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -41,6 +72,11 @@ function App() {
 
     data.materials = materialsArray
 
+    // Calculate totals using FeeProcessor
+    const feeResults = FeeProcessor(materialsArray);
+    setTotals(feeResults);
+    setShowModal(true);
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -62,7 +98,7 @@ function App() {
       <form className="form container mt-4" onSubmit={handleSubmit}>
         <div className="section mb-4">
           <h2 onClick={() => setIsPermitDetailsCollapsed(!isPermitDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            Permit Details <button type='button' className='btn btn-primary'>{isPermitDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
+            <button type='button' className='btn btn-primary'>{isPermitDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Permit Details
           </h2>
           {!isPermitDetailsCollapsed && (
             <>
@@ -74,8 +110,8 @@ function App() {
                     Austin Build + Connect
                   </a> website to proceed.&nbsp;
                 </strong>
-                </div>
-                <div className="alert alert-warning">
+              </div>
+              <div className="alert alert-warning">
                 Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.
               </div>
               <div className="alert alert-danger">
@@ -112,7 +148,7 @@ function App() {
         </div>
         <div className="section mb-4">
           <h2 onClick={() => setIsBusinessDetailsCollapsed(!isBusinessDetailsCollapsed)} style={{ cursor: 'pointer' }}>
-            Business Details <button type='button' className='btn btn-primary'>{isBusinessDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
+            <button type='button' className='btn btn-primary'>{isBusinessDetailsCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Business Details
           </h2>
           {!isBusinessDetailsCollapsed && (
             <>
@@ -162,7 +198,7 @@ function App() {
         />
         <div className="section mb-4">
           <h2 onClick={() => setIsRequestingPartyCollapsed(!isRequestingPartyCollapsed)} style={{ cursor: 'pointer' }}>
-            Requesting Party <button type='button' className='btn btn-primary'>{isRequestingPartyCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
+            <button type='button' className='btn btn-primary'>{isRequestingPartyCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> Requesting Party
           </h2>
           {!isRequestingPartyCollapsed && (
             <>
@@ -196,6 +232,20 @@ function App() {
         </div>
         <button type="submit" className="btn btn-success">Submit</button>
       </form>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Form Submitted</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <SummaryModalContent totals={totals} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

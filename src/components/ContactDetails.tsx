@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContactDetailsProps } from "./App";
+import { ContactDetailsProps } from "../App";
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export function ContactDetails({ prefix, title, note }: ContactDetailsProps) {
@@ -8,7 +8,7 @@ export function ContactDetails({ prefix, title, note }: ContactDetailsProps) {
     return (
         <div className="contact-details mb-4">
             <h2 onClick={() => setIsCollapsed(!isCollapsed)} style={{ cursor: 'pointer' }}>
-                {title} <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button>
+                <button type='button' className='btn btn-primary'>{isCollapsed ? <FaChevronDown /> : <FaChevronUp />}</button> {title}
             </h2>
             {!isCollapsed && (
                 <>
