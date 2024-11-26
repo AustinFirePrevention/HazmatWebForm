@@ -3,7 +3,7 @@ import { MaterialCard } from './MaterialCard';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export function HazardousMaterials() {
-    const [materials, setMaterials] = useState<any[]>([]);
+    const [materials, setMaterials] = useState([{ id: Date.now() }])
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
     const addMaterial = () => {
