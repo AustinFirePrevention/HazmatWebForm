@@ -3,7 +3,7 @@ import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
 
-export function HazardousMaterials() {
+export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const [materials, setMaterials] = useState([{ id: Date.now() }]);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
     const addMaterial = () => {
@@ -20,6 +20,8 @@ export function HazardousMaterials() {
     const toggleCollapseState = (index: number) => {
         setCollapsedMaterials(collapsedMaterials.map((isCollapsed, i) => i === index ? !isCollapsed : isCollapsed));
     };
+
+    if (!show) return null;
 
     return (
         <FormSection title='Hazardous Materials'>

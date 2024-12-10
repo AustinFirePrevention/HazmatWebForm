@@ -1,51 +1,43 @@
 import FormSection from './FormSection';
+import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 
-export default function PermitDetails() {
+export default function PermitDetails({ onApplicationTypeChange }: { onApplicationTypeChange: (type: string) => void }) {
 
     return (<>
         <FormSection title="Permit Details">
             <div>
-                <div className="alert alert-info">
-                    Payments are processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
-                    <strong>Register at the </strong>
-                    <strong>
-                        <a title="AB+C Registration Link" href="https://abc.austintexas.gov/austin-ui/portal/home" target="_blank" rel="noopener">
-                            Austin Build + Connect
-                        </a> website to proceed.&nbsp;
-                    </strong>
-                </div>
-                <div className="alert alert-warning">
-                    Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.
-                </div>
-                <div className="alert alert-danger">
-                    <strong>Do not send applications and payment by mail.</strong>
-                </div>
+                <PermitDetailsPreamble />
                 <div className="mb-3">
-                    <label className="form-label">Austin Build + Connect ID:</label>
-                    <input type="text" className="form-control" name="abc_id" required  />
+                    <label className="form-label required">Austin Build + Connect ID:</label>
+                    <input type="text" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
                         To locate your Austin Build + Connect ID number, go to "My Profile" from the AB+C menu pane.
                     </small>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Austin Build + Connect Email:</label>
-                    <input type="text" className="form-control" name="abc_email" required  />
+                    <label className="form-label required">Austin Build + Connect Email:</label>
+                    <input type="text" className="form-control" name="abc_email" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Type of Application:</label>
-                    <select className="form-select" name="application_type" required >
+                    <label className="form-label required">Type of Application:</label>
+                    <select 
+                        className="form-select" 
+                        name="application_type" 
+                        required
+                        onChange={(e) => onApplicationTypeChange(e.target.value)}
+                    >
                         <option value="new_permit">New Permit</option>
                         <option value="renewal_no_change">Permit Renewal - No inventory Change</option>
                         <option value="renewal_with_change">Permit Renewal - Inventory Change</option>
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Aboveground Hazardous Materials Permit Number:</label>
+                    <label className="form-label required">Aboveground Hazardous Materials Permit Number:</label>
                     <input type="text" className="form-control" name="permit_number" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Building Permit Number:</label>
-                    <input type="text" className="form-control" name="building_permit" required />
+                    <input type="text" className="form-control" name="building_permit" />
                 </div>
             </div>
         </FormSection>

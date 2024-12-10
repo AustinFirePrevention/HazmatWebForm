@@ -11,12 +11,14 @@ export interface ContactDetailsProps {
   prefix: string;
   title: string;
   note?: string;
+  required?: boolean;
 }
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [applicationType, setApplicationType] = useState('new_permit');
   const [totals, setTotals] = useState({
     aggregateAmounts: {
       healthLiquid: 0,
@@ -94,16 +96,17 @@ function App() {
     <>
       <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
-        <PermitDetails />
+        <PermitDetails onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <ContactDetails
+          required
           prefix="primary_contact"
           title="Primary Contact"
           note="This person is responsible for obtaining the initial permit, renewing it every 3 years, and answering application questions. They will be listed as an emergency contact."
         />
         <ContactDetails prefix="responsible_official" title="Responsible Official - Business Owner, Manager, President, etc." />
         <ContactDetails prefix="emergency_contact" title="Emergency Contact - 24 hour contact" />
-        <HazardousMaterials />
+        <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
             <label className="form-label">Facilities Storage Map:</label>
