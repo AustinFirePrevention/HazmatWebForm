@@ -24,7 +24,7 @@ export function HazardousMaterials() {
     return (
         <FormSection title='Hazardous Materials'>
             <HazardousMaterialsPreamble />
-            <h2>Hazardous Materials List</h2>
+            <h3>Hazardous Materials List</h3>
             {materials.map((material, index) => (
                 <div key={material.id}>
                     <MaterialCard setMaterials={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />

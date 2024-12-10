@@ -49,9 +49,9 @@ function App() {
     event.preventDefault()
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
-    const data: { [key: string]: any } = {}
+    const data: { [key: string]: unknown } = {}
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const materialsArray: any[] = []
-
     formData.forEach((value, key) => {
       if (key.startsWith('material_')) {
         const field = key.split('_').slice(1, -1).join('_')
@@ -71,6 +71,11 @@ function App() {
     setTotals(feeResults);
     setShowModal(true);
 
+    data.hazardous_materials = materialsArray
+    data.fees = feeResults
+
+    console.log(data)
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -78,12 +83,11 @@ function App() {
       },
       body: JSON.stringify(data)
     })
-    if (response.ok) {
-      alert('Form submitted successfully')
-    } else {
-      alert('Form submission failed')
+    if (!response.ok) {
+      console.log(response)
+      console.log(JSON.stringify(data))
     }
-    console.log(JSON.stringify(data))
+
   }
 
   return (
@@ -108,7 +112,6 @@ function App() {
         </div>
         <button type="submit" className="btn btn-success">Submit</button>
       </form>
-
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Form Submitted</Modal.Title>
@@ -125,5 +128,6 @@ function App() {
     </>
   )
 }
+
 
 export default App
