@@ -34,8 +34,9 @@ export default function PermitDetails() {
                 <div className="mb-3">
                     <label className="form-label">Type of Application:</label>
                     <select className="form-select" name="application_type" required >
-                        <option value="type1">Type 1</option>
-                        <option value="type2">Type 2</option>
+                        <option value="new_permit">New Permit</option>
+                        <option value="renewal_no_change">Permit Renewal - No inventory Change</option>
+                        <option value="renewal_with_change">Permit Renewal - Inventory Change</option>
                     </select>
                 </div>
                 <div className="mb-3">
