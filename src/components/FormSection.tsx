@@ -3,7 +3,7 @@ export default function FormSection({ title, children }: { title: string, childr
     return (
         <fieldset>
             <legend>
-                <h2 style={{ cursor: 'pointer' }}>
+                <h2 className="border-bottom border-dark" style={{ cursor: 'pointer' }}>
                     {title}
                 </h2>
             </legend>

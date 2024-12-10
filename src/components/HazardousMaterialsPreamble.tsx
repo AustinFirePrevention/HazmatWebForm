@@ -5,7 +5,7 @@ export function HazardousMaterialsPreamble() {
             <img className="img-fluid" src="/pages/AFDPreventionDevTeam/hazmat/reportable.png" alt="Table of reportable chemicals" />
         </div>
         <p>Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from "0" for little hazard, to "4" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product. If no ratings are given, they can be determined from lethal dose, flashpoint, and stability information shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at afdhazmat@austintexas.gov.</p>
-        <div>
+        <>
             <div>
                 <p className="text-center"><strong>MINIMUM AGGREGATE <u>QUANTITY</u></strong></p>
             </div>
@@ -74,12 +74,13 @@ export function HazardousMaterialsPreamble() {
                     </tr>
                 </tbody>
             </table>
-            <div><span className="small">The aboveground inventory must include reportable quantities at the site both
-                indoors and outdoors.</span></div>
-            <div className="my-3"></div>
-            <div><span className="small">Underground storage of flammable and combustible liquids must be reported
-                separately to the City of Austin Watershed Protection Department.</span></div>
-        </div>
+            <p><small>The aboveground inventory must include reportable quantities at the site both
+                indoors and outdoors.
+            </small></p>
+            <p><small>Underground storage of flammable and combustible liquids must be reported
+                separately to the City of Austin Watershed Protection Department.</small>
+            </p>
+        </>
     </>
     )
 }
