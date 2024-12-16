@@ -62,7 +62,7 @@ function getCurrentHazardType(health: number, fire: number, instability: number)
     }
 }
 
-type Material = {
+export type Material = {
     health_hazard: string,
     fire_hazard: string,
     instability_hazard: string,

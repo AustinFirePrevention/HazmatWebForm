@@ -22,22 +22,6 @@ export function ContactDetails({ prefix, title, note, required }: ContactDetails
                     <label className={`form-label${required ? ' required' : ''}`}>Email:</label>
                     <input type="text" className="form-control" name={`${prefix}_email`} required={required} />
                 </div>
-                <div className="mb-3">
-                    <label className={`form-label${required ? ' required' : ''}`}>Street Address:</label>
-                    <input type="text" className="form-control" name={`${prefix}_street_address`} required={required} />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Suite Number:</label>
-                    <input type="text" className="form-control" name={`${prefix}_suite_no`} />
-                </div>
-                <div className="mb-3">
-                    <label className={`form-label${required ? ' required' : ''}`}>City:</label>
-                    <input type="text" className="form-control" name={`${prefix}_city`} required={required} />
-                </div>
-                <div className="mb-3">
-                    <label className={`form-label${required ? ' required' : ''}`}>Zip:</label>
-                    <input type="text" className="form-control" name={`${prefix}_zip`} required={required} />
-                </div>
             </>
         </FormSection>
     );

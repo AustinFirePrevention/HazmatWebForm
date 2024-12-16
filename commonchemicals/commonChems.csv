@@ -1,0 +1,18 @@
+name	label	unit	health	flamability	instability	minimumReportableAmount
+indoor_diesel_tank	Indoor Diesel Tank	Gallons	2	2	0	125
+outdoor_diesel_tank	Outdoor Diesel Tank	Gallons	2	2	0	275
+sodium_hypochlorite	Sodium Hypochlorite (less than 15% concentration)	Gallons	3	0	0	4
+muriatic_acid	Muriatic Acid	Gallons 	3	0	0	4
+liquid_argon	Liquid Argon	Gallons	3	0	0	1
+sulfuric_acid_for_pools	Sulfuric Acid for pools (less than 50% concentration)	Gallons	3	0	2	4
+sulfuric_acid_for_batteries	Sulfuric Acid for batteries (less than 50% concentration)	Gallons	3	0	2	15
+propane	Propane	Cubic Feet	1	4	0	100
+acetylene	Acetylene	Cubic Feet	1	4	1	100
+air_conditing_refrigerants	Air Conditing Refrigerants 	Cubic Feet	2	0	0	100
+nitrous_oxide	Nitrous Oxide	Cubic Feet	3	0	1	100
+liquid_oxygen	Liquid Oxygen	Cubic Feet	3	0	2	100
+compressed_oxygen	Compressed Oxygen	Cubic Feet	0	0	2	100
+carbon_dioxide	Carbon Dioxide (CO2) for beverage dispensing	Pounds	3	0	0	101
+trichlor_tablets	Trichlor Tablets	Pounds	3	0	2	150
+calcium_hypochlorite	Calcium Hypochlorite	Pounds	3	0	2	110
+dichlor_tablets	Dichlor Tablets	Pounds	3	0	1	110

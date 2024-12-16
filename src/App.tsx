@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { SummaryModalContent } from './components/SummaryModal';
 import PermitDetails from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
+import type { Material } from './helpers/FeeProcessor';
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -16,10 +17,8 @@ export interface ContactDetailsProps {
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
-function App() {
-  const [showModal, setShowModal] = useState(false);
-  const [applicationType, setApplicationType] = useState('new_permit');
-  const [totals, setTotals] = useState({
+function useFees() {
+  const [fees, setFees] = useState({
     aggregateAmounts: {
       healthLiquid: 0,
       fireLiquid: 0,
@@ -47,6 +46,26 @@ function App() {
     total: 0,
   });
 
+  const calculateFees = (materialsArray: Material[]) => {
+    setFees(FeeProcessor(materialsArray));
+    return fees;
+  }
+
+  return { fees, calculateFees };
+}
+
+function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [applicationType, setApplicationType] = useState('new_permit');
+  const { fees, calculateFees } = useFees();
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     const form = event.target as HTMLFormElement
@@ -69,14 +88,16 @@ function App() {
     })
 
     // Calculate totals using FeeProcessor
-    const feeResults = FeeProcessor(materialsArray);
-    setTotals(feeResults);
-    setShowModal(true);
+    if (applicationType === 'new_permit' && !file) {
+      alert('Storage map is required for new permit applications.');
+      return;
+    }
 
+    data.storage_map = file
+    data.storage_map_name = file?.name
     data.hazardous_materials = materialsArray
-    data.fees = feeResults
-
-    console.log(data)
+    data.fees = calculateFees(materialsArray);
+    setShowModal(true);
 
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -109,8 +130,8 @@ function App() {
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
-            <label className="form-label">Facilities Storage Map:</label>
-            <input type="file" className="form-control" name="storage_map" />
+            <label className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>Facilities Storage Map:</label>
+            <input type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
           </div>
         </div>
         <button type="submit" className="btn btn-success">Submit</button>
@@ -120,7 +141,7 @@ function App() {
           <Modal.Title>Form Submitted</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SummaryModalContent totals={totals} />
+          <SummaryModalContent totals={fees} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => setShowModal(false)}>
