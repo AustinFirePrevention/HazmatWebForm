@@ -6,7 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { SummaryModalContent } from './components/SummaryModal';
 import PermitDetails from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
-import type { Material } from './helpers/FeeProcessor';
+import { useMaterials, Material } from './helpers/MaterialsContext';
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -46,7 +46,7 @@ function useFees() {
     total: 0,
   });
 
-  const calculateFees = (materialsArray: Material[]) => {
+  const calculateFees = (materialsArray: Required<Material>[]) => {
     setFees(FeeProcessor(materialsArray));
     return fees;
   }
@@ -59,6 +59,7 @@ function App() {
   const [applicationType, setApplicationType] = useState('new_permit');
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
+  const { materials } = useMaterials();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -66,49 +67,52 @@ function App() {
     }
   }
 
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
-    const data: { [key: string]: unknown } = {}
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const materialsArray: any[] = []
     formData.forEach((value, key) => {
       if (key.startsWith('material_')) {
-        const field = key.split('_').slice(1, -1).join('_')
-        const id = key.split('_').at(-1)
-        const material = materialsArray.find(m => m.id === id) || { id }
-        material[field] = value
-        if (!materialsArray.includes(material)) {
-          materialsArray.push(material)
-        }
-      } else {
-        data[key] = value
+        formData.delete(key) // Remove all materials from the form data
       }
     })
 
-    // Calculate totals using FeeProcessor
-    if (applicationType === 'new_permit' && !file) {
-      alert('Storage map is required for new permit applications.');
-      return;
+    formData.append('materials', JSON.stringify(materials))
+    formData.append('fees', JSON.stringify(calculateFees(materials as Required<Material>[])))
+    if (file) {
+      formData.append('storage_map', file)
     }
-
-    data.storage_map = file
-    data.storage_map_name = file?.name
-    data.hazardous_materials = materialsArray
-    data.fees = calculateFees(materialsArray);
     setShowModal(true);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data: { [key: string]: any } = {}
+    formData.forEach((value, key) => {
+      data[key] = value
+    })
+    if (file) {
+      data.storage_map.content = await toBase64(file)
+    }
+    console.log(data)
 
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
     if (!response.ok) {
+      alert('There was an error submitting the form. Please contact the administrator.')
       console.log(response)
-      console.log(JSON.stringify(data))
+      console.log(JSON.stringify(formData))
     }
 
   }

@@ -4,3 +4,31 @@
   content: " *";
   color: red;
 }
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@media (prefers-reduced-motion) {
+  .pulse {
+    animation: none;
+  }
+}
+
+.pulse:hover {
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(#5a99d4, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(#5a99d4, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
+  }
+}

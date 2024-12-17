@@ -2,18 +2,19 @@ import { useState } from "react";
 import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
+import { useMaterials } from "../helpers/MaterialsContext";
 
 export function HazardousMaterials({ show = true }: { show?: boolean }) {
-    const [materials, setMaterials] = useState([{ id: Date.now() }]);
+    const { materials, setMaterials } = useMaterials();
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
 
     const appendMaterial = (material: any) => {
-        setMaterials([...materials, {id: Date.now(), ...material}]);
+        setMaterials([...materials, { id: Date.now(), ...material }]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     }
 
     const addMaterial = () => {
-        const newMaterial = { id: Date.now(),};
+        const newMaterial = { id: Date.now(), };
         setMaterials([...materials, newMaterial]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     };
@@ -38,7 +39,7 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
                     <MaterialCard setMaterials={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                 </div>
             ))}
-            <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>
+            <button type="button" className="btn btn-primary pulse mb-3" onClick={addMaterial}>Add A Material</button>
         </FormSection>
     );
 }

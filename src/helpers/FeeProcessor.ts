@@ -66,7 +66,7 @@ export type Material = {
     health_hazard: string,
     fire_hazard: string,
     instability_hazard: string,
-    units: "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours",
+    unit: "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours",
     quantity: string
 }
 
@@ -81,7 +81,7 @@ type ConvertedMaterial = {
 type ValidStates = "liquid" | "gas" | "solid" | "ESS";
 
 function convertAndVerifyMaterial(material: Material): ConvertedMaterial {
-    const units = material.units;
+    const units = material.unit;
     const health_hazard = parseInt(material.health_hazard);
     const fire_hazard = parseInt(material.fire_hazard);
     const instability_hazard = parseInt(material.instability_hazard);
