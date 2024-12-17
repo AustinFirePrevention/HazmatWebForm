@@ -1,6 +1,6 @@
 import CommonHazmatCards from "./CommonHazmatCards"
 
-export function HazardousMaterialsPreamble({ addMaterial }) {
+export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial: (chemical: any) => void }) {
     return (<>
         <p>Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by International Fire Code Section 105.5.22 must be listed in the application. The reportable quantities are based on NFPA 704:</p>
         <div className="text-center">
@@ -79,7 +79,7 @@ export function HazardousMaterialsPreamble({ addMaterial }) {
         <p><small>Underground storage of flammable and combustible liquids must be reported
             separately to the City of Austin Watershed Protection Department.</small>
         </p>
-        <CommonHazmatCards />
+        <CommonHazmatCards appendMaterial={appendMaterial} />
     </>
     )
 }

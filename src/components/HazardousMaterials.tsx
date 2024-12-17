@@ -7,8 +7,12 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const [materials, setMaterials] = useState([{ id: Date.now() }]);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
 
-    const addMaterial = (chemical = { id: Date.now() }) => {
-        const newMaterial = { id: Date.now(), ...chemical };
+    const appendMaterial = (material: any) => {
+        setMaterials([...materials, {id: Date.now(), ...material}]);
+    }
+
+    const addMaterial = () => {
+        const newMaterial = { id: Date.now(),};
         setMaterials([...materials, newMaterial]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     };
@@ -26,14 +30,14 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
 
     return (
         <FormSection title='Hazardous Materials'>
-            <HazardousMaterialsPreamble addMaterial={addMaterial} />
+            <HazardousMaterialsPreamble appendMaterial={appendMaterial} />
             <h3>Hazardous Materials List</h3>
             {materials.map((material, index) => (
                 <div key={material.id}>
                     <MaterialCard setMaterials={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                 </div>
             ))}
-            <button type="button" className="btn btn-primary" onClick={() => addMaterial()}>Add Another Material</button>
+            <button type="button" className="btn btn-primary" onClick={addMaterial}>Add Another Material</button>
         </FormSection>
     );
 }

@@ -1,7 +1,7 @@
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import commonChemicals from '../../commonchemicals/commonChem.json';
 
-export default function CommonHazmatChemicals() {
+export default function CommonHazmatChemicals({ appendMaterial }: { appendMaterial: (chemical: any) => void }) {
     return (
         <div className="common-chemicals">
             <h3>Quick Add Chemicals</h3>
@@ -12,7 +12,7 @@ export default function CommonHazmatChemicals() {
                             <Card.Body className="d-flex flex-column">
                                 <Card.Title>{chemical.label}</Card.Title>
                                 <Card.Text className="flex-grow-1"></Card.Text>
-                                <Button variant="primary" onClick={() => addMaterial(chemical)}>Add to List</Button>
+                                <Button variant="primary" onClick={() => appendMaterial(chemical)}>Add to List</Button>
                             </Card.Body>
                         </Card>
                     </Col>
