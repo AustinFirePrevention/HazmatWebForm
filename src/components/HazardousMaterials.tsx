@@ -9,6 +9,7 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
 
     const appendMaterial = (material: any) => {
         setMaterials([...materials, {id: Date.now(), ...material}]);
+        setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     }
 
     const addMaterial = () => {
