@@ -43,6 +43,5 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 }
             </div>
         </FormSection>
-
     </>)
 }
