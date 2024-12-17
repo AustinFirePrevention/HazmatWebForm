@@ -8,8 +8,6 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
 
     const addMaterial = (chemical = { id: Date.now() }) => {
-        console.log(chemical)
-        console.log(materials)
         const newMaterial = { id: Date.now(), ...chemical };
         setMaterials([...materials, newMaterial]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));

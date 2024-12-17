@@ -1,7 +1,7 @@
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 
-export default function PermitDetails({ onApplicationTypeChange }: { onApplicationTypeChange: (type: string) => void }) {
+export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: String, onApplicationTypeChange: (type: string) => void }) {
 
     return (<>
         <FormSection title="Permit Details">
@@ -20,9 +20,9 @@ export default function PermitDetails({ onApplicationTypeChange }: { onApplicati
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">Type of Application:</label>
-                    <select 
-                        className="form-select" 
-                        name="application_type" 
+                    <select
+                        className="form-select"
+                        name="application_type"
                         required
                         onChange={(e) => onApplicationTypeChange(e.target.value)}
                     >
@@ -31,14 +31,16 @@ export default function PermitDetails({ onApplicationTypeChange }: { onApplicati
                         <option value="renewal_with_change">Permit Renewal - Inventory Change</option>
                     </select>
                 </div>
-                <div className="mb-3">
-                    <label className="form-label required">Aboveground Hazardous Materials Permit Number:</label>
-                    <input type="text" className="form-control" name="permit_number" required />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Building Permit Number:</label>
-                    <input type="text" className="form-control" name="building_permit" />
-                </div>
+                {applicationType === "new_permit" ?
+                    <div className="mb-3">
+                        <label className="form-label required">Building Permit Number:</label>
+                        <input type="text" className="form-control" name="building_permit" required />
+                    </div> :
+                    <div className="mb-3">
+                        <label className={`form-label required`}>Aboveground Hazardous Materials Permit Number:</label>
+                        <input type="text" className="form-control" name="permit_number" required />
+                    </div>
+                }
             </div>
         </FormSection>
 

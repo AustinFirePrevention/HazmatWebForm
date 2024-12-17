@@ -117,7 +117,7 @@ function App() {
     <>
       <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
-        <PermitDetails onApplicationTypeChange={(type) => setApplicationType(type)} />
+        <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <ContactDetails
           required
@@ -134,7 +134,7 @@ function App() {
             <input type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
           </div>
         </div>
-        <button type="submit" className="btn btn-success">Submit</button>
+        <button type="submit" className="btn btn-success mb-3">Submit</button>
       </form>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
