@@ -67,7 +67,7 @@ function App() {
     }
   }
 
-  const toBase64 = file => new Promise((resolve, reject) => {
+  const toBase64 = (file: File) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
@@ -79,7 +79,7 @@ function App() {
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formData.forEach((value, key) => {
+    formData.forEach((_, key) => {
       if (key.startsWith('material_')) {
         formData.delete(key) // Remove all materials from the form data
       }
