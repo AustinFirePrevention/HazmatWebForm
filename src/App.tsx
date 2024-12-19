@@ -101,6 +101,7 @@ function App() {
       data.storage_map.content = await toBase64(file)
     }
     console.log(data)
+    console.log(JSON.stringify(data))
 
     const response = await fetch(endpoint, {
       method: 'POST',
