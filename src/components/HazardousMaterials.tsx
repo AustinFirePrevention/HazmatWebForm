@@ -3,13 +3,17 @@ import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
 import { useMaterials } from "../helpers/MaterialsContext";
+import { CommonChemical } from "./CommonHazmatCards";
 
 export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const { materials, setMaterials } = useMaterials();
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
 
-    const appendMaterial = (material: any) => {
-        setMaterials([...materials, { id: Date.now(), ...material }]);
+    const appendMaterial = (material: CommonChemical) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { minimumReportableAmount, ...mat } = material;
+
+        setMaterials([...materials, { id: Date.now(), ...mat }]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     }
 

@@ -62,11 +62,13 @@ function getCurrentHazardType(health: number, fire: number, instability: number)
     }
 }
 
+export type Unit = "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours";
+
 export type Material = {
     health_hazard: string,
     fire_hazard: string,
     instability_hazard: string,
-    unit: "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours",
+    unit: Unit,
     quantity: string
 }
 

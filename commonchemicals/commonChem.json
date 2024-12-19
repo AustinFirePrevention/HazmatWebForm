@@ -29,7 +29,7 @@
     {
         "name": "muriatic_acid",
         "label": "Muriatic Acid",
-        "unit": "gallons ",
+        "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
         "instability_hazard": "0",

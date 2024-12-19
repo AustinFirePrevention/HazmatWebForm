@@ -85,11 +85,6 @@ function App() {
       }
     })
 
-    formData.append('materials', JSON.stringify(materials))
-    formData.append('fees', JSON.stringify(calculateFees(materials as Required<Material>[])))
-    if (file) {
-      formData.append('storage_map', file)
-    }
     setShowModal(true);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,8 +92,14 @@ function App() {
     formData.forEach((value, key) => {
       data[key] = value
     })
+    data.materials = materials
+    data.fees = calculateFees(materials as Required<Material>[])
+    console.log(file)
     if (file) {
-      data.storage_map.content = await toBase64(file)
+      data.storage_map = {
+        content: await toBase64(file),
+        name: file.name
+      }
     }
     console.log(data)
     console.log(JSON.stringify(data))
