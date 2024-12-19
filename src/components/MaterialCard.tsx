@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
+import { Material } from '../helpers/MaterialsContext';
 
-export function MaterialCard({ material, setMaterials, index, removeMaterial, isCollapsed, toggleCollapseState }: { material: any; setMaterials: (obj: any) => void; index: number; removeMaterial: (id: number) => void; isCollapsed: boolean; toggleCollapseState: () => void; }) {
-    const materialSummary = `${index + 1}. ${material.name || "Material"} - ${material.location || 'Unknown Location'} - ${material.quantity || 0} ${material.units || 'units'}`;
+export function MaterialCard({ material, setMaterials, index, removeMaterial, isCollapsed, toggleCollapseState }: { material: Material; setMaterials: (obj: any) => void; index: number; removeMaterial: (id: number) => void; isCollapsed: boolean; toggleCollapseState: () => void; }) {
+    console.log(material);
+    const materialSummary = `${index + 1}. ${material.name || "Material"} - ${material.quantity || 0} ${material.unit || 'units'}`;
 
     const updateMaterial = (field: string, value: any) => {
         setMaterials((prevMaterials: any) => {
@@ -17,13 +19,18 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
     };
 
     return (
+
+
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
                 <button type="button" className="btn btn-primary" onClick={() => toggleCollapseState()}>
                     {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
                 </button>
-                <h3 className="card-title ms-2">{isCollapsed ? materialSummary : `${index + 1}. ${material.name || "Material"}`}</h3>
-                <button type="button" className="btn btn-danger ms-auto" onClick={() => removeMaterial(material.id)}>Remove</button>
+                <h4 className="card-title ms-3 text-truncate">{isCollapsed ? materialSummary : `${index + 1}. ${material.name || "Material"}`}</h4>
+                <span className="badge badge-diamond rounded bg-primary ms-auto"><span className=''>{material.health_hazard}</span></span>
+                <span className="badge badge-diamond bg-danger"><span>{material.fire_hazard}</span></span>
+                <span className="badge badge-diamond bg-warning"><span>{material.instability_hazard}</span></span>
+                <button type="button" className="btn btn-danger ms-2" onClick={() => removeMaterial(material.id)}>Remove</button>
             </div>
             <Collapse in={!isCollapsed}>
                 <div className="card-body">
@@ -65,11 +72,12 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">Quantity:</label>
-                        <input type="number" value={material.quantity } className="form-control" name={`material_quantity_${material.id}`} step="0.01" onChange={(e) => updateMaterial('quantity', parseInt(e.target.value))} required />
+                        <input type="number" value={material.quantity} className="form-control" name={`material_quantity_${material.id}`} step="0.01" onChange={(e) => updateMaterial('quantity', parseInt(e.target.value))} required />
                     </div>
                 </div>
             </Collapse>
 
         </div>
+
     );
 }

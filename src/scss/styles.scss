@@ -32,3 +32,22 @@
     box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
   }
 }
+
+.badge-diamond {
+  display: inline-block;
+  width: 1.35rem; /* Set the width to a fixed value */
+  height: 1.35rem; /* Set the height to the same fixed value */
+  transform: rotate(45deg);
+  padding: 0; /* Remove padding to ensure the shape is square */
+  margin: 0.25rem;
+  line-height: 1.35rem; /* Center the text vertically */
+  text-align: center; /* Center the text horizontally */
+}
+
+.badge-diamond span {
+  display: inline-block;
+  transform: rotate(-45deg);
+  width: 100%; /* Ensure the inner span takes the full width */
+  height: 100%; /* Ensure the inner span takes the full height */
+  line-height: 1.35rem; /* Center the text vertically */
+}

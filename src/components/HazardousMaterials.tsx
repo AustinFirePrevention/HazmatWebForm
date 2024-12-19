@@ -11,9 +11,9 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
 
     const appendMaterial = (material: CommonChemical) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { minimumReportableAmount, ...mat } = material;
+        const { minimumReportableAmount, name, label, ...mat } = material;
 
-        setMaterials([...materials, { id: Date.now(), ...mat }]);
+        setMaterials([...materials, { id: Date.now(), ...{ name: label, ...mat } }]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     }
 
