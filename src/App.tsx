@@ -60,6 +60,7 @@ function App() {
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
   const { materials } = useMaterials();
+  const [status, setStatus] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -85,7 +86,7 @@ function App() {
       }
     })
 
-    setShowModal(true);
+
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const data: { [key: string]: any } = {}
@@ -111,12 +112,16 @@ function App() {
       },
       body: JSON.stringify(data),
     })
-    if (!response.ok) {
-      alert('There was an error submitting the form. Please contact the administrator.')
+
+    if (response.ok) {
+      setStatus(true)
+    } else {
+      setStatus(false)
       console.log(response)
       console.log(JSON.stringify(formData))
     }
-
+    
+    setShowModal(true);
   }
 
   return (
@@ -153,12 +158,16 @@ function App() {
         </div>
         <button type="submit" className="btn btn-success mb-3">Submit</button>
       </form>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Form Submitted</Modal.Title>
+      <Modal show={showModal} onHide={() => setShowModal(false)} size='xl'>
+        <Modal.Header className={status ? "bg-success" : "bg-danger"} closeButton>
+          <Modal.Title >Form Submission {status ? "Completed!" : "Failed!"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SummaryModalContent totals={fees} />
+          <div className="text-center">
+            {status ? <p>Your form has been submitted successfully.</p> : <p>There was an error submitting your form. Please try again. If your issues persist please contact us at <a href='mailto:FirePrevention@austintexas.gov'> FirePrevention@austintexas.gov</a></p>}
+          </div>
+
+          {status && <SummaryModalContent totals={fees} />}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => setShowModal(false)}>
