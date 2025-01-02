@@ -4,7 +4,7 @@ export function PermitDetailsPreamble() {
             Payments are processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
             <strong>Register at the </strong>
             <strong>
-                <a title="AB+C Registration Link" href="https://abc.austintexas.gov/austin-ui/portal/home" target="_blank" rel="noopener">
+                <a title="AB+C Registration Link" href="https://abc.austintexas.gov/citizenportal/app/register" target="_blank" rel="noopener">
                     Austin Build + Connect
                 </a> website to proceed.&nbsp;
             </strong>
