@@ -4,6 +4,7 @@ import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
 import { useMaterials } from "../helpers/MaterialsContext";
 import { CommonChemical } from "./CommonHazmatCards";
+import { Unit } from "../helpers/FeeProcessor";
 
 export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const { materials, setMaterials } = useMaterials();
@@ -18,7 +19,7 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
     }
 
     const addMaterial = () => {
-        const newMaterial = { id: Date.now(), };
+        const newMaterial = { id: Date.now(), unit: 'gallons' as Unit, health_hazard: '0', fire_hazard: '0', instability_hazard: '0', quantity: '0' };
         setMaterials([...materials, newMaterial]);
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     };

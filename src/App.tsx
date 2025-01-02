@@ -7,6 +7,7 @@ import { SummaryModalContent } from './components/SummaryModal';
 import PermitDetails from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
 import { useMaterials, Material } from './helpers/MaterialsContext';
+import { NavBar } from './components/NavBar'
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -95,7 +96,9 @@ function App() {
     })
     data.materials = materials
     data.fees = calculateFees(materials as Required<Material>[])
-    console.log(file)
+
+    
+
     if (file) {
       data.storage_map = {
         content: await toBase64(file),
@@ -117,26 +120,16 @@ function App() {
       setStatus(true)
     } else {
       setStatus(false)
-      console.log(response)
-      console.log(JSON.stringify(formData))
+      console.error(response)
+      console.error(JSON.stringify(formData))
     }
-    
+
     setShowModal(true);
   }
 
   return (
     <>
-      <nav className="navbar sticky-top bg-body-secondary">
-        <div className="container-fluid">
-          <a className="navbar-brand mb-0 h1 fs-1" href="https://www.austintexas.gov/department/fire">
-            <img src="/pages/AFDPreventionDevTeam/hazmat/AFD.gif" alt="Logo" width="30" height="30" className="d-inline-block align-text me-3 logo" />
-            Austin Fire Department
-          </a>
-          <span className="navbar-text fs-4">
-            <a href="https://www.austintexas.gov/department/fire-marshals-office">Fire Marshal's Office</a>
-          </span>
-        </div>
-      </nav>
+      <NavBar />
       <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />

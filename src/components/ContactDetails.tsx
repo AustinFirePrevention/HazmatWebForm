@@ -12,11 +12,11 @@ export function ContactDetails({ prefix, title, note, required }: ContactDetails
                 </div>
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`}>Phone:</label>
-                    <input type="text" className="form-control" name={`${prefix}_phone`} required={required} />
+                    <input type="tel" className="form-control" name={`${prefix}_phone`} required={required} />
                 </div>
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`}>Email:</label>
-                    <input type="text" className="form-control" name={`${prefix}_email`} required={required} />
+                    <input type="email" className="form-control" name={`${prefix}_email`} required={required} />
                 </div>
             </>
         </FormSection>

@@ -16,7 +16,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">Austin Build + Connect Email:</label>
-                    <input type="text" className="form-control" name="abc_email" required />
+                    <input type="email" className="form-control" name="abc_email" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">Type of Application:</label>

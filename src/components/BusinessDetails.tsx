@@ -26,11 +26,11 @@ export default function BusinessDetails() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">Main Phone Number:</label>
-                    <input type="text" className="form-control" name="main_phone_number" required />
+                    <input type="tel" className="form-control" name="main_phone_number" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">Email Address:</label>
-                    <input type="text" className="form-control" name="email_address" required />
+                    <input type="email" className="form-control" name="email_address" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Principal Business Activity:</label>
