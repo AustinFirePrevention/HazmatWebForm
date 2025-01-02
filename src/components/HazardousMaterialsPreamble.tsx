@@ -4,7 +4,7 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
     return (<>
         <p>Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by International Fire Code Section 105.5.22 must be listed in the application. The reportable quantities are based on NFPA 704:</p>
         <div className="text-center">
-            <img className="img-fluid" src="/pages/AFDPreventionDevTeam/hazmat/reportable.png" alt="Table of reportable chemicals" />
+            <img className="img-fluid" src="/HazmatWebForm/reportable.png" alt="Table of reportable chemicals" />
         </div>
         <p>Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from "0" for little hazard, to "4" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product. If no ratings are given, they can be determined from lethal dose, flashpoint, and stability information shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at afdhazmat@austintexas.gov.</p>
         <h3> Minimum Aggregate Quantity </h3>
