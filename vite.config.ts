@@ -7,5 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'docs'
   },
-  base: '/pages/AFDPreventionDevTeam/hazmat'
+  base: '/HazmatWebForm'
 })
