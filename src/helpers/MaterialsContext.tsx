@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { Material as MaterialBase } from "./FeeProcessor";
+import * as Sentry from "@sentry/react";
 
 export type Material = {
     id: number;
@@ -25,5 +26,9 @@ export function useMaterials() {
     if (context === undefined) {
         throw new Error("useMaterials must be used within a MaterialsProvider");
     }
-    return context;
+    const newSetMaterials = (materials: Array<Material>) => {
+        context.setMaterials(materials);
+        Sentry.setContext('materials', {materials});
+    }
+    return { ...context, setMaterials: newSetMaterials };
 }

@@ -8,6 +8,7 @@ import PermitDetails from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
 import { useMaterials, Material } from './helpers/MaterialsContext';
 import { NavBar } from './components/NavBar'
+import * as Sentry from '@sentry/react'
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -48,8 +49,10 @@ function useFees() {
   });
 
   const calculateFees = (materialsArray: Required<Material>[]) => {
-    setFees(FeeProcessor(materialsArray));
-    return fees;
+    const calculatedFees = FeeProcessor(materialsArray);
+    Sentry.setContext('fees', calculatedFees);
+    setFees(calculatedFees);
+    return calculatedFees;
   }
 
   return { fees, calculateFees };
