@@ -14,6 +14,12 @@
  * 
 */
 
+import { useState } from "react"
+import { ApplicationType } from "../components/PermitDetails"
+import { useMaterials } from "./MaterialsContext"
+import * as Sentry from '@sentry/react'
+
+
 const FEES = [130, 260, 390, 520, 650]
 
 const LIQUID_QUANTITIES = [1, 55, 550, 2750, 5000]
@@ -167,4 +173,47 @@ export function FeeProcessor(materials: Material[]) {
 
 function getKey(hazardType: hazardCategories, state: ValidStates) {
     return state === "ESS" ? "ESS" : `${hazardType}${state.charAt(0).toUpperCase() + state.slice(1)}` as hazardType;
+}
+
+export function useFees() {
+    const defaultFees = {
+        aggregateAmounts: {
+            healthLiquid: 0,
+            fireLiquid: 0,
+            instabilityLiquid: 0,
+            healthGas: 0,
+            fireGas: 0,
+            instabilityGas: 0,
+            healthSolid: 0,
+            fireSolid: 0,
+            instabilitySolid: 0,
+            ESS: 0,
+        },
+        fees: {
+            healthLiquid: 0,
+            fireLiquid: 0,
+            instabilityLiquid: 0,
+            healthGas: 0,
+            fireGas: 0,
+            instabilityGas: 0,
+            healthSolid: 0,
+            fireSolid: 0,
+            instabilitySolid: 0,
+            ESS: 0,
+        },
+        total: 0,
+    };
+    const [fees, setFees] = useState(defaultFees);
+    const { materials } = useMaterials();
+
+
+    const calculateFees = (applicationType: ApplicationType) => {
+
+        const calculatedFees = applicationType === 'renewal_no_change' ? defaultFees : FeeProcessor(materials as Required<Material>[]);
+        Sentry.setContext('fees', calculatedFees);
+        setFees(calculatedFees);
+        return calculatedFees;
+    }
+
+    return { fees, calculateFees };
 }

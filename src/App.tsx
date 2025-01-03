@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
-import { FeeProcessor } from './helpers/FeeProcessor';
-import { Modal, Button } from 'react-bootstrap';
-import { SummaryModalContent } from './components/SummaryModal';
-import PermitDetails, { ApplicationTypes } from './components/PermitDetails';
+import PermitDetails, { ApplicationType } from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
-import { useMaterials, Material } from './helpers/MaterialsContext';
 import { NavBar } from './components/NavBar'
-import * as Sentry from '@sentry/react'
+import { SubmissionModal, Status as SubmissionStatus } from './components/Modal';
+import { useFees } from './helpers/FeeProcessor';
+import { useMaterials } from './helpers/MaterialsContext';
 
 export interface ContactDetailsProps {
   prefix: string;
@@ -19,52 +17,13 @@ export interface ContactDetailsProps {
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
-function useFees() {
-  const [fees, setFees] = useState({
-    aggregateAmounts: {
-      healthLiquid: 0,
-      fireLiquid: 0,
-      instabilityLiquid: 0,
-      healthGas: 0,
-      fireGas: 0,
-      instabilityGas: 0,
-      healthSolid: 0,
-      fireSolid: 0,
-      instabilitySolid: 0,
-      ESS: 0,
-    },
-    fees: {
-      healthLiquid: 0,
-      fireLiquid: 0,
-      instabilityLiquid: 0,
-      healthGas: 0,
-      fireGas: 0,
-      instabilityGas: 0,
-      healthSolid: 0,
-      fireSolid: 0,
-      instabilitySolid: 0,
-      ESS: 0,
-    },
-    total: 0,
-  });
-
-  const calculateFees = (materialsArray: Required<Material>[]) => {
-    const calculatedFees = FeeProcessor(materialsArray);
-    Sentry.setContext('fees', calculatedFees);
-    setFees(calculatedFees);
-    return calculatedFees;
-  }
-
-  return { fees, calculateFees };
-}
-
 function App() {
   const [showModal, setShowModal] = useState(false);
-  const [applicationType, setApplicationType] = useState<ApplicationTypes>('new_permit');
+  const [applicationType, setApplicationType] = useState<ApplicationType>('new_permit');
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
+  const [status, setStatus] = useState<SubmissionStatus>('error');
   const { materials } = useMaterials();
-  const [status, setStatus] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -79,8 +38,8 @@ function App() {
     reader.onerror = reject;
   });
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
+
+  async function processForm(event: React.FormEvent) {
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,20 +49,12 @@ function App() {
       }
     })
 
-
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const data: { [key: string]: any } = {}
     formData.forEach((value, key) => {
       data[key] = value
     })
-
-    if (applicationType === 'renewal_no_change') {
-      data.materials = []
-    } else {
-      data.materials = materials
-    }
-    data.fees = calculateFees(materials as Required<Material>[])
+    data.fees = calculateFees(applicationType)
 
     if (file) {
       data.storage_map = {
@@ -111,8 +62,18 @@ function App() {
         name: file.name
       }
     }
-    console.log(data)
-    console.log(JSON.stringify(data))
+
+    if (applicationType === 'renewal_no_change') {
+      data.materials = []
+    } else {
+      data.materials = materials
+    }
+    return data
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    const data = await processForm(event)
 
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -123,11 +84,14 @@ function App() {
     })
 
     if (response.ok) {
-      setStatus(true)
-    } else {
-      setStatus(false)
+
+      setStatus(applicationType === "renewal_no_change" ? 'successCantShowFees' : 'success')
+    }
+
+    if (!response.ok) {
+      setStatus('error')
       console.error(response)
-      console.error(JSON.stringify(formData))
+      console.error(data)
     }
 
     setShowModal(true);
@@ -157,26 +121,9 @@ function App() {
         </div>
         <button type="submit" className="btn btn-success mb-3">Submit</button>
       </form>
-      <Modal show={showModal} onHide={() => setShowModal(false)} size='xl'>
-        <Modal.Header className={status ? "bg-success" : "bg-danger"} closeButton>
-          <Modal.Title >Form Submission {status ? "Completed!" : "Failed!"}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="text-center">
-            {status ? <p>Your form has been submitted successfully.</p> : <p>There was an error submitting your form. Please try again. If your issues persist please contact us at <a href='mailto:FirePrevention@austintexas.gov'> FirePrevention@austintexas.gov</a></p>}
-          </div>
-
-          {status && <SummaryModalContent totals={fees} />}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <SubmissionModal showModal={showModal} setShowModal={setShowModal} status={status} fees={fees} />
     </>
   )
 }
-
 
 export default App

@@ -1,9 +1,9 @@
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 
-export type ApplicationTypes = "new_permit" | "renewal_no_change" | "renewal_with_change";
+export type ApplicationType = "new_permit" | "renewal_no_change" | "renewal_with_change";
 
-export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: ApplicationTypes, onApplicationTypeChange: (type: string) => void }) {
+export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: ApplicationType, onApplicationTypeChange: (type: ApplicationType) => void }) {
 
     return (<>
         <FormSection title="Permit Details">
@@ -26,7 +26,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                         className="form-select"
                         name="application_type"
                         required
-                        onChange={(e) => onApplicationTypeChange(e.target.value)}
+                        onChange={(e) => onApplicationTypeChange(e.target.value as ApplicationType)}
                     >
                         <option value="new_permit">New Permit</option>
                         <option value="renewal_no_change">Permit Renewal - No inventory Change</option>
