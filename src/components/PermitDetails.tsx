@@ -1,7 +1,9 @@
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 
-export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: String, onApplicationTypeChange: (type: string) => void }) {
+export type ApplicationTypes = "new_permit" | "renewal_no_change" | "renewal_with_change";
+
+export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: ApplicationTypes, onApplicationTypeChange: (type: string) => void }) {
 
     return (<>
         <FormSection title="Permit Details">

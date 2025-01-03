@@ -4,7 +4,7 @@ import { ContactDetails } from './components/ContactDetails';
 import { FeeProcessor } from './helpers/FeeProcessor';
 import { Modal, Button } from 'react-bootstrap';
 import { SummaryModalContent } from './components/SummaryModal';
-import PermitDetails from './components/PermitDetails';
+import PermitDetails, { ApplicationTypes } from './components/PermitDetails';
 import BusinessDetails from './components/BusinessDetails';
 import { useMaterials, Material } from './helpers/MaterialsContext';
 import { NavBar } from './components/NavBar'
@@ -60,7 +60,7 @@ function useFees() {
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-  const [applicationType, setApplicationType] = useState('new_permit');
+  const [applicationType, setApplicationType] = useState<ApplicationTypes>('new_permit');
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
   const { materials } = useMaterials();
@@ -97,10 +97,13 @@ function App() {
     formData.forEach((value, key) => {
       data[key] = value
     })
-    data.materials = materials
-    data.fees = calculateFees(materials as Required<Material>[])
 
-    
+    if (applicationType === 'renewal_no_change') {
+      data.materials = []
+    } else {
+      data.materials = materials
+    }
+    data.fees = calculateFees(materials as Required<Material>[])
 
     if (file) {
       data.storage_map = {
