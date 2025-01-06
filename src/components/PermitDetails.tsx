@@ -1,45 +1,47 @@
+import { useTranslation } from 'react-i18next';
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 
 export type ApplicationType = "new_permit" | "renewal_no_change" | "renewal_with_change";
 
 export default function PermitDetails({ applicationType, onApplicationTypeChange }: { applicationType: ApplicationType, onApplicationTypeChange: (type: ApplicationType) => void }) {
+    const { t } = useTranslation();
 
     return (<>
-        <FormSection title="Permit Details">
+        <FormSection title={t("permit_details.title")}>
             <div>
                 <PermitDetailsPreamble />
                 <div className="mb-3">
-                    <label className="form-label required">Austin Build + Connect ID:</label>
+                    <label className="form-label required">{t("permit_details.abc_id")}</label>
                     <input type="text" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
-                        To locate your Austin Build + Connect ID number, go to "My Profile" from the AB+C menu pane.
+                        {t("permit_details.abc_id_note")}
                     </small>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Austin Build + Connect Email:</label>
+                    <label className="form-label required">{t("permit_details.abc_email")}</label>
                     <input type="email" className="form-control" name="abc_email" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Type of Application:</label>
+                    <label className="form-label required">{t("permit_details.application_type")}</label>
                     <select
                         className="form-select"
                         name="application_type"
                         required
                         onChange={(e) => onApplicationTypeChange(e.target.value as ApplicationType)}
                     >
-                        <option value="new_permit">New Permit</option>
-                        <option value="renewal_no_change">Permit Renewal - No inventory Change</option>
-                        <option value="renewal_with_change">Permit Renewal - Inventory Change</option>
+                        <option value="new_permit">{t("permit_details.new_permit")}</option>
+                        <option value="renewal_no_change">{t("permit_details.renewal_no_change")}</option>
+                        <option value="renewal_with_change">{t("permit_details.renewal_with_change")}</option>
                     </select>
                 </div>
                 {applicationType === "new_permit" ?
                     <div className="mb-3">
-                        <label className="form-label required">Building Permit Number:</label>
+                        <label className="form-label required">{t("permit_details.building_permit")}</label>
                         <input type="text" className="form-control" name="building_permit" required />
                     </div> :
                     <div className="mb-3">
-                        <label className={`form-label required`}>Aboveground Hazardous Materials Permit Number:</label>
+                        <label className="form-label required">{t("permit_details.permit_number")}</label>
                         <input type="text" className="form-control" name="permit_number" required />
                     </div>
                 }

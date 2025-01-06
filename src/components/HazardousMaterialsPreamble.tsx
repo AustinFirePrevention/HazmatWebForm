@@ -1,84 +1,82 @@
+import { useTranslation } from 'react-i18next';
 import CommonHazmatCards from "./CommonHazmatCards"
 
 export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial: (chemical: any) => void }) {
+    const { t } = useTranslation();
+
     return (<>
-        <p>Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by International Fire Code Section 105.5.22 must be listed in the application. The reportable quantities are based on NFPA 704:</p>
+        <p>{t("hazardous_materials_preamble.intro")}</p>
         <div className="text-center">
-            <img className="img-fluid" src="/HazmatWebForm/reportable.png" alt="Table of reportable chemicals" />
+            <img className="img-fluid" src="/HazmatWebForm/reportable.png" alt={t("hazardous_materials_preamble.table_alt")} />
         </div>
-        <p>Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from "0" for little hazard, to "4" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product. If no ratings are given, they can be determined from lethal dose, flashpoint, and stability information shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at afdhazmat@austintexas.gov.</p>
-        <h3> Minimum Aggregate Quantity </h3>
+        <p>{t("hazardous_materials_preamble.hazard_ratings")}</p>
+        <h3>{t("hazardous_materials_preamble.min_quantity_title")}</h3>
         <table className="table table-hover">
             <tbody>
                 <tr>
-                    <td>COMPRESSED AND LIQUIFIED GASES INCLUDING OXYGEN</td>
-                    <td>100 CUBIC FEET</td>
+                    <td>{t("hazardous_materials_preamble.compressed_gases")}</td>
+                    <td>{t("hazardous_materials_preamble.compressed_gases_qty")}</td>
                 </tr>
                 <tr>
-                    <td>CARBON DIOXIDE (C02) SYSTEMS</td>
-                    <td>101LB</td>
+                    <td>{t("hazardous_materials_preamble.co2_systems")}</td>
+                    <td>{t("hazardous_materials_preamble.co2_systems_qty")}</td>
                 </tr>
                 <tr>
-                    <td>CRYOGENIC FLUIDS</td>
-                    <td>1 GAL</td>
+                    <td>{t("hazardous_materials_preamble.cryogenic_fluids")}</td>
+                    <td>{t("hazardous_materials_preamble.cryogenic_fluids_qty")}</td>
                 </tr>
                 <tr>
-                    <td>INDOOR DIESEL TANKS</td>
-                    <td>125 GAL</td>
+                    <td>{t("hazardous_materials_preamble.indoor_diesel_tanks")}</td>
+                    <td>{t("hazardous_materials_preamble.indoor_diesel_tanks_qty")}</td>
                 </tr>
                 <tr>
-                    <td>OUTDOOR DIESEL TANKS</td>
-                    <td>275 GAL</td>
+                    <td>{t("hazardous_materials_preamble.outdoor_diesel_tanks")}</td>
+                    <td>{t("hazardous_materials_preamble.outdoor_diesel_tanks_qty")}</td>
                 </tr>
                 <tr>
-                    <td>SULFURIC ACID - BATTERY ELECTROLYTE</td>
-                    <td>15 GAL</td>
+                    <td>{t("hazardous_materials_preamble.sulfuric_acid_battery")}</td>
+                    <td>{t("hazardous_materials_preamble.sulfuric_acid_battery_qty")}</td>
                 </tr>
                 <tr>
-                    <td>SULFURIC ACID - POOL MAINTENANCE</td>
-                    <td>4 GAL</td>
+                    <td>{t("hazardous_materials_preamble.sulfuric_acid_pool")}</td>
+                    <td>{t("hazardous_materials_preamble.sulfuric_acid_pool_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Stationary and Mobile Energy Storage System (ESS)</td>
-                    <td>Energy Capacity or Quantity</td>
+                    <td>{t("hazardous_materials_preamble.ess_stationary_mobile")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_stationary_mobile_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Capacitor ESS – nameplate rating</td>
-                    <td>3 kWh </td>
+                    <td>{t("hazardous_materials_preamble.ess_capacitor")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_capacitor_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Flow batteries – nameplate rating</td>
-                    <td>20 kWh</td>
+                    <td>{t("hazardous_materials_preamble.ess_flow_batteries")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_flow_batteries_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Lithium ion ESS – nameplate rating</td>
-                    <td>20 kwh</td>
+                    <td>{t("hazardous_materials_preamble.ess_lithium_ion")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_lithium_ion_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Nickel metal hydride – nameplate rating</td>
-                    <td>70 kWh</td>
+                    <td>{t("hazardous_materials_preamble.ess_nickel_metal_hydride")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_nickel_metal_hydride_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Other battery technologies – nameplate rating</td>
-                    <td>10 kWh</td>
+                    <td>{t("hazardous_materials_preamble.ess_other_battery")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_other_battery_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Other electrochemical ESS technologies – nameplate rating</td>
-                    <td>3 kWh</td>
+                    <td>{t("hazardous_materials_preamble.ess_other_electrochemical")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_other_electrochemical_qty")}</td>
                 </tr>
                 <tr>
-                    <td>Stationary lead-acid batteries - flooded and valve regulated, and
-                        Nickel-Cadmium ESS. Mobile ESS utilizing lead acid battery technology are exempt.</td>
-                    <td>15 gallons</td>
+                    <td>{t("hazardous_materials_preamble.ess_lead_acid")}</td>
+                    <td>{t("hazardous_materials_preamble.ess_lead_acid_qty")}</td>
                 </tr>
             </tbody>
         </table>
-        <p><small>The aboveground inventory must include reportable quantities at the site both
-            indoors and outdoors.
-        </small></p>
-        <p><small>Underground storage of flammable and combustible liquids must be reported
-            separately to the City of Austin Watershed Protection Department.</small>
-        </p>
+        <p><small>{t("hazardous_materials_preamble.aboveground_inventory_note")}</small></p>
+        <p><small>{t("hazardous_materials_preamble.underground_storage_note")}</small></p>
         <CommonHazmatCards appendMaterial={appendMaterial} />
     </>
     )

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
 import PermitDetails, { ApplicationType } from './components/PermitDetails';
@@ -18,6 +19,7 @@ export interface ContactDetailsProps {
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [applicationType, setApplicationType] = useState<ApplicationType>('new_permit');
   const { fees, calculateFees } = useFees();
@@ -100,26 +102,26 @@ function App() {
   return (
     <>
       <NavBar />
-      <h1 className="text-center mt-4">Aboveground Hazardous Materials Permit Application</h1>
+      <h1 className="text-center mt-4">{t("title")}</h1>
       <form className="form container mt-4" onSubmit={handleSubmit}>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <ContactDetails
           required
           prefix="primary_contact"
-          title="Primary Contact"
-          note="This person is responsible for obtaining the initial permit, renewing it every 3 years, and answering application questions. They will be listed as an emergency contact."
+          title={t("primary_contact.title")}
+          note={t("primary_contact.note")}
         />
-        <ContactDetails prefix="responsible_official" title="Responsible Official - Business Owner, Manager, President, etc." />
-        <ContactDetails prefix="emergency_contact" title="Emergency Contact - 24 hour contact" />
+        <ContactDetails prefix="responsible_official" title={t("responsible_official.title")} />
+        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
-            <label className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>Facilities Storage Map:</label>
+            <label className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
             <input type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
           </div>
         </div>
-        <button type="submit" className="btn btn-success mb-3">Submit</button>
+        <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
       </form>
       <SubmissionModal showModal={showModal} setShowModal={setShowModal} status={status} fees={fees} />
     </>

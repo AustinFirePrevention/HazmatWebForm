@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
@@ -7,6 +8,7 @@ import { CommonChemical } from "./CommonHazmatCards";
 import { Unit } from "../helpers/FeeProcessor";
 
 export function HazardousMaterials({ show = true }: { show?: boolean }) {
+    const { t } = useTranslation();
     const { materials, setMaterials } = useMaterials();
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([false]);
 
@@ -36,15 +38,15 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
     if (!show) return null;
 
     return (
-        <FormSection title='Hazardous Materials'>
+        <FormSection title={t('hazardous_materials.title')}>
             <HazardousMaterialsPreamble appendMaterial={appendMaterial} />
-            <h3>Hazardous Materials List</h3>
+            <h3>{t('hazardous_materials.list_title')}</h3>
             {materials.map((material, index) => (
                 <div key={material.id}>
                     <MaterialCard setMaterials={setMaterials} toggleCollapseState={() => toggleCollapseState(index)} isCollapsed={collapsedMaterials[index]} material={material} index={index} removeMaterial={removeMaterial} />
                 </div>
             ))}
-            <button type="button" className="btn btn-primary pulse mb-3" onClick={addMaterial}>Add A Material</button>
+            <button type="button" className="btn btn-primary pulse mb-3" onClick={addMaterial}>{t('hazardous_materials.add_material')}</button>
         </FormSection>
     );
 }

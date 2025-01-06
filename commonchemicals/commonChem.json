@@ -2,6 +2,7 @@
     {
         "name": "indoor_diesel_tank",
         "label": "Indoor Diesel Tank",
+        "label_es": "Tanques de Diesel Interiores",
         "unit": "gallons",
         "health_hazard": "2",
         "fire_hazard": "2",
@@ -11,6 +12,7 @@
     {
         "name": "outdoor_diesel_tank",
         "label": "Outdoor Diesel Tank",
+        "label_es": "Tanques de Diesel Exteriores",
         "unit": "gallons",
         "health_hazard": "2",
         "fire_hazard": "2",
@@ -20,6 +22,7 @@
     {
         "name": "sodium_hypochlorite",
         "label": "Sodium Hypochlorite (less than 15% concentration)",
+        "label_es": "Hipoclorito de Sodio (menos del 15% de concentración)",
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -29,6 +32,7 @@
     {
         "name": "muriatic_acid",
         "label": "Muriatic Acid",
+        "label_es": "Ácido Muriático",
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -38,6 +42,7 @@
     {
         "name": "liquid_argon",
         "label": "Liquid Argon",
+        "label_es": "Argón Líquido",
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -47,6 +52,7 @@
     {
         "name": "sulfuric_acid_for_pools",
         "label": "Sulfuric Acid for pools (less than 50% concentration)",
+        "label_es": "Ácido Sulfúrico para piscinas (menos del 50% de concentración)",
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -56,6 +62,7 @@
     {
         "name": "sulfuric_acid_for_batteries",
         "label": "Sulfuric Acid for batteries (less than 50% concentration)",
+        "label_es": "Ácido Sulfúrico para baterías (menos del 50% de concentración)",
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -65,6 +72,7 @@
     {
         "name": "propane",
         "label": "Propane",
+        "label_es": "Propano",
         "unit": "cubic_feet",
         "health_hazard": "1",
         "fire_hazard": "4",
@@ -74,6 +82,7 @@
     {
         "name": "acetylene",
         "label": "Acetylene",
+        "label_es": "Acetileno",
         "unit": "cubic_feet",
         "health_hazard": "1",
         "fire_hazard": "4",
@@ -83,6 +92,7 @@
     {
         "name": "air_conditing_refrigerants",
         "label": "Air Conditing Refrigerants ",
+        "label_es": "Refrigerantes de Aire Acondicionado",
         "unit": "cubic_feet",
         "health_hazard": "2",
         "fire_hazard": "0",
@@ -92,6 +102,7 @@
     {
         "name": "nitrous_oxide",
         "label": "Nitrous Oxide",
+        "label_es": "Óxido Nitroso",
         "unit": "cubic_feet",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -101,6 +112,7 @@
     {
         "name": "liquid_oxygen",
         "label": "Liquid Oxygen",
+        "label_es": "Oxígeno Líquido",
         "unit": "cubic_feet",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -110,6 +122,7 @@
     {
         "name": "compressed_oxygen",
         "label": "Compressed Oxygen",
+        "label_es": "Oxígeno Comprimido",
         "unit": "cubic_feet",
         "health_hazard": "0",
         "fire_hazard": "0",
@@ -119,6 +132,7 @@
     {
         "name": "carbon_dioxide",
         "label": "Carbon Dioxide (CO2) for beverage dispensing",
+        "label_es": "Dióxido de Carbono (CO2) para dispensación de bebidas",
         "unit": "pounds",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -128,6 +142,7 @@
     {
         "name": "trichlor_tablets",
         "label": "Trichlor Tablets",
+        "label_es": "Tabletas de Tricloro",
         "unit": "pounds",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -137,6 +152,7 @@
     {
         "name": "calcium_hypochlorite",
         "label": "Calcium Hypochlorite",
+        "label_es": "Hipoclorito de Calcio",
         "unit": "pounds",
         "health_hazard": "3",
         "fire_hazard": "0",
@@ -146,6 +162,7 @@
     {
         "name": "dichlor_tablets",
         "label": "Dichlor Tablets",
+        "label_es": "Tabletas de Diclor",
         "unit": "pounds",
         "health_hazard": "3",
         "fire_hazard": "0",

@@ -1,43 +1,46 @@
+import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
 
 export default function BusinessDetails() {
+    const { t } = useTranslation();
+
     return (
-        <FormSection title="Business Details">
+        <FormSection title={t("business_details.title")}>
             <div>
                 <div className="mb-3">
-                    <label className="form-label required">Business Name:</label>
+                    <label className="form-label required">{t("business_details.business_name")}</label>
                     <input type="text" className="form-control" name="business_name" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Street Address:</label>
+                    <label className="form-label required">{t("business_details.street_address")}</label>
                     <input type="text" className="form-control" name="street_address" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Suite Number:</label>
+                    <label className="form-label">{t("business_details.suite_no")}</label>
                     <input type="text" className="form-control" name="suite_no" />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">City:</label>
+                    <label className="form-label required">{t("business_details.city")}</label>
                     <input type="text" className="form-control" name="city" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Zip:</label>
+                    <label className="form-label required">{t("business_details.zip")}</label>
                     <input type="text" className="form-control" name="zip" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Main Phone Number:</label>
+                    <label className="form-label required">{t("business_details.main_phone_number")}</label>
                     <input type="tel" className="form-control" name="main_phone_number" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">Email Address:</label>
+                    <label className="form-label required">{t("business_details.email_address")}</label>
                     <input type="email" className="form-control" name="email_address" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Principal Business Activity:</label>
+                    <label className="form-label">{t("business_details.business_activity")}</label>
                     <input type="text" className="form-control" name="business_activity" />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Hours of Operations:</label>
+                    <label className="form-label">{t("business_details.hours_of_operation")}</label>
                     <input type="text" className="form-control" name="hours_of_operation" />
                 </div>
             </div>

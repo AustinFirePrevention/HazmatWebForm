@@ -1,19 +1,24 @@
+import { useTranslation } from 'react-i18next';
+
 export function PermitDetailsPreamble() {
+    const { t } = useTranslation();
+
     return (<>
         <div className="alert alert-info">
-            Payments are processed through the Austin Build + Connect (AB+C) online customer portal.&nbsp;
-            <strong>Register at the </strong>
+            {t("permit_details_preamble.info")}
+            <strong>{t("permit_details_preamble.register_at")}</strong>
             <strong>
-                <a title="AB+C Registration Link" href="https://abc.austintexas.gov/citizenportal/app/register" target="_blank" rel="noopener">
-                    Austin Build + Connect
-                </a> website to proceed.&nbsp;
+                <a title={t("permit_details_preamble.abc_registration_link")} href="https://abc.austintexas.gov/citizenportal/app/register" target="_blank" rel="noopener">
+                    {t("permit_details_preamble.abc_website")}
+                </a>
+                {t("permit_details_preamble.to_proceed")}
             </strong>
         </div>
         <div className="alert alert-warning">
-            Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.
+            {t("permit_details_preamble.bills_note")}
         </div>
         <div className="alert alert-danger">
-            <strong>Do not send applications and payment by mail.</strong>
-        </div></>
-    );
+            <strong>{t("permit_details_preamble.no_mail")}</strong>
+        </div>
+    </>);
 }
