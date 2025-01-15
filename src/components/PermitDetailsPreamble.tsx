@@ -1,23 +1,19 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 export function PermitDetailsPreamble() {
     const { t } = useTranslation();
 
     return (<>
         <div className="alert alert-info">
-            {t("permit_details_preamble.info")}
-            <strong>{t("permit_details_preamble.register_at")}</strong>
-            <strong>
-                <a title={t("permit_details_preamble.abc_registration_link")} href="https://abc.austintexas.gov/citizenportal/app/register" target="_blank" rel="noopener">
-                    {t("permit_details_preamble.abc_website")}
+            <Trans i18nKey="permit_details_preamble.description">
+                Payments are processed...
+                <a href="https://abc.austintexas.gov/citizenportal/app/register" target="_blank" rel="noopener">
+                    Austin Build + Connect
                 </a>
-                {t("permit_details_preamble.to_proceed")}
-            </strong>
+                website to proceed...
+            </Trans>
         </div>
         <div className="alert alert-warning">
-            {t("permit_details_preamble.bills_note")}
-        </div>
-        <div className="alert alert-danger">
             <strong>{t("permit_details_preamble.no_mail")}</strong>
         </div>
     </>);

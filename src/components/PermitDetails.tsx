@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
 import InputMask from 'react-input-mask';
@@ -16,7 +16,11 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                     <label className="form-label required">{t("permit_details.abc_id")}</label>
                     <input type="text" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
-                        {t("permit_details.abc_id_note_before_link")} <a href="https://abc.austintexas.gov">{t("permit_details.abc_id_note_link")}</a> {t("permit_details.abc_id_note_after_link")}
+                        <Trans i18nKey="permit_details.abc_id_note">
+                            To locate your Austin Build + Connect ID number, log into your 
+                            <a href="https://abc.austintexas.gov">AB+C account</a> 
+                            and go to "My Profile" from the top menu pane.
+                        </Trans>
                     </small>
                 </div>
                 <div className="mb-3">
@@ -38,7 +42,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 </div>
                 {applicationType === "new_permit" ?
                     <div className="mb-3">
-                        <label className="form-label required">{t("permit_details.building_permit")}</label>
+                        <label className="form-label">{t("permit_details.building_permit")}</label>
                         <InputMask mask="99-999999-BP" className="form-control" name="building_permit" />
                     </div> :
                     <div className="mb-3">

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
@@ -9,6 +9,7 @@ import { SubmissionModal, Status as SubmissionStatus } from './components/Modal'
 import { useFees } from './helpers/FeeProcessor';
 import { useMaterials } from './helpers/MaterialsContext';
 import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
+import { Toast, ToastContainer } from 'react-bootstrap';
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
@@ -20,6 +21,15 @@ function App() {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<SubmissionStatus>('error');
   const { materials } = useMaterials();
+  const [showMaterialToast, setShowMaterialToast] = useState(false);
+
+  console.log(showMaterialToast)
+
+  useEffect(() => {
+    if (materials && materials.length > 0) {
+      setShowMaterialToast(true);
+    }
+  }, [materials]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -106,12 +116,12 @@ function App() {
           title={t("primary_contact.title")}
           note={<PrimaryContactPreamble />}
         />
-        <ContactDetails 
-          prefix="responsible_official" 
-          title={t("responsible_official.title")} 
+        <ContactDetails
+          prefix="responsible_official"
+          title={t("responsible_official.title")}
           note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
-          required 
-          copyFromPrimary 
+          required
+          copyFromPrimary
         />
         <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
@@ -127,7 +137,15 @@ function App() {
           </div>
         </div>
         <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
+
       </form>
+      <ToastContainer position="bottom-end" containerPosition="sticky" className="p-3">
+        <Toast show={showMaterialToast} onClose={() => setShowMaterialToast(false)} delay={3000} autohide>
+          <Toast.Body>
+            {t("toast.materials_count_message", { count: materials.length })}
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
       <SubmissionModal showModal={showModal} setShowModal={setShowModal} status={status} fees={fees} />
     </>
   )

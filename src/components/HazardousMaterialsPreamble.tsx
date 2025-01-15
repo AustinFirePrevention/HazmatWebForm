@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import CommonHazmatCards from "./CommonHazmatCards"
 
 export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial: (chemical: any) => void }) {
@@ -9,7 +9,7 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
         <div className="text-center">
             <img className="img-fluid" src="/HazmatWebForm/reportable.png" alt={t("hazardous_materials_preamble.table_alt")} />
         </div>
-        <p>{t("hazardous_materials_preamble.hazard_ratings")}</p>
+        <p>{t("hazardous_materials_preamble.hazard_ratings")} <a href='mailto:afdhazmat@austintexas.gov'>afdhazmat@austintexas.gov</a>.</p>
         <h3>{t("hazardous_materials_preamble.min_quantity_title")}</h3>
         <table className="table table-hover">
             <thead>
@@ -90,13 +90,17 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
             </tbody>
         </table>
         <p><small>{t("hazardous_materials_preamble.aboveground_inventory_note")}</small></p>
-        <div className='alert alert-warning'><small>
-            {t("hazardous_materials_preamble.underground_storage_note_part1")}
-            <a href="https://www.austintexas.gov/page/environmental-inspections#hazardous-materials-storage-permit" target="_blank" rel="noopener noreferrer">
-                {t("hazardous_materials_preamble.underground_storage_note_part2")}
-            </a>
-            {t("hazardous_materials_preamble.underground_storage_note_part3")}
-        </small></div>
+        <div className='alert alert-warning'>
+          <small>
+            <Trans i18nKey="hazardous_materials_preamble.underground_storage_note">
+              Report underground storage...
+              <a href="https://www.austintexas.gov/page/environmental-inspections#hazardous-materials-storage-permit" target="_blank" rel="noopener noreferrer">
+                Hazardous Materials Storage Permit Application
+              </a>
+              from the Development Services Department...
+            </Trans>
+          </small>
+        </div>
         <CommonHazmatCards appendMaterial={appendMaterial} />
         <div className="alert alert-info mt-3">
             {t("hazardous_materials_preamble.add_chemicals_note")}

@@ -30,9 +30,7 @@
   "permit_details": {
     "title": "Detalles del Permiso",
     "abc_id": "ID de Austin Build + Connect:",
-    "abc_id_note_before_link": "Para localizar su número de ID de Austin Build + Connect, inicie sesión en su",
-    "abc_id_note_link": "cuenta de AB+C",
-    "abc_id_note_after_link": "y vaya a \"Mi Perfil\" desde el panel de menú superior.",
+    "abc_id_note": "Para localizar su número de ID de Austin Build + Connect, inicie sesión en su <1>cuenta de AB+C</1> y vaya a \"Mi Perfil\" desde el panel de menú superior.",
     "abc_email": "Correo Electrónico de Austin Build + Connect:",
     "application_type": "Tipo de Solicitud:",
     "new_permit": "Nuevo Permiso",
@@ -42,12 +40,7 @@
     "permit_number": "Número de Permiso de Materiales Peligrosos Sobre el Suelo:"
   },
   "permit_details_preamble": {
-    "info": "Los pagos se procesan a través del portal en línea Austin Build + Connect (AB+C). ",
-    "register_at": "Regístrese en el ",
-    "abc_registration_link": "Enlace de Registro de AB+C",
-    "abc_website": "Austin Build + Connect",
-    "to_proceed": " sitio web para continuar. ",
-    "bills_note": "Las facturas no se agregan automáticamente a la cuenta, se agregarán manualmente después de que la solicitud sea revisada y aprobada. Se enviará un correo electrónico a la dirección asociada con la cuenta cuando las tarifas estén listas para ser pagadas.",
+    "description": "Los pagos se procesan a través del portal en línea Austin Build + Connect (AB+C). Regístrese en el <1>Austin Build + Connect</1> sitio web para continuar. Las facturas no se agregan automáticamente a la cuenta, se agregarán manualmente después de que la solicitud sea revisada y aprobada. Se enviará un correo electrónico a la dirección asociada con la cuenta cuando las tarifas estén listas para ser pagadas.",
     "no_mail": "No envíe solicitudes y pagos por correo."
   },
   "business_details": {
@@ -71,7 +64,7 @@
   "hazardous_materials_preamble": {
     "intro": "Los materiales peligrosos almacenados o utilizados sobre el suelo en cantidades agregadas mayores que las requeridas para el informe por la Sección 105.5.22 del Código Internacional de Incendios deben ser listados en la solicitud. Las cantidades reportables se basan en NFPA 704:",
     "table_alt": "Tabla de productos químicos reportables",
-    "hazard_ratings": "Las calificaciones de peligro se determinan utilizando los criterios descritos en la Norma NFPA No. 704. Las calificaciones varían de \"0\" para poco peligro, a \"4\" para peligro extremo, y se asignan para la salud, la inflamabilidad y la reactividad o inestabilidad. Muchos productos tendrán calificaciones en dos o más categorías de peligro. Estas calificaciones generalmente se encuentran en la Hoja de Datos de Seguridad (SDS) de cada producto. Si no se dan calificaciones, se pueden determinar a partir de la dosis letal, el punto de inflamación y la información de estabilidad que se muestra en la SDS. Si tiene dificultades para determinar las calificaciones de peligro, envíenos un correo electrónico a afdhazmat@austintexas.gov.",
+    "hazard_ratings": "Las calificaciones de peligro se determinan utilizando los criterios descritos en la Norma NFPA No. 704. Las calificaciones varían de \"0\" para poco peligro, a \"4\" para peligro extremo, y se asignan para la salud, la inflamabilidad y la reactividad o inestabilidad. Muchos productos tendrán calificaciones en dos o más categorías de peligro. Estas calificaciones generalmente se encuentran en la Hoja de Datos de Seguridad (SDS) de cada producto. Si no se dan calificaciones, se pueden determinar a partir de la dosis letal, el punto de inflamación y la información de estabilidad que se muestra en la SDS. Si tiene dificultades para determinar las calificaciones de peligro, envíenos un correo electrónico a",
     "min_quantity_title": "Cantidad Mínima Agregada",
     "compressed_gases": "GASES COMPRIMIDOS Y LICUADOS INCLUYENDO OXÍGENO",
     "compressed_gases_qty": "100 PIES CÚBICOS",
@@ -104,9 +97,7 @@
     "ess_lead_acid": "Baterías de plomo-ácido estacionarias - inundadas y reguladas por válvula, y ESS de níquel-cadmio. Los ESS móviles que utilizan tecnología de baterías de plomo-ácido están exentos.",
     "ess_lead_acid_qty": "15 galones",
     "aboveground_inventory_note": "El inventario sobre el suelo debe incluir cantidades reportables en el sitio tanto en interiores como en exteriores.",
-    "underground_storage_note_part1": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado con ",
-    "underground_storage_note_part2": "la Solicitud de Permiso de Almacenamiento de Materiales Peligrosos del Departamento de Servicios de Desarrollo.",
-    "underground_storage_note_part3": " Esto excluye el propano, que debe ser reportado bajo esta solicitud.",
+    "underground_storage_note": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado con <1>la Solicitud de Permiso de Almacenamiento de Materiales Peligrosos</1> del Departamento de Servicios de Desarrollo. Esto excluye el propano, que debe ser reportado bajo esta solicitud.",
     "add_chemicals_note": "Puede agregar productos químicos comunes usando las tarjetas de arriba o agregar productos químicos en blanco a continuación. Use el botón azul para expandir y colapsar los materiales."
   },
   "material_card": {
@@ -144,5 +135,8 @@
       "body": "Hubo un error al enviar su formulario. Por favor, inténtelo de nuevo. Si sus problemas persisten, contáctenos en FirePrevention@austintexas.gov"
     },
     "close": "Cerrar"
+  },
+  "toast": {
+    "materials_count_message": "Ahora tienes {{count}} Materiales Peligrosos en la lista de materiales."
   }
 }
