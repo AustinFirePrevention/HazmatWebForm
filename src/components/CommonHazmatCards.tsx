@@ -18,6 +18,7 @@ export default function CommonHazmatChemicals({ appendMaterial }: { appendMateri
     const { t, i18n } = useTranslation();
 
     const handleAppendMaterial = (chemical: CommonChemical) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { label_es, ...material } = chemical;
         appendMaterial(material);
     };

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Modal, Button } from "react-bootstrap"
 import { SummaryModalContent } from "./SummaryModal"
+import { FeeAggregate } from '../helpers/FeeProcessor';
 
 export type Status = "success" | "successCantShowFees" | "error"
 
@@ -25,7 +26,7 @@ const content = {
     }
 } as Record<Status, { title: string, body: string, showSummary: boolean, isPassing: boolean }>
 
-export function SubmissionModal({ showModal, setShowModal, status, fees }: { showModal: boolean, setShowModal: (arg: boolean) => void, status: Status, fees: any }) {
+export function SubmissionModal({ showModal, setShowModal, status, fees }: { showModal: boolean, setShowModal: (arg: boolean) => void, status: Status, fees: FeeAggregate }) {
     const { t } = useTranslation();
     const { title, body, showSummary, isPassing } = content[status]
 

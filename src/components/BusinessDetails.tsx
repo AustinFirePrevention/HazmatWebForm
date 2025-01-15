@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
+import InputMask from 'react-input-mask';
 
 export default function BusinessDetails() {
     const { t } = useTranslation();
@@ -10,6 +11,9 @@ export default function BusinessDetails() {
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.business_name")}</label>
                     <input type="text" className="form-control" name="business_name" required />
+                    <small className="form-text text-muted">
+                        {t("business_details.business_name_note")}
+                    </small>
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.street_address")}</label>
@@ -29,7 +33,7 @@ export default function BusinessDetails() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.main_phone_number")}</label>
-                    <input type="tel" className="form-control" name="main_phone_number" required />
+                    <InputMask mask="(999)999-9999" className="form-control" name="main_phone_number" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.email_address")}</label>

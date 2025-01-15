@@ -2,25 +2,33 @@
   "title": "Aboveground Hazardous Materials Permit Application",
   "primary_contact": {
     "title": "Primary Contact",
-    "note": "This person is responsible for obtaining the initial permit, renewing it every 3 years, and answering application questions. They will be listed as an emergency contact."
+    "note": "This person is responsible for obtaining the initial permit, renewing it every three (3) years, and answering application questions. They will be listed as one of the 24-hour emergency contacts.",
+    "preamble": "Note: International Fire Code Section 5001.5.1 requires a representative, knowledgeable about operations in the on-site hazardous material areas, to be responsible for liaison with the Austin Fire Department. Permit Renewal Notices will be mailed to this person. In addition, requests for Material Safety Data Sheets, Hazmat/Fire Inspection results, preplanning information for emergency responses, etc. will be directed to this on-site representative when necessary."
   },
   "responsible_official": {
-    "title": "Responsible Official - Business Owner, Manager, President, etc."
+    "title": "Responsible Official - Business Owner, Manager, President, etc.",
+    "copy_primary_contact": "Copy Primary Contact Details",
+    "clear_primary_contact": "Clear Primary Contact Details",
+    "note": "This person is legally and financially responsible for the business and may be used as an emergency contact."
   },
   "emergency_contact": {
     "title": "Emergency Contact - 24 hour contact"
   },
   "storage_map": "Facilities Storage Map:",
+  "storage_map_note": "If changes have occurred since the last renewal, you must provide a new map.",
   "submit": "Submit",
   "navbar": {
     "title": "Austin Fire Department",
-    "fire_marshal": "Fire Marshal's Office"
+    "fire_marshal": "Fire Marshal's Office",
+    "hazmat_program": "Hazmat Program"
   },
   "permit_details": {
     "title": "Permit Details",
     "abc_id": "Austin Build + Connect ID:",
-    "abc_id_note": "To locate your Austin Build + Connect ID number, go to \"My Profile\" from the AB+C menu pane.",
-    "abc_email": "Austin Build + Connect Email:",
+    "abc_id_note_before_link": "To locate your Austin Build + Connect ID number, log into your",
+    "abc_id_note_link": "AB+C account",
+    "abc_id_note_after_link": "and go to \"My Profile\" from the top menu pane.",
+    "abc_email": "Email associated with your Austin Build + Connect account:",
     "application_type": "Type of Application:",
     "new_permit": "New Permit",
     "renewal_no_change": "Permit Renewal - No inventory Change",
@@ -34,16 +42,17 @@
     "abc_registration_link": "AB+C Registration Link",
     "abc_website": "Austin Build + Connect",
     "to_proceed": " website to proceed. ",
-    "bills_note": "Bills are not added to the account automatically, bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.",
-    "no_mail": "Do not send applications and payment by mail."
+    "bills_note": "Bills are not added to the AB+C account automatically. When you complete this form bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.",
+    "no_mail": "Do not send applications and payment by mail or e-mail."
   },
   "business_details": {
     "title": "Business Details",
     "business_name": "Business Name:",
+    "business_name_note": "This should be the name displayed on your building",
     "street_address": "Street Address:",
     "suite_no": "Suite Number:",
     "city": "City:",
-    "zip": "Zip:",
+    "zip": "Zip Code:",
     "main_phone_number": "Main Phone Number:",
     "email_address": "Email Address:",
     "business_activity": "Principal Business Activity:",
@@ -60,14 +69,14 @@
     "add_material": "Add A Material"
   },
   "hazardous_materials_preamble": {
-    "intro": "Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by International Fire Code Section 105.5.22 must be listed in the application. The reportable quantities are based on NFPA 704:",
+    "intro": "Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by the 2021International Fire Code Section 105.5.22 as amended by the City of Austin must be listed in the application. The reportable quantities are based on the National Fire Protection Association (NFPA) standard 704:",
     "table_alt": "Table of reportable chemicals",
-    "hazard_ratings": "Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from \"0\" for little hazard, to \"4\" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product. If no ratings are given, they can be determined from lethal dose, flashpoint, and stability information shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at afdhazmat@austintexas.gov.",
+    "hazard_ratings": "Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from \"0\" for little hazard, to \"4\" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product in the Transport information or Regulatory information sections. If no ratings are given, they can be determined from Physical and chemical properties, stability and reactivity, and toxicological information sections shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at afdhazmat@austintexas.gov",
     "min_quantity_title": "Minimum Aggregate Quantity",
     "compressed_gases": "COMPRESSED AND LIQUIFIED GASES INCLUDING OXYGEN",
     "compressed_gases_qty": "100 CUBIC FEET",
     "co2_systems": "CARBON DIOXIDE (C02) SYSTEMS",
-    "co2_systems_qty": "101LB",
+    "co2_systems_qty": "101 LB",
     "cryogenic_fluids": "CRYOGENIC FLUIDS",
     "cryogenic_fluids_qty": "1 GAL",
     "indoor_diesel_tanks": "INDOOR DIESEL TANKS",
@@ -95,7 +104,10 @@
     "ess_lead_acid": "Stationary lead-acid batteries - flooded and valve regulated, and Nickel-Cadmium ESS. Mobile ESS utilizing lead acid battery technology are exempt.",
     "ess_lead_acid_qty": "15 gallons",
     "aboveground_inventory_note": "The aboveground inventory must include reportable quantities at the site both indoors and outdoors.",
-    "underground_storage_note": "Underground storage of flammable and combustible liquids must be reported separately to the City of Austin Watershed Protection Department."
+    "underground_storage_note_part1": "Report underground storage of flammable and combustible liquids separately using the Environmental Inspections ",
+    "underground_storage_note_part2": "Hazardous Materials Storage Permit Application ",
+    "underground_storage_note_part3": "from the Development Services Department. This excludes propane, which must be reported under this application.",
+    "add_chemicals_note": "You can add common chemicals using the cards above or add blank chemicals below. Use the blue button to expand and collapse the materials to add all of the details required."
   },
   "material_card": {
     "material": "Material",
@@ -109,9 +121,11 @@
     "gallons": "Gallons",
     "cubic_feet": "Cubic Feet",
     "pounds": "Pounds",
-    "kilograms": "Kilograms",
+    "kilowatt_hours": "Kilowatt-Hours",
     "quantity": "Quantity"
   },
+  "chemical": "Chemical",
+  "quantity": "Quantity",
   "common_hazmat_cards": {
     "title": "Quick Add Chemicals",
     "add_to_list": "Add to List"

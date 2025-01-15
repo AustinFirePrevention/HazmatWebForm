@@ -14,13 +14,14 @@ export function NavBar() {
                     <img src="/HazmatWebForm/AFD.gif" alt="Logo" width="30" height="30" className="d-inline-block align-text me-3 logo" />
                     {t('navbar.title')}
                 </a>
-                <span className="navbar-text fs-4">
+                <div className="d-flex flex-column align-items-end fs-4">
                     <a href="https://www.austintexas.gov/department/fire-marshals-office">{t('navbar.fire_marshal')}</a>
-                    <div className="ms-auto">
+                    <a href="https://www.austintexas.gov/department/hazmat-permit" className="mt-2">{t('navbar.hazmat_program')}</a>
+                    <div className="mt-2">
                         <button className="btn btn-link" onClick={() => changeLanguage('en')}>EN</button>
                         <button className="btn btn-link" onClick={() => changeLanguage('es')}>ES</button>
                     </div>
-                </span>
+                </div>
             </div>
         </nav>
     )

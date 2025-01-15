@@ -8,13 +8,7 @@ import { NavBar } from './components/NavBar'
 import { SubmissionModal, Status as SubmissionStatus } from './components/Modal';
 import { useFees } from './helpers/FeeProcessor';
 import { useMaterials } from './helpers/MaterialsContext';
-
-export interface ContactDetailsProps {
-  prefix: string;
-  title: string;
-  note?: string;
-  required?: boolean;
-}
+import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
@@ -110,15 +104,26 @@ function App() {
           required
           prefix="primary_contact"
           title={t("primary_contact.title")}
-          note={t("primary_contact.note")}
+          note={<PrimaryContactPreamble />}
         />
-        <ContactDetails prefix="responsible_official" title={t("responsible_official.title")} />
+        <ContactDetails 
+          prefix="responsible_official" 
+          title={t("responsible_official.title")} 
+          note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
+          required 
+          copyFromPrimary 
+        />
         <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
             <label className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
             <input type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
+            {applicationType !== 'new_permit' && (
+              <small className="form-text text-muted">
+                {t("storage_map_note")}
+              </small>
+            )}
           </div>
         </div>
         <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>

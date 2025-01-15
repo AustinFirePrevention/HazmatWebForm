@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import FormSection from './FormSection';
 import { PermitDetailsPreamble } from './PermitDetailsPreamble';
+import InputMask from 'react-input-mask';
 
 export type ApplicationType = "new_permit" | "renewal_no_change" | "renewal_with_change";
 
@@ -15,7 +16,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                     <label className="form-label required">{t("permit_details.abc_id")}</label>
                     <input type="text" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
-                        {t("permit_details.abc_id_note")}
+                        {t("permit_details.abc_id_note_before_link")} <a href="https://abc.austintexas.gov">{t("permit_details.abc_id_note_link")}</a> {t("permit_details.abc_id_note_after_link")}
                     </small>
                 </div>
                 <div className="mb-3">
@@ -38,7 +39,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 {applicationType === "new_permit" ?
                     <div className="mb-3">
                         <label className="form-label required">{t("permit_details.building_permit")}</label>
-                        <input type="text" className="form-control" name="building_permit" required />
+                        <InputMask mask="99-999999-BP" className="form-control" name="building_permit" />
                     </div> :
                     <div className="mb-3">
                         <label className="form-label required">{t("permit_details.permit_number")}</label>

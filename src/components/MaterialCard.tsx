@@ -66,7 +66,7 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                             <option value="gallons">{t("material_card.gallons")}</option>
                             <option value="cubic_feet">{t("material_card.cubic_feet")}</option>
                             <option value="pounds">{t("material_card.pounds")}</option>
-                            <option value="kilograms">{t("material_card.kilograms")}</option>
+                            <option value="kilowatt_hours">{t("material_card.kilowatt_hours")}</option>
                         </select>
                     </div>
                     <div className="mb-3">

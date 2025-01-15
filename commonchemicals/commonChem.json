@@ -90,8 +90,8 @@
         "minimumReportableAmount": "100"
     },
     {
-        "name": "air_conditing_refrigerants",
-        "label": "Air Conditing Refrigerants ",
+        "name": "air_conditioning_refrigerants",
+        "label": "Air Conditioning Refrigerants ",
         "label_es": "Refrigerantes de Aire Acondicionado",
         "unit": "cubic_feet",
         "health_hazard": "2",

@@ -175,7 +175,35 @@ function getKey(hazardType: hazardCategories, state: ValidStates) {
     return state === "ESS" ? "ESS" : `${hazardType}${state.charAt(0).toUpperCase() + state.slice(1)}` as hazardType;
 }
 
-export function useFees() {
+export type FeeAggregate = {
+    aggregateAmounts: {
+        healthLiquid: number,
+        fireLiquid: number,
+        instabilityLiquid: number,
+        healthGas: number,
+        fireGas: number,
+        instabilityGas: number,
+        healthSolid: number,
+        fireSolid: number,
+        instabilitySolid: number,
+        ESS: number,
+    },
+    fees: {
+        healthLiquid: number,
+        fireLiquid: number,
+        instabilityLiquid: number,
+        healthGas: number,
+        fireGas: number,
+        instabilityGas: number,
+        healthSolid: number,
+        fireSolid: number,
+        instabilitySolid: number,
+        ESS: number,
+    },
+    total: number,
+}
+
+export function useFees(): { fees: FeeAggregate, calculateFees: (applicationType: ApplicationType) => (FeeAggregate) } {
     const defaultFees = {
         aggregateAmounts: {
             healthLiquid: 0,

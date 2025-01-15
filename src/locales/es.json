@@ -2,10 +2,14 @@
   "title": "Solicitud de Permiso de Materiales Peligrosos Sobre el Suelo",
   "primary_contact": {
     "title": "Contacto Principal",
-    "note": "Esta persona es responsable de obtener el permiso inicial, renovarlo cada 3 años y responder preguntas sobre la solicitud. Se le listará como contacto de emergencia."
+    "note": "Esta persona es responsable de obtener el permiso inicial, renovarlo cada 3 años y responder preguntas sobre la solicitud. Se le listará como contacto de emergencia.",
+    "preamble": "Nota: La Sección 5001.5.1 del Código Internacional de Incendios requiere que un representante, conocedor de las operaciones en las áreas de materiales peligrosos en el sitio, sea responsable de la comunicación con el Departamento de Bomberos de Austin. Los avisos de renovación de permisos se enviarán por correo a esta persona. Además, las solicitudes de Hojas de Datos de Seguridad de Materiales, resultados de Inspecciones de Materiales Peligrosos/Incendios, información de planificación previa para respuestas de emergencia, etc. se dirigirán a este representante en el sitio cuando sea necesario."
   },
   "responsible_official": {
-    "title": "Oficial Responsable - Propietario del Negocio, Gerente, Presidente, etc."
+    "title": "Oficial Responsable - Propietario del Negocio, Gerente, Presidente, etc.",
+    "copy_primary_contact": "Copy Primary Contact Details",
+    "clear_primary_contact": "Clear Primary Contact Details",
+    "note": "Esta persona es legal y financieramente responsable del negocio y puede ser utilizada como contacto de emergencia."
   },
   "emergency_contact": {
     "title": "Contacto de Emergencia - Contacto 24 horas"
@@ -16,15 +20,19 @@
     "email": "Correo Electrónico"
   },
   "storage_map": "Mapa de Almacenamiento de Instalaciones:",
+  "storage_map_note": "Si se han realizado cambios en el mapa, debe proporcionar un nuevo mapa.",
   "submit": "Enviar",
   "navbar": {
     "title": "Departamento de Bomberos de Austin",
-    "fire_marshal": "Oficina del Jefe de Bomberos"
+    "fire_marshal": "Oficina del Jefe de Bomberos",
+    "hazmat_program": "Programa de Materiales Peligrosos"
   },
   "permit_details": {
     "title": "Detalles del Permiso",
     "abc_id": "ID de Austin Build + Connect:",
-    "abc_id_note": "Para localizar su número de ID de Austin Build + Connect, vaya a \"Mi Perfil\" desde el panel de menú de AB+C.",
+    "abc_id_note_before_link": "Para localizar su número de ID de Austin Build + Connect, inicie sesión en su",
+    "abc_id_note_link": "cuenta de AB+C",
+    "abc_id_note_after_link": "y vaya a \"Mi Perfil\" desde el panel de menú superior.",
     "abc_email": "Correo Electrónico de Austin Build + Connect:",
     "application_type": "Tipo de Solicitud:",
     "new_permit": "Nuevo Permiso",
@@ -45,6 +53,7 @@
   "business_details": {
     "title": "Detalles del Negocio",
     "business_name": "Nombre del Negocio:",
+    "business_name_note": "Este debe ser el nombre que se muestra en su edificio",
     "street_address": "Dirección:",
     "suite_no": "Número de Suite:",
     "city": "Ciudad:",
@@ -95,7 +104,10 @@
     "ess_lead_acid": "Baterías de plomo-ácido estacionarias - inundadas y reguladas por válvula, y ESS de níquel-cadmio. Los ESS móviles que utilizan tecnología de baterías de plomo-ácido están exentos.",
     "ess_lead_acid_qty": "15 galones",
     "aboveground_inventory_note": "El inventario sobre el suelo debe incluir cantidades reportables en el sitio tanto en interiores como en exteriores.",
-    "underground_storage_note": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado al Departamento de Protección de Cuencas de la Ciudad de Austin."
+    "underground_storage_note_part1": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado con ",
+    "underground_storage_note_part2": "la Solicitud de Permiso de Almacenamiento de Materiales Peligrosos del Departamento de Servicios de Desarrollo.",
+    "underground_storage_note_part3": " Esto excluye el propano, que debe ser reportado bajo esta solicitud.",
+    "add_chemicals_note": "Puede agregar productos químicos comunes usando las tarjetas de arriba o agregar productos químicos en blanco a continuación. Use el botón azul para expandir y colapsar los materiales."
   },
   "material_card": {
     "material": "Material",
@@ -109,9 +121,11 @@
     "gallons": "Galones",
     "cubic_feet": "Pies Cúbicos",
     "pounds": "Libras",
-    "kilograms": "Kilogramos",
+    "kilowatt_hours": "Kilovatios-Hora",
     "quantity": "Cantidad"
   },
+  "chemical": "Químico",
+  "quantity": "Cantidad",
   "common_hazmat_cards": {
     "title": "Agregar Productos Químicos Rápidamente",
     "add_to_list": "Agregar a la Lista"

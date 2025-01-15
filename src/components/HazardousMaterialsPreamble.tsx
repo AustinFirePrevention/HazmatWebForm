@@ -12,6 +12,12 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
         <p>{t("hazardous_materials_preamble.hazard_ratings")}</p>
         <h3>{t("hazardous_materials_preamble.min_quantity_title")}</h3>
         <table className="table table-hover">
+            <thead>
+                <tr>
+                    <th>{t("chemical")}</th>
+                    <th>{t("quantity")}</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
                     <td>{t("hazardous_materials_preamble.compressed_gases")}</td>
@@ -42,9 +48,17 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
                     <td>{t("hazardous_materials_preamble.sulfuric_acid_pool_qty")}</td>
                 </tr>
                 <tr>
-                    <td>{t("hazardous_materials_preamble.ess_stationary_mobile")}</td>
-                    <td>{t("hazardous_materials_preamble.ess_stationary_mobile_qty")}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th>{t("hazardous_materials_preamble.ess_stationary_mobile")}</th>
+                    <th>{t("hazardous_materials_preamble.ess_stationary_mobile_qty")}</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>{t("hazardous_materials_preamble.ess_capacitor")}</td>
                     <td>{t("hazardous_materials_preamble.ess_capacitor_qty")}</td>
@@ -76,8 +90,17 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
             </tbody>
         </table>
         <p><small>{t("hazardous_materials_preamble.aboveground_inventory_note")}</small></p>
-        <p><small>{t("hazardous_materials_preamble.underground_storage_note")}</small></p>
+        <div className='alert alert-warning'><small>
+            {t("hazardous_materials_preamble.underground_storage_note_part1")}
+            <a href="https://www.austintexas.gov/page/environmental-inspections#hazardous-materials-storage-permit" target="_blank" rel="noopener noreferrer">
+                {t("hazardous_materials_preamble.underground_storage_note_part2")}
+            </a>
+            {t("hazardous_materials_preamble.underground_storage_note_part3")}
+        </small></div>
         <CommonHazmatCards appendMaterial={appendMaterial} />
+        <div className="alert alert-info mt-3">
+            {t("hazardous_materials_preamble.add_chemicals_note")}
+        </div>
     </>
     )
 }
