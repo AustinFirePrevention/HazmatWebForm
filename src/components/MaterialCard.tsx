@@ -19,6 +19,20 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
         });
     };
 
+    const getIncompleteFieldsCount = () => {
+        const requiredFields: (keyof Material)[] = ['name', 'location', 'health_hazard', 'fire_hazard', 'instability_hazard'];
+        const missingFields = requiredFields.filter(field => !material[field]).length;
+        // Count quantity as missing if it's 0 or undefined
+        const quantityMissing = !material.quantity || material.quantity === "0" ? 1 : 0;
+        return missingFields + quantityMissing;
+    };
+
+    const hasZeroHazardRatings = () => {
+        return material.health_hazard === "0" &&
+            material.fire_hazard === "0" &&
+            material.instability_hazard === "0";
+    };
+
     return (
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
@@ -26,6 +40,17 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                     {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
                 </button>
                 <h4 className="card-title ms-3 text-truncate">{isCollapsed ? materialSummary : `${index + 1}. ${material.name || t("material_card.material")}`}</h4>
+                {isCollapsed && (
+                    <>
+                        {getIncompleteFieldsCount() > 0 ?
+                            <span className="badge bg-danger ms-2">{t('material_card.fields_missing', { count: getIncompleteFieldsCount() })}</span> :
+                            <span className="badge bg-success ms-2">{t('material_card.material_complete')}</span>
+                        }
+                        {hasZeroHazardRatings() &&
+                            <span className="badge bg-danger ms-2">{t('material_card.all_hazards_zero')}</span>
+                        }
+                    </>
+                )}
                 <span className="badge badge-diamond rounded bg-primary ms-auto"><span className=''>{material.health_hazard}</span></span>
                 <span className="badge badge-diamond bg-danger"><span>{material.fire_hazard}</span></span>
                 <span className="badge badge-diamond bg-warning"><span>{material.instability_hazard}</span></span>

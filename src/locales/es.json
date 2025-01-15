@@ -113,7 +113,10 @@
     "cubic_feet": "Pies Cúbicos",
     "pounds": "Libras",
     "kilowatt_hours": "Kilovatios-Hora",
-    "quantity": "Cantidad"
+    "quantity": "Cantidad",
+    "fields_missing": "¡{{count}} campos faltantes!",
+    "material_complete": "Material Completo",
+    "all_hazards_zero": "¡Todas las clasificaciones de peligro son 0!"
   },
   "chemical": "Químico",
   "quantity": "Cantidad",

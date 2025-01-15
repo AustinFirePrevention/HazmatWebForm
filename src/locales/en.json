@@ -113,7 +113,10 @@
     "cubic_feet": "Cubic Feet",
     "pounds": "Pounds",
     "kilowatt_hours": "Kilowatt-Hours",
-    "quantity": "Quantity"
+    "quantity": "Quantity",
+    "fields_missing": "{{count}} fields missing!",
+    "material_complete": "Material Complete",
+    "all_hazards_zero": "All hazard ratings are 0!"
   },
   "chemical": "Chemical",
   "quantity": "Quantity",
