@@ -1,12 +1,24 @@
 import { createContext, useContext, useState } from "react";
 import { Material as MaterialBase } from "./FeeProcessor";
 import * as Sentry from "@sentry/react";
+import { Unit } from '../helpers/FeeProcessor';
 
 export type Material = {
     id: number;
     name?: string;
     location?: string;
 } & Partial<MaterialBase>;
+
+export type CommonChemical = {
+    name: string,
+    label: string,
+    label_es?: string,
+    unit: Unit,
+    health_hazard: string,
+    fire_hazard: string,
+    instability_hazard: string,
+    minimumReportableAmount: string
+}
 
 
 const MaterialsContext = createContext({

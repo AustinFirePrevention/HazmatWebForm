@@ -131,7 +131,8 @@
     "add_to_list": "Add to List"
   },
   "toast": {
-    "materials_count_message": "You now have {{count}} Hazardous Materials in the materials list!"
+    "materials_count_message": "You now have {{count}} Hazardous Materials in the materials list!",
+    "error_message": "There are errors found in the hazardous materials."
   },
   "modal": {
     "success": {

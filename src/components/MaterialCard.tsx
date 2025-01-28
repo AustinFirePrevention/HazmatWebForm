@@ -10,7 +10,9 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
 
     const updateMaterial = (field: string, value: any) => {
-        setMaterials((prevMaterials: Material[]) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
+        setMaterials((prevMaterials: any) => {
             return prevMaterials.map((m: Material) => {
                 if (m.id === material.id) {
                     return { ...m, [field]: value };

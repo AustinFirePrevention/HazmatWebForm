@@ -48,7 +48,7 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary 
                 )}
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`}>{t("contact_details.name")}:</label>
-                    <input type="text" className="form-control" name={`${prefix}_name`} required={required} disabled={isCopied} />
+                    <input type="text" className="form-control" name={`${prefix}_name`} required={required} readOnly={isCopied} />
                 </div>
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`}>{t("contact_details.phone")}:</label>
@@ -57,14 +57,14 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary 
                         className="form-control"
                         name={`${prefix}_phone`}
                         required={required}
-                        disabled={isCopied}
+                        readOnly={isCopied}
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     />
                 </div>
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`}>{t("contact_details.email")}:</label>
-                    <input type="email" className="form-control" name={`${prefix}_email`} required={required} disabled={isCopied} />
+                    <input type="email" className="form-control" name={`${prefix}_email`} required={required} readOnly={isCopied} />
                 </div>
             </>
         </FormSection>

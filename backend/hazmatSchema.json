@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number"
+        },
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "health_hazard": {
+            "type": "string"
+        },
+        "fire_hazard": {
+            "type": "string"
+        },
+        "instability_hazard": {
+            "type": "string"
+        },
+        "unit": {
+            "type": "string"
+        },
+        "quantity": {
+            "type": "number"
+        }
+    }
+}

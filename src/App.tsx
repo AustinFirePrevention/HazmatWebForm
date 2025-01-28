@@ -156,7 +156,7 @@ function App() {
       <ToastContainer position="bottom-center" containerPosition="sticky" className="p-3">
         <Toast bg={showErrorToast ? "danger" : ""} show={showMaterialToast || showErrorToast} onClose={() => { setShowMaterialToast(false); setShowErrorToast(false) }} delay={5000} autohide>
           <Toast.Body className='text-center'>
-            {showErrorToast ? "Fix the error" : t("toast.materials_count_message", { count: materials.length })}
+            {showErrorToast ? t("toast.error_message") : t("toast.materials_count_message", { count: materials.length })}
           </Toast.Body>
         </Toast>
       </ToastContainer>
