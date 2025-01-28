@@ -2,21 +2,32 @@
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
-import { Material } from '../helpers/MaterialsContext';
+import { Material, useMaterials } from '../helpers/MaterialsContext';
 
-export function MaterialCard({ material, setMaterials, index, removeMaterial, isCollapsed, toggleCollapseState }: { material: Material; setMaterials: (obj: any) => void; index: number; removeMaterial: (id: number) => void; isCollapsed: boolean; toggleCollapseState: () => void; }) {
+export function MaterialCard({ material, index, isCollapsed }: { material: Material; index: number; isCollapsed: boolean; }) {
     const { t } = useTranslation();
+    const { setMaterials, removeMaterial, toggleCollapseState } = useMaterials();
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
 
     const updateMaterial = (field: string, value: any) => {
-        setMaterials((prevMaterials: any) => {
-            return prevMaterials.map((m: any) => {
+        setMaterials((prevMaterials: Material[]) => {
+            return prevMaterials.map((m: Material) => {
                 if (m.id === material.id) {
                     return { ...m, [field]: value };
                 }
                 return m;
             });
         });
+    };
+
+    const validateHazardInput = (value: string) => {
+        const num = parseInt(value);
+        return num >= 1 && num <= 4;
+    };
+
+    const validateQuantityInput = (value: string) => {
+        const num = parseInt(value);
+        return num > 0;
     };
 
     const getIncompleteFieldsCount = () => {
@@ -36,7 +47,7 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
     return (
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
-                <button type="button" className="btn btn-primary" onClick={() => toggleCollapseState()}>
+                <button type="button" className="btn btn-primary" onClick={() => toggleCollapseState(index)}>
                     {isCollapsed ? <FaChevronDown /> : <FaChevronUp />}
                 </button>
                 <h4 className="card-title ms-3 text-truncate">{isCollapsed ? materialSummary : `${index + 1}. ${material.name || t("material_card.material")}`}</h4>
@@ -66,28 +77,79 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                             name={`material_name_${material.id}`}
                             value={material.name || ''}
                             onChange={(e) => updateMaterial('name', e.target.value)}
-                            required
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.location")}:</label>
-                        <input type="text" className="form-control" name={`material_location_${material.id}`} value={material.location || ''} onChange={(e) => updateMaterial('location', e.target.value)} required />
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            name={`material_location_${material.id}`} 
+                            value={material.location || ''} 
+                            onChange={(e) => updateMaterial('location', e.target.value)} 
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
+                        />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.health_hazard")}:</label>
-                        <input type="number" value={material.health_hazard || 0} className="form-control" name={`material_health_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('health_hazard', parseInt(e.target.value))} required />
+                        <input
+                            type="text"
+                            value={material.health_hazard || ''}
+                            className="form-control"
+                            name={`material_health_hazard_${material.id}`}
+                            onChange={(e) => {
+                                if (validateHazardInput(e.target.value)) {
+                                    updateMaterial('health_hazard', e.target.value);
+                                }
+                            }}
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
+                        />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.fire_hazard")}:</label>
-                        <input type="number" value={material.fire_hazard || 0} className="form-control" name={`material_fire_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('fire_hazard', parseInt(e.target.value))} required />
+                        <input
+                            type="text"
+                            value={material.fire_hazard || ''}
+                            className="form-control"
+                            name={`material_fire_hazard_${material.id}`}
+                            onChange={(e) => {
+                                if (validateHazardInput(e.target.value)) {
+                                    updateMaterial('fire_hazard', e.target.value);
+                                }
+                            }}
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
+                        />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.instability_hazard")}:</label>
-                        <input type="number" value={material.instability_hazard || 0} className="form-control" name={`material_instability_hazard_${material.id}`} min="0" max="4" onChange={(e) => updateMaterial('instability_hazard', parseInt(e.target.value))} required />
+                        <input
+                            type="text"
+                            value={material.instability_hazard || ''}
+                            className="form-control"
+                            name={`material_instability_hazard_${material.id}`}
+                            onChange={(e) => {
+                                if (validateHazardInput(e.target.value)) {
+                                    updateMaterial('instability_hazard', e.target.value);
+                                }
+                            }}
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
+                        />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.units")}:</label>
-                        <select className="form-select" value={material.unit || 'gallons'} name={`material_units_${material.id}`} onChange={(e) => updateMaterial('units', e.target.value)} required>
+                        <select 
+                            className="form-select" 
+                            value={material.unit || 'gallons'} 
+                            name={`material_units_${material.id}`} 
+                            onChange={(e) => updateMaterial('units', e.target.value)} 
+                            required={!isCollapsed}
+                        >
                             <option value="gallons">{t("material_card.gallons")}</option>
                             <option value="cubic_feet">{t("material_card.cubic_feet")}</option>
                             <option value="pounds">{t("material_card.pounds")}</option>
@@ -96,7 +158,19 @@ export function MaterialCard({ material, setMaterials, index, removeMaterial, is
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.quantity")}:</label>
-                        <input type="number" value={material.quantity || 0} className="form-control" name={`material_quantity_${material.id}`} step="1" min="1" onChange={(e) => updateMaterial('quantity', parseInt(e.target.value))} required />
+                        <input
+                            type="text"
+                            value={material.quantity || ''}
+                            className="form-control"
+                            name={`material_quantity_${material.id}`}
+                            onChange={(e) => {
+                                if (validateQuantityInput(e.target.value)) {
+                                    updateMaterial('quantity', e.target.value);
+                                }
+                            }}
+                            required={!isCollapsed}
+                            formNoValidate={isCollapsed}
+                        />
                     </div>
                 </div>
             </Collapse>

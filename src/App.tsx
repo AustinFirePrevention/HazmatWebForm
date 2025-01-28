@@ -7,7 +7,7 @@ import BusinessDetails from './components/BusinessDetails';
 import { NavBar } from './components/NavBar'
 import { SubmissionModal, Status as SubmissionStatus } from './components/Modal';
 import { useFees } from './helpers/FeeProcessor';
-import { useMaterials } from './helpers/MaterialsContext';
+import { useMaterials, IncompleteMaterialsError } from './helpers/MaterialsContext';
 import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 
@@ -20,8 +20,9 @@ function App() {
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<SubmissionStatus>('error');
-  const { materials } = useMaterials();
+  const { materials, uncollapseIncompleteMaterialsAndThrow } = useMaterials();
   const [showMaterialToast, setShowMaterialToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   console.log(showMaterialToast)
 
@@ -78,29 +79,42 @@ function App() {
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
-    const data = await processForm(event)
+    event.preventDefault();
+    try {
+      if (applicationType !== 'renewal_no_change' && materials.length === 0) { //todo handle differently
+        return;
+      }
+      uncollapseIncompleteMaterialsAndThrow();
 
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+      const data = await processForm(event);
 
-    if (response.ok) {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-      setStatus(applicationType === "renewal_no_change" ? 'successCantShowFees' : 'success')
+      if (response.ok) {
+
+        setStatus(applicationType === "renewal_no_change" ? 'successCantShowFees' : 'success')
+      }
+
+      if (!response.ok) {
+        setStatus('error')
+        console.error(response)
+        console.error(data)
+      }
+
+      setShowModal(true);
+    } catch (error) {
+      if (error instanceof IncompleteMaterialsError) {
+        setShowErrorToast(true);
+        return;
+      }
+      throw error;
     }
-
-    if (!response.ok) {
-      setStatus('error')
-      console.error(response)
-      console.error(data)
-    }
-
-    setShowModal(true);
   }
 
   return (
@@ -139,10 +153,10 @@ function App() {
         <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
 
       </form>
-      <ToastContainer position="bottom-end" containerPosition="sticky" className="p-3">
-        <Toast show={showMaterialToast} onClose={() => setShowMaterialToast(false)} delay={3000} autohide>
-          <Toast.Body>
-            {t("toast.materials_count_message", { count: materials.length })}
+      <ToastContainer position="bottom-center" containerPosition="sticky" className="p-3">
+        <Toast bg={showErrorToast ? "danger" : ""} show={showMaterialToast || showErrorToast} onClose={() => { setShowMaterialToast(false); setShowErrorToast(false) }} delay={5000} autohide>
+          <Toast.Body className='text-center'>
+            {showErrorToast ? "Fix the error" : t("toast.materials_count_message", { count: materials.length })}
           </Toast.Body>
         </Toast>
       </ToastContainer>

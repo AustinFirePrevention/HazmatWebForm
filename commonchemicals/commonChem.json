@@ -1,5 +1,14 @@
 [
     {
+        "name": "custom_chemical",
+        "label": "Custom Chemical",
+        "label_es": "",
+        "unit": "gallons",
+        "fire_hazard":"0",
+        "health_hazard":"0",
+        "instability_hazard":"0"
+    },
+    {
         "name": "indoor_diesel_tank",
         "label": "Indoor Diesel Tank",
         "label_es": "Tanques de Diesel Interiores",

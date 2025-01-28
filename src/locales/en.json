@@ -35,7 +35,7 @@
     "permit_number": "Aboveground Hazardous Materials Permit Number:"
   },
   "permit_details_preamble": {
-    "description": "Payments are processed through the Austin Build + Connect (AB+C) online customer portal. Register at the <1>Austin Build + Connect</1> website to proceed. Bills are not added to the AB+C account automatically. When you complete this form bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.",
+    "description": "Payments are processed through the Austin Build + Connect (AB+C) online customer portal. Register at the <1>Austin Build + Connect</1> website to proceed. Bills are not added to the AB+C account automatically. Bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.",
     "no_mail": "Do not send applications and payment by mail or e-mail."
   },
   "business_details": {
@@ -98,7 +98,13 @@
     "ess_lead_acid_qty": "15 gallons",
     "aboveground_inventory_note": "The aboveground inventory must include reportable quantities at the site both indoors and outdoors.",
     "underground_storage_note": "Report underground storage of flammable and combustible liquids separately using the <1>Hazardous Materials Storage Permit Application</1> from the Development Services Department. This excludes propane, which must be reported under this application.",
-    "add_chemicals_note": "You can add common chemicals using the cards above or add blank chemicals below. Use the blue button to expand and collapse the materials to add all of the details required."
+    "add_chemicals_note": "You can add common chemicals using the cards above or add blank chemicals below. Use the blue button with the \"<1/>\" symbol to expand and collapse the materials to add all of the details required.",
+    "4": "EXTREME HAZARD NFPA 704 RATING = 4",
+    "3": "EXTREME HAZARD NFPA 704 RATING = 3",
+    "2": "EXTREME HAZARD NFPA 704 RATING = 2",
+    "health": "HEALTH",
+    "flammability": "FLAMMABILITY",
+    "instability": "INSTABILITY"
   },
   "material_card": {
     "material": "Material",
@@ -121,7 +127,7 @@
   "chemical": "Chemical",
   "quantity": "Quantity",
   "common_hazmat_cards": {
-    "title": "Quick Add Chemicals",
+    "title": "Add Chemicals",
     "add_to_list": "Add to List"
   },
   "toast": {

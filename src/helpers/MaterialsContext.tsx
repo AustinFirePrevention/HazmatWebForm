@@ -9,16 +9,67 @@ export type Material = {
 } & Partial<MaterialBase>;
 
 
-const MaterialsContext = createContext({ materials: [] as Array<Material>, setMaterials: (_: Array<Material>) => { } });
-
+const MaterialsContext = createContext({
+    materials: [] as Array<Material>,
+    setMaterials: (_: Array<Material>) => { },
+    collapsedMaterials: [] as boolean[],
+    setCollapsedMaterials: (_: boolean[]) => { },
+    toggleCollapseState: (_: number, __?: boolean) => { },
+    removeMaterial: (_: number) => { },
+    appendMaterial: (_: CommonChemical) => { },
+    uncollapseIncompleteMaterialsAndThrow: () => { }
+});
 
 export function MaterialsProvider({ children }: { children: React.ReactNode }) {
     const [materials, setMaterials] = useState([] as Array<Material>);
+    const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([]);
+
+    const toggleCollapseState = (index: number, forceOpen?: boolean) => {
+        setCollapsedMaterials(collapsedMaterials.map((isCollapsed, i) => i === index ? (forceOpen !== undefined ? !forceOpen : !isCollapsed) : isCollapsed));
+    };
+
+    const removeMaterial = (id: number) => {
+        setMaterials(materials.filter(material => material.id !== id));
+        setCollapsedMaterials(collapsedMaterials.filter((_, i) => i !== materials.findIndex(material => material.id === id)));
+    };
+
+    const appendMaterial = (material: CommonChemical) => {
+        const { minimumReportableAmount, name, label, ...mat } = material;
+        setMaterials([...materials, { id: Date.now(), ...{ name: label, ...mat } }]);
+        setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
+    };
+
+    const getIncompleteFieldsCount = (material: Material) => {
+        const requiredFields: (keyof Material)[] = ['name', 'location', 'health_hazard', 'fire_hazard', 'instability_hazard'];
+        const missingFields = requiredFields.filter(field => !material[field]).length;
+        const quantityMissing = !material.quantity || material.quantity === "0" ? 1 : 0;
+        return missingFields + quantityMissing;
+    };                                        
+
+
+    const uncollapseIncompleteMaterialsAndThrow = () => {
+        materials.forEach((material, index) => {
+            if (getIncompleteFieldsCount(material) > 0) {
+                toggleCollapseState(index, true);
+            }
+        });
+        if(materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
+            throw new IncompleteMaterialsError();
+        }
+    };
+
     return (
-        <MaterialsContext.Provider value={{ materials, setMaterials }}>
+        <MaterialsContext.Provider value={{ materials, setMaterials, collapsedMaterials, setCollapsedMaterials, toggleCollapseState, removeMaterial, appendMaterial, uncollapseIncompleteMaterialsAndThrow }}>
             {children}
         </MaterialsContext.Provider>
     );
+}
+
+export class IncompleteMaterialsError extends Error {
+    constructor() {
+        super('Incomplete materials');
+        this.name = 'IncompleteMaterials';
+    }
 }
 
 export function useMaterials() {
@@ -28,7 +79,7 @@ export function useMaterials() {
     }
     const newSetMaterials = (materials: Array<Material>) => {
         context.setMaterials(materials);
-        Sentry.setContext('materials', {materials});
+        Sentry.setContext('materials', { materials });
     }
     return { ...context, setMaterials: newSetMaterials };
 }
