@@ -149,7 +149,7 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                             className="form-select" 
                             value={material.unit || 'gallons'} 
                             name={`material_units_${material.id}`} 
-                            onChange={(e) => updateMaterial('units', e.target.value)} 
+                            onChange={(e) => updateMaterial('unit', e.target.value)} 
                             required={!isCollapsed}
                         >
                             <option value="gallons">{t("material_card.gallons")}</option>
