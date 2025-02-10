@@ -31,6 +31,93 @@ Current fee structure:
 - Level 4: $520
 - Level 5: $650
 
+## How to Add Common Chemicals
+
+Common chemicals can be added by updating the `commonChem.json` file located in the `commonchemicals` directory. Each chemical entry should include the following properties:
+
+- `name`: A unique identifier for the chemical.
+- `label`: The display name for the chemical.
+- `label_es`: The display name in Spanish.
+- `unit`: The unit of measurement (e.g., gallons, cubic_feet, pounds, kilowatt_hours).
+- `health_hazard`: The health hazard rating (0-4).
+- `fire_hazard`: The fire hazard rating (0-4).
+- `instability_hazard`: The instability hazard rating (0-4).
+- `minimumReportableAmount`: The minimum quantity required for reporting (optional, currently not used).
+
+Example entry:
+```json
+{
+    "name": "custom_chemical",
+    "label": "Custom Chemical",
+    "label_es": "",
+    "unit": "gallons",
+    "fire_hazard": "0",
+    "health_hazard": "0",
+    "instability_hazard": "0"
+}
+```
+
+*Note: Common chemical translations are managed directly in the `commonChem.json` file, not in the translation files.*
+
+## How Translations Work
+
+Translations are managed using the `i18next` library. The translation files are located in the `src/locales` directory. Each language has its own JSON file containing key-value pairs for the translated strings.
+
+### Updating Translations
+
+To update translations for an existing language, follow these steps:
+
+1. Open the corresponding JSON file in the `src/locales` directory (e.g., `en.json` for English).
+2. Add or update the key-value pairs as needed.
+
+Example:
+```json
+{
+  "new_key": "New translation string"
+}
+```
+
+### Adding a New Language
+
+To add a new language, follow these steps:
+
+1. Create a new JSON file in the `src/locales` directory with the language code as the filename (e.g., `es.json` for Spanish).
+2. Add the key-value pairs for the translations.
+
+Example:
+```json
+{
+  "title": "Título en Español",
+  "submit": "Enviar"
+}
+```
+
+3. Update the `src/i18n.ts` file to include the new language.
+
+Example:
+```typescript
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import en from './locales/en.json';
+import es from './locales/es.json';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: { translation: en },
+      es: { translation: es },
+    },
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+
+export default i18n;
+```
+
 ## Development
 
 - Install dependencies:
@@ -58,7 +145,7 @@ It is currently deployed [here](https://github.austintexas.gov/pages/AFDPreventi
 2. Commit the changes with `git commit -am "commit message here"`
 3. Upload the changes to github with `git push`
 
-Shortly after these commands are run the changes should be available at the website listed above. 
+Shortly after these commands are run the changes should be available at the website listed above.
 
 
 
