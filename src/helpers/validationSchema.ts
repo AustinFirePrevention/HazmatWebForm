@@ -1,0 +1,232 @@
+import { buildYup } from 'schema-to-yup';
+
+
+/**
+ * This is the schema pulled out of power automate.
+ */
+const schema = {
+    "type": "object",
+    "properties": {
+        "abc_id": {
+            "type": "string"
+        },
+        "abc_email": {
+            "type": "string"
+        },
+        "application_type": {
+            "type": "string"
+        },
+        "building_permit": {
+            "type": "string"
+        },
+        "permit_number": {
+            "type": "string"
+        },
+        "business_name": {
+            "type": "string"
+        },
+        "street_address": {
+            "type": "string"
+        },
+        "suite_no": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "zip": {
+            "type": "string"
+        },
+        "main_phone_number": {
+            "type": "string"
+        },
+        "email_address": {
+            "type": "string"
+        },
+        "business_activity": {
+            "type": "string"
+        },
+        "hours_of_operation": {
+            "type": "string"
+        },
+        "primary_contact_name": {
+            "type": "string"
+        },
+        "primary_contact_phone": {
+            "type": "string"
+        },
+        "primary_contact_email": {
+            "type": "string"
+        },
+        "responsible_official_name": {
+            "type": "string"
+        },
+        "responsible_official_phone": {
+            "type": "string"
+        },
+        "responsible_official_email": {
+            "type": "string"
+        },
+        "emergency_contact_name": {
+            "type": "string"
+        },
+        "emergency_contact_phone": {
+            "type": "string"
+        },
+        "emergency_contact_email": {
+            "type": "string"
+        },
+        "storage_map": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "fees": {
+            "type": "object",
+            "properties": {
+                "aggregateAmounts": {
+                    "type": "object",
+                    "properties": {
+                        "healthLiquid": {
+                            "type": "integer"
+                        },
+                        "fireLiquid": {
+                            "type": "integer"
+                        },
+                        "instabilityLiquid": {
+                            "type": "integer"
+                        },
+                        "healthGas": {
+                            "type": "integer"
+                        },
+                        "fireGas": {
+                            "type": "integer"
+                        },
+                        "instabilityGas": {
+                            "type": "integer"
+                        },
+                        "healthSolid": {
+                            "type": "integer"
+                        },
+                        "fireSolid": {
+                            "type": "integer"
+                        },
+                        "instabilitySolid": {
+                            "type": "integer"
+                        },
+                        "ESS": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "fees": {
+                    "type": "object",
+                    "properties": {
+                        "healthLiquid": {
+                            "type": "integer"
+                        },
+                        "fireLiquid": {
+                            "type": "integer"
+                        },
+                        "instabilityLiquid": {
+                            "type": "integer"
+                        },
+                        "healthGas": {
+                            "type": "integer"
+                        },
+                        "fireGas": {
+                            "type": "integer"
+                        },
+                        "instabilityGas": {
+                            "type": "integer"
+                        },
+                        "healthSolid": {
+                            "type": "integer"
+                        },
+                        "fireSolid": {
+                            "type": "integer"
+                        },
+                        "instabilitySolid": {
+                            "type": "integer"
+                        },
+                        "ESS": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "materials": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "unit": {
+                        "type": "string"
+                    },
+                    "health_hazard": {
+                        "type": "string"
+                    },
+                    "fire_hazard": {
+                        "type": "string"
+                    },
+                    "instability_hazard": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "unit",
+                    "health_hazard",
+                    "fire_hazard",
+                    "instability_hazard",
+                    "quantity",
+                    "location"
+                ]
+            }
+        }
+    },
+    "required": [
+        "abc_id",
+        "abc_email",
+        "application_type",
+        "business_name",
+        "street_address",
+        "city",
+        "zip",
+        "main_phone_number",
+        "email_address",
+        "primary_contact_name",
+        "primary_contact_phone",
+        "primary_contact_email",
+        "responsible_official_name",
+        "responsible_official_phone",
+        "responsible_official_email",
+    ]
+}
+
+const yupSchema = buildYup(schema);
+
+export default yupSchema;

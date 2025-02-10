@@ -10,6 +10,7 @@ import { useFees } from './helpers/FeeProcessor';
 import { useMaterials, IncompleteMaterialsError } from './helpers/MaterialsContext';
 import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
+import schema from './helpers/validationSchema';
 
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
@@ -75,15 +76,17 @@ function App() {
     } else {
       data.materials = materials
     }
-    return data
+
+    return await schema.validate(data);
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       if (applicationType !== 'renewal_no_change' && materials.length === 0) { //todo handle differently
-        return;
-      }
+        throw new IncompleteMaterialsError()
+      }      
+
       uncollapseIncompleteMaterialsAndThrow();
 
       const data = await processForm(event);
@@ -113,6 +116,10 @@ function App() {
         setShowErrorToast(true);
         return;
       }
+      else if(error.name === 'ValidationError') {
+        console.error(error.errors);
+      }
+      console.error(error);
       throw error;
     }
   }

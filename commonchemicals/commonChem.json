@@ -4,16 +4,16 @@
         "label": "Custom Chemical",
         "label_es": "",
         "unit": "gallons",
-        "fire_hazard":"0",
-        "health_hazard":"0",
-        "instability_hazard":"0"
+        "fire_hazard": "0",
+        "health_hazard": "0",
+        "instability_hazard": "0"
     },
     {
         "name": "indoor_diesel_tank",
         "label": "Indoor Diesel Tank",
         "label_es": "Tanques de Diesel Interiores",
         "unit": "gallons",
-        "health_hazard": "2",
+        "health_hazard": "1",
         "fire_hazard": "2",
         "instability_hazard": "0",
         "minimumReportableAmount": "125"
@@ -23,7 +23,7 @@
         "label": "Outdoor Diesel Tank",
         "label_es": "Tanques de Diesel Exteriores",
         "unit": "gallons",
-        "health_hazard": "2",
+        "health_hazard": "1",
         "fire_hazard": "2",
         "instability_hazard": "0",
         "minimumReportableAmount": "275"
@@ -65,7 +65,7 @@
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
-        "instability_hazard": "2",
+        "instability_hazard": "1",
         "minimumReportableAmount": "4"
     },
     {
@@ -75,7 +75,7 @@
         "unit": "gallons",
         "health_hazard": "3",
         "fire_hazard": "0",
-        "instability_hazard": "2",
+        "instability_hazard": "1",
         "minimumReportableAmount": "15"
     },
     {
@@ -113,7 +113,7 @@
         "label": "Nitrous Oxide",
         "label_es": "Óxido Nitroso",
         "unit": "cubic_feet",
-        "health_hazard": "3",
+        "health_hazard": "2",
         "fire_hazard": "0",
         "instability_hazard": "1",
         "minimumReportableAmount": "100"
@@ -125,7 +125,7 @@
         "unit": "cubic_feet",
         "health_hazard": "3",
         "fire_hazard": "0",
-        "instability_hazard": "2",
+        "instability_hazard": "0",
         "minimumReportableAmount": "100"
     },
     {
@@ -155,7 +155,7 @@
         "unit": "pounds",
         "health_hazard": "3",
         "fire_hazard": "0",
-        "instability_hazard": "2",
+        "instability_hazard": "1",
         "minimumReportableAmount": "150"
     },
     {
