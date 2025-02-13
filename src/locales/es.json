@@ -7,12 +7,17 @@
   },
   "responsible_official": {
     "title": "Oficial Responsable - Propietario del Negocio, Gerente, Presidente, etc.",
-    "copy_primary_contact": "Copy Primary Contact Details",
-    "clear_primary_contact": "Clear Primary Contact Details",
+    "copy_primary_contact": "Copiar Detalles del Contacto Principal",
+    "clear_primary_contact": "Borrar Detalles del Contacto Principal",
     "note": "Esta persona es legal y financieramente responsable del negocio y puede ser utilizada como contacto de emergencia."
   },
   "emergency_contact": {
     "title": "Contacto de Emergencia - Contacto 24 horas"
+  },
+  "requesting_party": {
+    "checkbox_label": "Soy un tercero que solicita esta aplicación en nombre del negocio",
+    "title": "Parte Solicitante",
+    "note": "Por favor proporcione los datos de contacto de la persona que solicita esta aplicación."
   },
   "contact_details": {
     "name": "Nombre",
@@ -62,14 +67,14 @@
     "add_material": "Agregar un Material"
   },
   "hazardous_materials_preamble": {
-    "intro": "Los materiales peligrosos almacenados o utilizados sobre el suelo en cantidades agregadas mayores que las requeridas para el informe por la Sección 105.5.22 del Código Internacional de Incendios deben ser listados en la solicitud. Las cantidades reportables se basan en NFPA 704:",
+    "intro": "Los materiales peligrosos almacenados o utilizados sobre el suelo en cantidades agregadas mayores que las requeridas para el informe por la Sección 105.5.22 del Código Internacional de Incendios 2021 según enmendado por la Ciudad de Austin deben ser listados en la solicitud. Las cantidades reportables se basan en la Norma NFPA 704, edición 2017:",
     "table_alt": "Tabla de productos químicos reportables",
     "hazard_ratings": "Las calificaciones de peligro se determinan utilizando los criterios descritos en la Norma NFPA No. 704. Las calificaciones varían de \"0\" para poco peligro, a \"4\" para peligro extremo, y se asignan para la salud, la inflamabilidad y la reactividad o inestabilidad. Muchos productos tendrán calificaciones en dos o más categorías de peligro. Estas calificaciones generalmente se encuentran en la Hoja de Datos de Seguridad (SDS) de cada producto. Si no se dan calificaciones, se pueden determinar a partir de la dosis letal, el punto de inflamación y la información de estabilidad que se muestra en la SDS. Si tiene dificultades para determinar las calificaciones de peligro, envíenos un correo electrónico a",
     "min_quantity_title": "Cantidad Mínima Agregada",
     "compressed_gases": "GASES COMPRIMIDOS Y LICUADOS INCLUYENDO OXÍGENO",
     "compressed_gases_qty": "100 PIES CÚBICOS",
     "co2_systems": "SISTEMAS DE DIÓXIDO DE CARBONO (C02)",
-    "co2_systems_qty": "101LB",
+    "co2_systems_qty": "101 LB",
     "cryogenic_fluids": "FLUIDOS CRIOGÉNICOS",
     "cryogenic_fluids_qty": "1 GAL",
     "indoor_diesel_tanks": "TANQUES DE DIESEL INTERIORES",
@@ -127,7 +132,7 @@
   "chemical": "Químico",
   "quantity": "Cantidad",
   "common_hazmat_cards": {
-    "title": "Agregar Productos Químicos Rápidamente",
+    "title": "Agregar Productos Químicos",
     "add_to_list": "Agregar a la Lista"
   },
   "modal": {
