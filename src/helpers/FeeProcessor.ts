@@ -29,27 +29,26 @@ const ESS_QUANTITIES = [1, 250, 2500, 125000, 250000]
 
 
 
+/**
+ * Calculate the fee for one hazard type.
+ * @param {hazardType} hazardType - The type of hazard.
+ * @param {number} quantity - The quantity of the material.
+ * @returns {number} - The calculated fee.
+ */
 function hazardFee(hazardType: hazardType, quantity: number) {
     let fee = 0;
 
-    const feeSchedule =
-        hazardType === "healthLiquid" ? LIQUID_QUANTITIES :
-            hazardType === "fireLiquid" ? LIQUID_QUANTITIES :
-                hazardType === "instabilityLiquid" ? LIQUID_QUANTITIES :
-                    hazardType === "healthGas" ? GAS_QUANTITIES :
-                        hazardType === "fireGas" ? GAS_QUANTITIES :
-                            hazardType === "instabilityGas" ? GAS_QUANTITIES :
-                                hazardType === "healthSolid" ? SOLID_QUANTITIES :
-                                    hazardType === "fireSolid" ? SOLID_QUANTITIES :
-                                        hazardType === "instabilitySolid" ? SOLID_QUANTITIES :
-                                            hazardType === "ESS" ? ESS_QUANTITIES : null;
+    const quantities = hazardType.includes('Liquid') ? LIQUID_QUANTITIES :
+        hazardType.includes('Gas') ? GAS_QUANTITIES :
+        hazardType.includes('Solid') ? SOLID_QUANTITIES :
+        hazardType === 'ESS' ? ESS_QUANTITIES : null;
 
-    if (!feeSchedule) {
+    if (!quantities) {
         throw new Error(`Invalid hazard type: "${hazardType}"`);
     }
 
-    for (let i = 0; i < feeSchedule.length; i++) {
-        if (quantity >= feeSchedule[i]) {
+    for (let i = 0; i < quantities.length; i++) {
+        if (quantity >= quantities[i]) {
             fee = FEES[i];
         }
     }
@@ -58,6 +57,13 @@ function hazardFee(hazardType: hazardType, quantity: number) {
 
 type hazardCategories = "health" | "fire" | "instability";
 
+/**
+ * Determine the current hazard type based on health, fire, and instability values.
+ * @param {number} health - The health hazard value.
+ * @param {number} fire - The fire hazard value.
+ * @param {number} instability - The instability hazard value.
+ * @returns {hazardCategories} - The current hazard type.
+ */
 function getCurrentHazardType(health: number, fire: number, instability: number): hazardCategories {
     if (fire >= health && fire >= instability) {
         return "fire";
@@ -88,6 +94,12 @@ type ConvertedMaterial = {
 
 type ValidStates = "liquid" | "gas" | "solid" | "ESS";
 
+/**
+ * Convert and verify the material data.
+ * @param {Material} material - The material data.
+ * @returns {ConvertedMaterial} - The converted and verified material data.
+ * @throws Will throw an error if the units are invalid or if the conversion results in NaN.
+ */
 function convertAndVerifyMaterial(material: Material): ConvertedMaterial {
     const units = material.unit;
     const health_hazard = parseInt(material.health_hazard);
@@ -123,6 +135,11 @@ function convertAndVerifyMaterial(material: Material): ConvertedMaterial {
 
 type hazardType = "healthLiquid" | "fireLiquid" | "instabilityLiquid" | "healthGas" | "fireGas" | "instabilityGas" | "healthSolid" | "fireSolid" | "instabilitySolid" | "ESS";
 
+/**
+ * Process the fees for the given materials.
+ * @param {Material[]} materials - The list of materials.
+ * @returns {FeeAggregate} - The processed fee aggregate.
+ */
 export function FeeProcessor(materials: Material[]) {
     const processor = {
         aggregateAmounts: {
@@ -171,6 +188,12 @@ export function FeeProcessor(materials: Material[]) {
     return processor;
 }
 
+/**
+ * Get the key for the hazard type and state.
+ * @param {hazardCategories} hazardType - The hazard type.
+ * @param {ValidStates} state - The state of the material.
+ * @returns {hazardType} - The key for the hazard type and state.
+ */
 function getKey(hazardType: hazardCategories, state: ValidStates) {
     return state === "ESS" ? "ESS" : `${hazardType}${state.charAt(0).toUpperCase() + state.slice(1)}` as hazardType;
 }
@@ -203,6 +226,10 @@ export type FeeAggregate = {
     total: number,
 }
 
+/**
+ * Custom hook to use fees in a component.
+ * @returns {{ fees: FeeAggregate, calculateFees: (applicationType: ApplicationType) => FeeAggregate }} - The fees and a function to calculate fees.
+ */
 export function useFees(): { fees: FeeAggregate, calculateFees: (applicationType: ApplicationType) => (FeeAggregate) } {
     const defaultFees = {
         aggregateAmounts: {

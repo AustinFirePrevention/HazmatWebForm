@@ -76,6 +76,18 @@ const schema = {
         "emergency_contact_email": {
             "type": "string"
         },
+        "is_third_party": {
+            "type": "boolean"
+        },
+        "requesting_party_name": {
+            "type": "string"
+        },
+        "requesting_party_phone": {
+            "type": "string"
+        },
+        "requesting_party_email": {
+            "type": "string"
+        },
         "storage_map": {
             "type": "object",
             "properties": {

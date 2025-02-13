@@ -24,8 +24,7 @@ function App() {
   const { materials, uncollapseIncompleteMaterialsAndThrow } = useMaterials();
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
-
-  console.log(showMaterialToast)
+  const [isThirdParty, setIsThirdParty] = useState(false);
 
   useEffect(() => {
     if (materials && materials.length > 0) {
@@ -116,8 +115,15 @@ function App() {
         setShowErrorToast(true);
         return;
       }
-      else if(error.name === 'ValidationError') {
-        console.error(error.errors);
+      else if(
+        error && 
+        typeof error === 'object' && 
+        'name' in error && 
+        error.name === 'ValidationError' &&
+        'errors' in error &&
+        Array.isArray((error as { errors: unknown[] }).errors)
+      ) {
+        console.error((error as { errors: unknown[] }).errors);
       }
       console.error(error);
       throw error;
@@ -131,6 +137,30 @@ function App() {
       <form className="form container mt-4" onSubmit={handleSubmit}>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
+        <div className="section mb-4">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="isThirdParty"
+              name="is_third_party"
+              checked={isThirdParty}
+              onChange={(e) => setIsThirdParty(e.target.checked)}
+            />
+            <label className="form-check-label" htmlFor="isThirdParty">
+              {t("requesting_party.checkbox_label", "I am a third party requesting this application on behalf of the business")}
+            </label>
+          </div>
+        </div>
+
+        {isThirdParty && (
+          <ContactDetails
+            prefix="requesting_party"
+            title={t("requesting_party.title", "Requesting Party")}
+            note={<div className="alert alert-info">{t("requesting_party.note", "Please provide the contact details of the person requesting this application.")}</div>}
+            required
+          />
+        )}
         <ContactDetails
           required
           prefix="primary_contact"

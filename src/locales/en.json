@@ -14,6 +14,11 @@
   "emergency_contact": {
     "title": "Emergency Contact - 24 hour contact"
   },
+  "requesting_party": {
+    "checkbox_label": "I am a third party requesting this application on behalf of the business",
+    "title": "Requesting Party",
+    "note": "Please provide the contact details of the person requesting this application."
+  },
   "storage_map": "Facilities Storage Map:",
   "storage_map_note": "If changes have occurred since the last renewal, you must provide a new map.",
   "submit": "Submit",
@@ -62,7 +67,7 @@
     "add_material": "Add A Material"
   },
   "hazardous_materials_preamble": {
-    "intro": "Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by the 2021International Fire Code Section 105.5.22 as amended by the City of Austin must be listed in the application. The reportable quantities are based on the National Fire Protection Association (NFPA) standard 704:",
+    "intro": "Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by the 2021International Fire Code Section 105.5.22 as amended by the City of Austin must be listed in the application. The reportable quantities are based on the National Fire Protection Association (NFPA) standard 704, 2017 edition:",
     "table_alt": "Table of reportable chemicals",
     "hazard_ratings": "Hazard Ratings are determined using criteria outlined in NFPA Standard No. 704. The ratings range from \"0\" for little hazard, to \"4\" for extreme hazard, and are assigned for health, flammability, and reactivity or instability. Many products will have ratings in two or more hazard categories. These ratings are usually found on the Safety Data Sheet (SDS) for each product in the Transport information or Regulatory information sections. If no ratings are given, they can be determined from Physical and chemical properties, stability and reactivity, and toxicological information sections shown on the SDS. If difficulty is encountered in determining hazard ratings, e-mail us at",
     "min_quantity_title": "Minimum Aggregate Quantity",
