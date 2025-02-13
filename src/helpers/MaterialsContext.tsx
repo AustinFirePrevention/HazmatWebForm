@@ -56,7 +56,7 @@ export function MaterialsProvider({ children }: { children: React.ReactNode }) {
         const missingFields = requiredFields.filter(field => !material[field]).length;
         const quantityMissing = !material.quantity || material.quantity === "0" ? 1 : 0;
         return missingFields + quantityMissing;
-    };                                        
+    };
 
 
     const uncollapseIncompleteMaterialsAndThrow = () => {
@@ -65,7 +65,7 @@ export function MaterialsProvider({ children }: { children: React.ReactNode }) {
                 toggleCollapseState(index, true);
             }
         });
-        if(materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
+        if (materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
             throw new IncompleteMaterialsError();
         }
     };

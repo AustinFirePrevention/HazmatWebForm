@@ -99,6 +99,21 @@ const schema = {
                 }
             }
         },
+        "additional_files": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": ["content", "name"]
+            }
+        },
         "fees": {
             "type": "object",
             "properties": {

@@ -20,6 +20,7 @@ function App() {
   const [applicationType, setApplicationType] = useState<ApplicationType>('new_permit');
   const { fees, calculateFees } = useFees();
   const [file, setFile] = useState<File | null>(null);
+  const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<SubmissionStatus>('error');
   const { materials, uncollapseIncompleteMaterialsAndThrow } = useMaterials();
   const [showMaterialToast, setShowMaterialToast] = useState(false);
@@ -35,6 +36,13 @@ function App() {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setFile(event.target.files[0]);
+    }
+  }
+
+  const handleAdditionalFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const newFiles = Array.from(event.target.files);
+      setAdditionalFiles(newFiles);
     }
   }
 
@@ -70,6 +78,16 @@ function App() {
       }
     }
 
+    // Process additional files
+    if (additionalFiles.length > 0) {
+      data.additional_files = await Promise.all(
+        additionalFiles.map(async (file) => ({
+          content: await toBase64(file),
+          name: file.name
+        }))
+      );
+    }
+
     if (applicationType === 'renewal_no_change') {
       data.materials = []
     } else {
@@ -84,7 +102,7 @@ function App() {
     try {
       if (applicationType !== 'renewal_no_change' && materials.length === 0) { //todo handle differently
         throw new IncompleteMaterialsError()
-      }      
+      }
 
       uncollapseIncompleteMaterialsAndThrow();
 
@@ -115,10 +133,10 @@ function App() {
         setShowErrorToast(true);
         return;
       }
-      else if(
-        error && 
-        typeof error === 'object' && 
-        'name' in error && 
+      else if (
+        error &&
+        typeof error === 'object' &&
+        'name' in error &&
         error.name === 'ValidationError' &&
         'errors' in error &&
         Array.isArray((error as { errors: unknown[] }).errors)
@@ -185,6 +203,18 @@ function App() {
                 {t("storage_map_note")}
               </small>
             )}
+          </div>
+          <div className="mb-3">
+            <label className="form-label">{t("additional_files")}</label>
+            <input 
+              type="file" 
+              className="form-control" 
+              multiple 
+              onChange={handleAdditionalFilesChange}
+            />
+            <small className="form-text text-muted">
+              {t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
+            </small>
           </div>
         </div>
         <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>

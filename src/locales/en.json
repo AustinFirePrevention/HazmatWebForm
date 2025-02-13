@@ -21,6 +21,8 @@
   },
   "storage_map": "Facilities Storage Map:",
   "storage_map_note": "If changes have occurred since the last renewal, you must provide a new map.",
+  "additional_files": "Additional Documents:",
+  "additional_files_note": "Upload Safety Data Sheets (SDS), response plans, or other relevant documents.",
   "submit": "Submit",
   "navbar": {
     "title": "Austin Fire Department",
