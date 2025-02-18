@@ -12,7 +12,8 @@ import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import schema from './helpers/validationSchema';
 
-const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
+const endpoint = "https://localhost"
+//const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
   const { t } = useTranslation();
@@ -152,7 +153,7 @@ function App() {
     <>
       <NavBar />
       <h1 className="text-center mt-4">{t("title")}</h1>
-      <form className="form container mt-4" onSubmit={handleSubmit}>
+      <form data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <div className="section mb-4">
@@ -196,8 +197,8 @@ function App() {
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
-            <label className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
-            <input type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
+            <label htmlFor='storage_map' className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
+            <input id='storage_map' type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
             {applicationType !== 'new_permit' && (
               <small className="form-text text-muted">
                 {t("storage_map_note")}

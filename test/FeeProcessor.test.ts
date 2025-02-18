@@ -1,10 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { FeeProcessor } from '../src/helpers/FeeProcessor';
-
+import { FeeProcessor, Material } from '../src/helpers/FeeProcessor';
 
 describe('FeeProcessor', () => {
     it('No Materials should generate no fees', () => {
-
         const processor = {
             aggregateAmounts: {
                 healthLiquid: 0,
@@ -33,14 +31,13 @@ describe('FeeProcessor', () => {
             total: 0,
         };
 
-        const materials = [];
+        const materials: Material[] = [];
 
         const result = FeeProcessor(materials);
         expect(result).toEqual(processor);
     });
 
     it('Should generate correctly 1', () => {
-
         const expected = {
             aggregateAmounts: {
                 healthLiquid: 0,
@@ -73,16 +70,15 @@ describe('FeeProcessor', () => {
             health_hazard: "1",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "100"
-        }];
+        }] as Material[];
 
         const result = FeeProcessor(materials);
         expect(result).toEqual(expected);
     });
 
     it('Should generate correctly 2', () => {
-
         const expected = {
             aggregateAmounts: {
                 healthLiquid: 50,
@@ -115,65 +111,63 @@ describe('FeeProcessor', () => {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "50"
         }, {
             health_hazard: "1",
             fire_hazard: "2",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "50"
         }, {
             health_hazard: "1",
             fire_hazard: "1",
             instability_hazard: "2",
-            units: "gallons",
+            unit: "gallons",
             quantity: "50"
         }, {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "cubic_feet",
+            unit: "cubic_feet",
             quantity: "100"
         }, {
             health_hazard: "1",
             fire_hazard: "2",
             instability_hazard: "1",
-            units: "cubic_feet",
+            unit: "cubic_feet",
             quantity: "100"
-        },
-        {
+        }, {
             health_hazard: "1",
             fire_hazard: "1",
             instability_hazard: "2",
-            units: "cubic_feet",
+            unit: "cubic_feet",
             quantity: "100"
         }, {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "pounds",
+            unit: "pounds",
             quantity: "50"
         }, {
             health_hazard: "1",
             fire_hazard: "2",
             instability_hazard: "1",
-            units: "pounds",
+            unit: "pounds",
             quantity: "50"
         }, {
             health_hazard: "1",
             fire_hazard: "1",
             instability_hazard: "2",
-            units: "pounds",
+            unit: "pounds",
             quantity: "50"
-        }];
+        }] as Material[];
 
         const result = FeeProcessor(materials);
         expect(result).toEqual(expected);
     });
 
     it('Should generate correctly 3', () => {
-
         const expected = {
             aggregateAmounts: {
                 healthLiquid: 300,
@@ -206,28 +200,27 @@ describe('FeeProcessor', () => {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "100"
         }, {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "100"
         }, {
             health_hazard: "2",
             fire_hazard: "1",
             instability_hazard: "1",
-            units: "gallons",
+            unit: "gallons",
             quantity: "100"
-        }];
+        }] as Material[];
 
         const result = FeeProcessor(materials);
         expect(result).toEqual(expected);
     });
 
     it('Should not need hazard ratings for ESS', () => {
-
         const expected = {
             aggregateAmounts: {
                 healthLiquid: 0,
@@ -257,44 +250,40 @@ describe('FeeProcessor', () => {
         };
 
         const materials = [{
-            units: "kilowatt_hours",
+            unit: "kilowatt_hours",
             quantity: "100"
         }, {
             health_hazard: "aoeu",
             fire_hazard: "aoeu",
             instability_hazard: "11516",
-            units: "kilowatt_hours",
+            unit: "kilowatt_hours",
             quantity: "100"
-        }];
+        }] as Material[];
 
         const result = FeeProcessor(materials);
         expect(result).toEqual(expected);
     });
 
     it('should throw an error for invalid material units', () => {
-        const materials = [
-            {
-                health_hazard: "10",
-                fire_hazard: "20",
-                instability_hazard: "5",
-                units: "liters",
-                quantity: "100"
-            }
-        ];
+        const materials = [{
+            health_hazard: "10",
+            fire_hazard: "20",
+            instability_hazard: "5",
+            unit: "liters",
+            quantity: "100"
+        }] as unknown as Material[];
 
         expect(() => FeeProcessor(materials)).toThrowError('Invalid units: liters. Expected one of: gallons, cubic_feet, pounds, kilowatt_hours');
     });
 
     it('should throw an error for invalid material data', () => {
-        const materials = [
-            {
-                health_hazard: "abc",
-                fire_hazard: "20",
-                instability_hazard: "5",
-                units: "gallons",
-                quantity: "100"
-            }
-        ];
+        const materials = [{
+            health_hazard: "abc",
+            fire_hazard: "20",
+            instability_hazard: "5",
+            unit: "gallons",
+            quantity: "100"
+        }] as Material[];
 
         expect(() => FeeProcessor(materials)).toThrowError('Invalid material data: conversion resulted in NaN');
     });
