@@ -66,7 +66,8 @@
   "hazardous_materials": {
     "title": "Hazardous Materials",
     "list_title": "Hazardous Materials List",
-    "add_material": "Add A Material"
+    "add_material": "Add A Material",
+    "spreadsheet_mode": "I am submitting 30 or more chemicals via a spreadsheet submitted in \"Additional Documents\" below."
   },
   "hazardous_materials_preamble": {
     "intro": "Hazardous materials stored or used aboveground in aggregate quantities greater than that required for reporting by the 2021International Fire Code Section 105.5.22 as amended by the City of Austin must be listed in the application. The reportable quantities are based on the National Fire Protection Association (NFPA) standard 704, 2017 edition:",

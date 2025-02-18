@@ -3,23 +3,43 @@ import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
 import { useMaterials } from "../helpers/MaterialsContext";
+import { useState } from 'react';
 
 export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const { t } = useTranslation();
     const { materials, appendMaterial, collapsedMaterials } = useMaterials();
+    const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
     console.log(collapsedMaterials, materials)
 
     if (!show) return null;
 
     return (
         <FormSection title={t('hazardous_materials.title')}>
-            <HazardousMaterialsPreamble appendMaterial={appendMaterial} />
-            <h3>{t('hazardous_materials.list_title')}</h3>
-            {materials.map((material, index) => (
-                <div key={material.id}>
-                    <MaterialCard isCollapsed={collapsedMaterials[index]} material={material} index={index}/>
-                </div>
-            ))}
+            <div style={{ marginBottom: '1rem' }}>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={isSpreadsheetMode}
+                        onChange={(e) => setIsSpreadsheetMode(e.target.checked)}
+                        style={{ marginRight: '0.5rem' }}
+                    />
+                    {t('hazardous_materials.spreadsheet_mode')}
+                </label>
+            </div>
+            <HazardousMaterialsPreamble 
+                appendMaterial={appendMaterial} 
+                isSpreadsheetMode={isSpreadsheetMode}
+            />
+            {!isSpreadsheetMode && (
+                <>
+                    <h3>{t('hazardous_materials.list_title')}</h3>
+                    {materials.map((material, index) => (
+                        <div key={material.id}>
+                            <MaterialCard isCollapsed={collapsedMaterials[index]} material={material} index={index}/>
+                        </div>
+                    ))}
+                </>
+            )}
         </FormSection>
     );
 }

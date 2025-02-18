@@ -1,8 +1,15 @@
 import { useTranslation, Trans } from 'react-i18next';
 import CommonHazmatCards from "./CommonHazmatCards"
 import { FaChevronDown } from 'react-icons/fa';
+import { CommonChemical } from '../helpers/MaterialsContext';
 
-export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial: (chemical: any) => void }) {
+export function HazardousMaterialsPreamble({ 
+    appendMaterial, 
+    isSpreadsheetMode 
+}: { 
+    appendMaterial: (chemical: CommonChemical) => void,
+    isSpreadsheetMode: boolean 
+}) {
     const { t } = useTranslation();
 
     return (<>
@@ -136,7 +143,7 @@ export function HazardousMaterialsPreamble({ appendMaterial }: { appendMaterial:
                 You can add common chemicals using the cards above or add blank chemicals below. Use the blue button <FaChevronDown /> to expand and collapse the materials.
             </Trans>
         </div>
-        <CommonHazmatCards appendMaterial={appendMaterial} />
+        {!isSpreadsheetMode && <CommonHazmatCards appendMaterial={appendMaterial} />}
         
     </>
     )
