@@ -25,6 +25,11 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
                     />
                     {t('hazardous_materials.spreadsheet_mode')}
                 </label>
+                <div style={{ marginTop: '0.5rem' }}>
+                    <a href="/src/assets/ChemicalSpreadsheet.xlsx" download className="btn btn-secondary">
+                        {t('hazardous_materials.download_spreadsheet')}
+                    </a>
+                </div>
             </div>
             <HazardousMaterialsPreamble 
                 appendMaterial={appendMaterial} 

@@ -67,7 +67,8 @@
     "title": "Materiales Peligrosos",
     "list_title": "Lista de Materiales Peligrosos",
     "add_material": "Agregar un Material",
-    "spreadsheet_mode": "Estoy enviando 30 o más productos químicos a través de una hoja de cálculo presentada en \"Documentos Adicionales\" a continuación."
+    "spreadsheet_mode": "Estoy enviando 30 o más productos químicos a través de una hoja de cálculo presentada en \"Documentos Adicionales\" a continuación.",
+    "download_spreadsheet": "Descargar Hoja de Cálculo de Productos Químicos"
   },
   "hazardous_materials_preamble": {
     "intro": "Los materiales peligrosos almacenados o utilizados sobre el suelo en cantidades agregadas mayores que las requeridas para el informe por la Sección 105.5.22 del Código Internacional de Incendios 2021 según enmendado por la Ciudad de Austin deben ser listados en la solicitud. Las cantidades reportables se basan en la Norma NFPA 704, edición 2017:",
