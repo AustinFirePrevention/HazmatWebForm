@@ -17,7 +17,6 @@
 import { useState } from "react"
 import { ApplicationType } from "../components/PermitDetails"
 import { useMaterials } from "./MaterialsContext"
-import * as Sentry from '@sentry/react'
 
 
 const FEES = [130, 260, 390, 520, 650]
@@ -265,7 +264,6 @@ export function useFees(): { fees: FeeAggregate, calculateFees: (applicationType
     const calculateFees = (applicationType: ApplicationType) => {
 
         const calculatedFees = applicationType === 'renewal_no_change' ? defaultFees : FeeProcessor(materials as Required<Material>[]);
-        Sentry.setContext('fees', calculatedFees);
         setFees(calculatedFees);
         return calculatedFees;
     }

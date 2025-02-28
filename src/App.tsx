@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next';
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
@@ -12,8 +12,8 @@ import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import schema from './helpers/validationSchema';
 
-const endpoint = "https://localhost"
-//const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
+//const endpoint = "https://localhost"
+const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
   const { t } = useTranslation();
@@ -23,10 +23,11 @@ function App() {
   const [file, setFile] = useState<File | null>(null);
   const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<SubmissionStatus>('error');
-  const { materials, uncollapseIncompleteMaterialsAndThrow } = useMaterials();
+  const { materials, uncollapseIncompleteMaterialsAndThrow, setMaterials } = useMaterials();
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [isThirdParty, setIsThirdParty] = useState(false);
+  const formRef = useRef<HTMLFormElement|null>(null);
 
   useEffect(() => {
     if (materials && materials.length > 0) {
@@ -53,6 +54,17 @@ function App() {
     reader.onload = () => resolve(reader.result);
     reader.onerror = reject;
   });
+
+  function clearForm() {
+    setMaterials([])
+    setApplicationType('new_permit')
+    setFile(null)
+    setAdditionalFiles([])
+    setIsThirdParty(false)
+    if(formRef.current){
+      formRef.current.reset()
+    }
+  }
 
 
   async function processForm(event: React.FormEvent) {
@@ -120,6 +132,7 @@ function App() {
       if (response.ok) {
 
         setStatus(applicationType === "renewal_no_change" ? 'successCantShowFees' : 'success')
+        clearForm()
       }
 
       if (!response.ok) {
@@ -153,7 +166,7 @@ function App() {
     <>
       <NavBar />
       <h1 className="text-center mt-4">{t("title")}</h1>
-      <form data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
+      <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <div className="section mb-4">
@@ -207,10 +220,10 @@ function App() {
           </div>
           <div className="mb-3">
             <label className="form-label">{t("additional_files")}</label>
-            <input 
-              type="file" 
-              className="form-control" 
-              multiple 
+            <input
+              type="file"
+              className="form-control"
+              multiple
               onChange={handleAdditionalFilesChange}
             />
             <small className="form-text text-muted">
@@ -234,3 +247,4 @@ function App() {
 }
 
 export default App
+

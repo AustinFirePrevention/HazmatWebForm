@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import { Material as MaterialBase } from "./FeeProcessor";
-import * as Sentry from "@sentry/react";
 import { Unit } from '../helpers/FeeProcessor';
 
 export type Material = {
@@ -91,7 +90,6 @@ export function useMaterials() {
     }
     const newSetMaterials = (materials: Array<Material>) => {
         context.setMaterials(materials);
-        Sentry.setContext('materials', { materials });
     }
     return { ...context, setMaterials: newSetMaterials };
 }
