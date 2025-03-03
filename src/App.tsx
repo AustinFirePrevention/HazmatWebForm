@@ -27,7 +27,7 @@ function App() {
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [isThirdParty, setIsThirdParty] = useState(false);
-  const formRef = useRef<HTMLFormElement|null>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     if (materials && materials.length > 0) {
@@ -61,7 +61,7 @@ function App() {
     setFile(null)
     setAdditionalFiles([])
     setIsThirdParty(false)
-    if(formRef.current){
+    if (formRef.current) {
       formRef.current.reset()
     }
   }
@@ -100,6 +100,7 @@ function App() {
         }))
       );
     }
+    data.is_third_party= isThirdParty
 
     if (applicationType === 'renewal_no_change') {
       data.materials = []
@@ -166,7 +167,11 @@ function App() {
     <>
       <NavBar />
       <h1 className="text-center mt-4">{t("title")}</h1>
+    
       <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
+      <div className="alert alert-warning">
+            {t("permit_details_preamble.public_info_notice")}
+        </div>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />
         <div className="section mb-4">
@@ -176,7 +181,6 @@ function App() {
               className="form-check-input"
               id="isThirdParty"
               name="is_third_party"
-              checked={isThirdParty}
               onChange={(e) => setIsThirdParty(e.target.checked)}
             />
             <label className="form-check-label" htmlFor="isThirdParty">

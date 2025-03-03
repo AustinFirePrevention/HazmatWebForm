@@ -43,7 +43,8 @@
   },
   "permit_details_preamble": {
     "description": "Payments are processed through the Austin Build + Connect (AB+C) online customer portal. Register at the <1>Austin Build + Connect</1> website to proceed. Bills are not added to the AB+C account automatically. Bills will be added manually after the application is reviewed and approved. An e-mail will be sent to the address associated with the account when the fees are ready to be paid.",
-    "no_mail": "Do not send applications and payment by mail or e-mail."
+    "no_mail": "Do not send applications and payment by mail or e-mail.",
+    "public_info_notice": "The City of Austin is subject to the requirements of the Texas Public Information Act and therefore any information you provide may be considered public information and subject to release upon request."
   },
   "business_details": {
     "title": "Business Details",

@@ -48,7 +48,8 @@
   },
   "permit_details_preamble": {
     "description": "Los pagos se procesan a través del portal en línea Austin Build + Connect (AB+C). Regístrese en el <1>Austin Build + Connect</1> sitio web para continuar. Las facturas no se agregan automáticamente a la cuenta, se agregarán manualmente después de que la solicitud sea revisada y aprobada. Se enviará un correo electrónico a la dirección asociada con la cuenta cuando las tarifas estén listas para ser pagadas.",
-    "no_mail": "No envíe solicitudes y pagos por correo."
+    "no_mail": "No envíe solicitudes y pagos por correo.",
+    "public_info_notice": "La Ciudad de Austin está sujeta a los requisitos de la Ley de Información Pública de Texas y, por lo tanto, cualquier información que proporcione puede considerarse información pública y estar sujeta a divulgación previa solicitud."
   },
   "business_details": {
     "title": "Detalles del Negocio",

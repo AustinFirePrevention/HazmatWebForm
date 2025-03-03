@@ -9,7 +9,6 @@ export function HazardousMaterials({ show = true }: { show?: boolean }) {
     const { t } = useTranslation();
     const { materials, appendMaterial, collapsedMaterials } = useMaterials();
     const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
-    console.log(collapsedMaterials, materials)
 
     if (!show) return null;
 
