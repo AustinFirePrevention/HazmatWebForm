@@ -89,6 +89,8 @@ function App() {
         content: await toBase64(file),
         name: file.name
       }
+    } else {
+      data.storage_map = undefined
     }
 
     // Process additional files
@@ -100,7 +102,7 @@ function App() {
         }))
       );
     }
-    data.is_third_party= isThirdParty
+    data.is_third_party = isThirdParty
 
     if (applicationType === 'renewal_no_change') {
       data.materials = []
@@ -148,16 +150,8 @@ function App() {
         setShowErrorToast(true);
         return;
       }
-      else if (
-        error &&
-        typeof error === 'object' &&
-        'name' in error &&
-        error.name === 'ValidationError' &&
-        'errors' in error &&
-        Array.isArray((error as { errors: unknown[] }).errors)
-      ) {
-        console.error((error as { errors: unknown[] }).errors);
-      }
+      setStatus('error')
+      setShowModal(true);
       console.error(error);
       throw error;
     }
@@ -167,10 +161,9 @@ function App() {
     <>
       <NavBar />
       <h1 className="text-center mt-4">{t("title")}</h1>
-    
       <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
-      <div className="alert alert-warning">
-            {t("permit_details_preamble.public_info_notice")}
+        <div className="alert alert-warning">
+          {t("permit_details_preamble.public_info_notice")}
         </div>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
         <BusinessDetails />

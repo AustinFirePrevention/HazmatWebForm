@@ -157,6 +157,6 @@
   },
   "toast": {
     "materials_count_message": "Ahora tienes {{count}} Materiales Peligrosos en la lista de materiales.",
-    "error_message": "Se encontraron errores en los materiales peligrosos."
+    "error_materials": "Se encontraron errores en los materiales peligrosos."
   }
 }
