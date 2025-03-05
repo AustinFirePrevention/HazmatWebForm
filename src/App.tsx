@@ -33,16 +33,35 @@ function App() {
   const [responsiblePhone, setResponsiblePhone] = useState('');
   const [emergencyPhone, setEmergencyPhone] = useState('');
   const formRef = useRef<HTMLFormElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileAdditionalRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (materials && materials.length > 0) {
-      setShowMaterialToast(true); 
+      setShowMaterialToast(true);
     }
   }, [materials]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setFile(event.target.files[0]);
+    }
+  }
+  
+  function clearFile(){
+    const f = fileInputRef.current;
+    setFile(null);
+   
+    if (f?.value) {
+      f.value = ''; 
+    }
+  }
+
+  function clearAdditionalFiles(){
+    const f = fileAdditionalRef.current;
+    setAdditionalFiles([]);
+    if (f?.value) {
+      f.value = ''; 
     }
   }
 
@@ -75,6 +94,9 @@ function App() {
       formRef.current.reset()
     }
   }
+
+  
+
 
 
   async function processForm(event: React.FormEvent) {
@@ -218,14 +240,17 @@ function App() {
           phone={responsiblePhone}
           setPhone={setResponsiblePhone}
         />
-        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} 
-        phone={emergencyPhone}
-        setPhone={setEmergencyPhone}/>
+        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")}
+          phone={emergencyPhone}
+          setPhone={setEmergencyPhone} />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">
             <label htmlFor='storage_map' className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
-            <input id='storage_map' type="file" className="form-control" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
+            <input ref={fileInputRef} id='storage_map' type="file" className="form-control mb-2" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
+            <button type="button" className="btn btn-secondary btn-sm" onClick={clearFile}>
+              {t("clear")}
+            </button>
             {applicationType !== 'new_permit' && (
               <small className="form-text text-muted">
                 {t("storage_map_note")}
@@ -235,11 +260,15 @@ function App() {
           <div className="mb-3">
             <label className="form-label">{t("additional_files")}</label>
             <input
+              ref={fileAdditionalRef}
               type="file"
-              className="form-control"
+              className="form-control mb-2"
               multiple
               onChange={handleAdditionalFilesChange}
             />
+            <button type="button" className="btn btn-secondary btn-sm me-2" onClick={clearAdditionalFiles}>
+              {t("clear")}
+            </button>
             <small className="form-text text-muted">
               {t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
             </small>
@@ -261,4 +290,3 @@ function App() {
 }
 
 export default App
-

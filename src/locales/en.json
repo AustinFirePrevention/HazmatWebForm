@@ -23,6 +23,7 @@
   "storage_map_note": "If changes have occurred since the last renewal, you must provide a new map.",
   "additional_files": "Additional Documents:",
   "additional_files_note": "Upload Safety Data Sheets (SDS), response plans, or other relevant documents.",
+  "clear": "Clear",
   "submit": "Submit",
   "navbar": {
     "title": "Austin Fire Department",
@@ -51,7 +52,7 @@
     "business_name": "Business Name:",
     "business_name_note": "This should be the name displayed on your building",
     "street_address": "Street Address:",
-    "suite_no": "Suite Number:",
+    "suite_no": "Suite or Building Number:",
     "city": "City:",
     "zip": "Zip Code:",
     "main_phone_number": "Main Phone Number:",
@@ -60,7 +61,7 @@
     "hours_of_operation": "Hours of Operations:"
   },
   "contact_details": {
-    "name": "Name",
+    "name": "Full Name",
     "phone": "Phone",
     "email": "Email"
   },

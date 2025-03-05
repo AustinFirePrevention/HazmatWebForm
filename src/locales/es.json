@@ -20,7 +20,7 @@
     "note": "Por favor proporcione los datos de contacto de la persona que solicita esta aplicación."
   },
   "contact_details": {
-    "name": "Nombre",
+    "name": "Nombre completo",
     "phone": "Teléfono",
     "email": "Correo Electrónico"
   },
@@ -28,6 +28,7 @@
   "storage_map_note": "Si se han realizado cambios en el mapa, debe proporcionar un nuevo mapa.",
   "additional_files": "Documentos Adicionales:",
   "additional_files_note": "Suba Hojas de Datos de Seguridad (SDS), planes de respuesta u otros documentos relevantes.",
+  "clear": "Limpiar",
   "submit": "Enviar",
   "navbar": {
     "title": "Departamento de Bomberos de Austin",
@@ -56,7 +57,7 @@
     "business_name": "Nombre del Negocio:",
     "business_name_note": "Este debe ser el nombre que se muestra en su edificio",
     "street_address": "Dirección:",
-    "suite_no": "Número de Suite:",
+    "suite_no": "Suite o Número de Edificio:",
     "city": "Ciudad:",
     "zip": "Código Postal:",
     "main_phone_number": "Número de Teléfono Principal:",
