@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
 import InputMask from 'react-input-mask';
 
-export default function BusinessDetails() {
+export default function BusinessDetails({ phone, setPhone }: { phone: string, setPhone: (arg0: string) => void }) {
     const { t } = useTranslation();
+
 
     return (
         <FormSection title={t("business_details.title")}>
@@ -33,7 +34,13 @@ export default function BusinessDetails() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.main_phone_number")}</label>
-                    <InputMask mask="(999)999-9999" className="form-control" name="main_phone_number" required />
+                    <InputMask
+                        mask="(999)999-9999"
+                        className="form-control"
+                        name="main_phone_number"
+                        required value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.email_address")}</label>

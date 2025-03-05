@@ -27,11 +27,16 @@ function App() {
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [isThirdParty, setIsThirdParty] = useState(false);
+  const [businessPhone, setBusinessPhone] = useState('');
+  const [requestPhone, setRequestPhone] = useState('');
+  const [primaryPhone, setPrimaryPhone] = useState('');
+  const [responsiblePhone, setResponsiblePhone] = useState('');
+  const [emergencyPhone, setEmergencyPhone] = useState('');
   const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     if (materials && materials.length > 0) {
-      setShowMaterialToast(true);
+      setShowMaterialToast(true); 
     }
   }, [materials]);
 
@@ -56,6 +61,11 @@ function App() {
   });
 
   function clearForm() {
+    setBusinessPhone('')
+    setRequestPhone('')
+    setPrimaryPhone('')
+    setResponsiblePhone('')
+    setEmergencyPhone('')
     setMaterials([])
     setApplicationType('new_permit')
     setFile(null)
@@ -109,7 +119,6 @@ function App() {
     } else {
       data.materials = materials
     }
-
     return await schema.validate(data);
   }
 
@@ -166,7 +175,7 @@ function App() {
           {t("permit_details_preamble.public_info_notice")}
         </div>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
-        <BusinessDetails />
+        <BusinessDetails phone={businessPhone} setPhone={setBusinessPhone} />
         <div className="section mb-4">
           <div className="form-check">
             <input
@@ -188,6 +197,8 @@ function App() {
             title={t("requesting_party.title", "Requesting Party")}
             note={<div className="alert alert-info">{t("requesting_party.note", "Please provide the contact details of the person requesting this application.")}</div>}
             required
+            phone={requestPhone}
+            setPhone={setRequestPhone}
           />
         )}
         <ContactDetails
@@ -195,6 +206,8 @@ function App() {
           prefix="primary_contact"
           title={t("primary_contact.title")}
           note={<PrimaryContactPreamble />}
+          phone={primaryPhone}
+          setPhone={setPrimaryPhone}
         />
         <ContactDetails
           prefix="responsible_official"
@@ -202,8 +215,12 @@ function App() {
           note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
           required
           copyFromPrimary
+          phone={responsiblePhone}
+          setPhone={setResponsiblePhone}
         />
-        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} />
+        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")} 
+        phone={emergencyPhone}
+        setPhone={setEmergencyPhone}/>
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">

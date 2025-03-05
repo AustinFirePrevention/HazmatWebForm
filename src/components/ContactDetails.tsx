@@ -9,12 +9,13 @@ export interface ContactDetailsProps {
     note?: string | JSX.Element;
     required?: boolean;
     copyFromPrimary?: boolean;
+    phone: string;
+    setPhone: (arg0: string)=>void;
 }
 
-export function ContactDetails({ prefix, title, note, required, copyFromPrimary }: ContactDetailsProps) {
+export function ContactDetails({ prefix, title, note, required, copyFromPrimary, phone, setPhone }: ContactDetailsProps) {
     const { t } = useTranslation();
     const [isCopied, setIsCopied] = useState(false);
-    const [phone, setPhone] = useState('');
 
     const handleCopy = () => {
         const primaryName = (document.querySelector('input[name="primary_contact_name"]') as HTMLInputElement).value;
