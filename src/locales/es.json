@@ -22,6 +22,7 @@
   "contact_details": {
     "name": "Nombre completo",
     "phone": "Teléfono",
+    "cell_phone": "Teléfono Celular",
     "email": "Correo Electrónico"
   },
   "storage_map": "Mapa de Almacenamiento de Instalaciones:",

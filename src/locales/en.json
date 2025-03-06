@@ -63,6 +63,7 @@
   "contact_details": {
     "name": "Full Name",
     "phone": "Phone",
+    "cell_phone": "Cell Phone",
     "email": "Email"
   },
   "hazardous_materials": {

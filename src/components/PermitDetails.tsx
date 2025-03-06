@@ -14,7 +14,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 <PermitDetailsPreamble />
                 <div className="mb-3">
                     <label className="form-label required">{t("permit_details.abc_id")}</label>
-                    <input type="text" className="form-control" name="abc_id" required />
+                    <InputMask mask="9999999" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
                         <Trans i18nKey="permit_details.abc_id_note">
                             To locate your Austin Build + Connect ID number, log into your 
@@ -47,7 +47,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                     </div> :
                     <div className="mb-3">
                         <label className="form-label required">{t("permit_details.permit_number")}</label>
-                        <input type="text" className="form-control" name="permit_number" required />
+                        <InputMask mask="9999999" type="text" className="form-control" name="permit_number" required />
                     </div>
                 }
             </div>

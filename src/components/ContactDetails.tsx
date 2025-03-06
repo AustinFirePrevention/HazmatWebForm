@@ -9,17 +9,20 @@ export interface ContactDetailsProps {
     note?: string | JSX.Element;
     required?: boolean;
     copyFromPrimary?: boolean;
-    phone: string;
-    setPhone: (arg0: string)=>void;
+    businessPhone: string;
+    setBusinessPhone: (arg0: string) => void;
+    cellPhone: string;
+    setCellPhone: (arg0: string) => void;
 }
 
-export function ContactDetails({ prefix, title, note, required, copyFromPrimary, phone, setPhone }: ContactDetailsProps) {
+export function ContactDetails({ prefix, title, note, required, copyFromPrimary, businessPhone, setBusinessPhone, cellPhone, setCellPhone }: ContactDetailsProps) {
     const { t } = useTranslation();
     const [isCopied, setIsCopied] = useState(false);
 
     const handleCopy = () => {
         const primaryName = (document.querySelector('input[name="primary_contact_name"]') as HTMLInputElement).value;
-        const primaryPhone = (document.querySelector('input[name="primary_contact_phone"]') as HTMLInputElement).value;
+        const primaryPhone = (document.querySelector('input[name="primary_contact_business_phone"]') as HTMLInputElement).value;
+        const primaryCellPhone = (document.querySelector('input[name="primary_contact_cell_phone"]') as HTMLInputElement).value;
         const primaryEmail = (document.querySelector('input[name="primary_contact_email"]') as HTMLInputElement).value;
 
         const nameInput = document.querySelector(`input[name="${prefix}_name"]`) as HTMLInputElement;
@@ -27,11 +30,13 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary,
 
         if (!isCopied) {
             nameInput.value = primaryName;
-            setPhone(primaryPhone);
+            setBusinessPhone(primaryPhone);
+            setCellPhone(primaryCellPhone);
             emailInput.value = primaryEmail;
         } else {
             nameInput.value = '';
-            setPhone('');
+            setBusinessPhone('');
+            setCellPhone('');
             emailInput.value = '';
         }
 
@@ -56,11 +61,22 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary,
                     <InputMask
                         mask="(999)999-9999"
                         className="form-control"
-                        name={`${prefix}_phone`}
+                        name={`${prefix}_business_phone`}
                         required={required}
                         readOnly={isCopied}
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        value={businessPhone}
+                        onChange={(e) => setBusinessPhone(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className='form-label'>{t("contact_details.cell_phone")}:</label>
+                    <InputMask
+                        mask="(999)999-9999"
+                        className="form-control"
+                        name={`${prefix}_cell_phone`}
+                        readOnly={isCopied}
+                        value={cellPhone}
+                        onChange={(e) => setCellPhone(e.target.value)}
                     />
                 </div>
                 <div className="mb-3">

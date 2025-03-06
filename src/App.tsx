@@ -32,6 +32,10 @@ function App() {
   const [primaryPhone, setPrimaryPhone] = useState('');
   const [responsiblePhone, setResponsiblePhone] = useState('');
   const [emergencyPhone, setEmergencyPhone] = useState('');
+  const [requestCellPhone, setRequestCellPhone] = useState('');
+  const [primaryCellPhone, setPrimaryCellPhone] = useState('');
+  const [responsibleCellPhone, setResponsibleCellPhone] = useState('');
+  const [emergencyCellPhone, setEmergencyCellPhone] = useState('');
   const formRef = useRef<HTMLFormElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const fileAdditionalRef = useRef<HTMLInputElement | null>(null);
@@ -47,21 +51,21 @@ function App() {
       setFile(event.target.files[0]);
     }
   }
-  
-  function clearFile(){
+
+  function clearFile() {
     const f = fileInputRef.current;
     setFile(null);
-   
+
     if (f?.value) {
-      f.value = ''; 
+      f.value = '';
     }
   }
 
-  function clearAdditionalFiles(){
+  function clearAdditionalFiles() {
     const f = fileAdditionalRef.current;
     setAdditionalFiles([]);
     if (f?.value) {
-      f.value = ''; 
+      f.value = '';
     }
   }
 
@@ -85,6 +89,10 @@ function App() {
     setPrimaryPhone('')
     setResponsiblePhone('')
     setEmergencyPhone('')
+    setRequestCellPhone('')
+    setPrimaryCellPhone('')
+    setResponsibleCellPhone('')
+    setEmergencyCellPhone('')
     setMaterials([])
     setApplicationType('new_permit')
     setFile(null)
@@ -94,9 +102,6 @@ function App() {
       formRef.current.reset()
     }
   }
-
-  
-
 
 
   async function processForm(event: React.FormEvent) {
@@ -219,8 +224,10 @@ function App() {
             title={t("requesting_party.title", "Requesting Party")}
             note={<div className="alert alert-info">{t("requesting_party.note", "Please provide the contact details of the person requesting this application.")}</div>}
             required
-            phone={requestPhone}
-            setPhone={setRequestPhone}
+            businessPhone={requestPhone}
+            setBusinessPhone={setRequestPhone}
+            cellPhone={requestCellPhone}
+            setCellPhone={setRequestCellPhone}
           />
         )}
         <ContactDetails
@@ -228,8 +235,10 @@ function App() {
           prefix="primary_contact"
           title={t("primary_contact.title")}
           note={<PrimaryContactPreamble />}
-          phone={primaryPhone}
-          setPhone={setPrimaryPhone}
+          businessPhone={primaryPhone}
+          setBusinessPhone={setPrimaryPhone}
+          cellPhone={primaryCellPhone}
+          setCellPhone={setPrimaryCellPhone}
         />
         <ContactDetails
           prefix="responsible_official"
@@ -237,12 +246,17 @@ function App() {
           note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
           required
           copyFromPrimary
-          phone={responsiblePhone}
-          setPhone={setResponsiblePhone}
+          businessPhone={responsiblePhone}
+          setBusinessPhone={setResponsiblePhone}
+          cellPhone={responsibleCellPhone}
+          setCellPhone={setResponsibleCellPhone}
         />
         <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")}
-          phone={emergencyPhone}
-          setPhone={setEmergencyPhone} />
+          businessPhone={emergencyPhone}
+          setBusinessPhone={setEmergencyPhone}
+          cellPhone={emergencyCellPhone}
+          setCellPhone={setEmergencyCellPhone}
+           />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
         <div className="section mb-4">
           <div className="mb-3">

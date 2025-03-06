@@ -30,7 +30,7 @@ export default function BusinessDetails({ phone, setPhone }: { phone: string, se
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.zip")}</label>
-                    <input type="text" className="form-control" name="zip" required />
+                    <InputMask mask="99999" maskChar="_" className="form-control" name="zip" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.main_phone_number")}</label>

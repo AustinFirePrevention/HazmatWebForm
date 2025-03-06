@@ -52,7 +52,10 @@ const schema = {
         "primary_contact_name": {
             "type": "string"
         },
-        "primary_contact_phone": {
+        "primary_contact_business_phone": {
+            "type": "string"
+        },
+        "primary_contact_cell_phone": {
             "type": "string"
         },
         "primary_contact_email": {
@@ -61,7 +64,10 @@ const schema = {
         "responsible_official_name": {
             "type": "string"
         },
-        "responsible_official_phone": {
+        "responsible_official_business_phone": {
+            "type": "string"
+        },
+        "responsible_official_cell_phone": {
             "type": "string"
         },
         "responsible_official_email": {
@@ -70,7 +76,10 @@ const schema = {
         "emergency_contact_name": {
             "type": "string"
         },
-        "emergency_contact_phone": {
+        "emergency_contact_business_phone": {
+            "type": "string"
+        },
+        "emergency_contact_cell_phone": {
             "type": "string"
         },
         "emergency_contact_email": {
@@ -82,7 +91,10 @@ const schema = {
         "requesting_party_name": {
             "type": "string"
         },
-        "requesting_party_phone": {
+        "requesting_party_business_phone": {
+            "type": "string"
+        },
+        "requesting_party_cell_phone": {
             "type": "string"
         },
         "requesting_party_email": {
@@ -246,11 +258,11 @@ const schema = {
         "main_phone_number",
         "email_address",
         "primary_contact_name",
-        "primary_contact_phone",
+        "primary_contact_business_phone",
         "primary_contact_email",
         "responsible_official_name",
-        "responsible_official_phone",
-        "responsible_official_email",
+        "responsible_official_business_phone",
+        "responsible_official_email"
     ]
 }
 
