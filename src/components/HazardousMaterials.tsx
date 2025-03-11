@@ -23,7 +23,7 @@ export function HazardousMaterials({ show = true, isSpreadsheetMode, setIsSpread
                     {t('hazardous_materials.spreadsheet_mode')}
                 </label>
                 <div style={{ marginTop: '0.5rem' }}>
-                    <a href="/src/assets/ChemicalSpreadsheet.xlsx" download className="btn btn-secondary">
+                    <a href="/HazmatWebForm/ChemicalSpreadsheet.xlsx" download className="btn btn-secondary">
                         {t('hazardous_materials.download_spreadsheet')}
                     </a>
                 </div>

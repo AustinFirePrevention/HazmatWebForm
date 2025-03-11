@@ -173,7 +173,7 @@ function App() {
 
       if (response.ok) {
 
-        setStatus(applicationType === "renewal_no_change" ? 'successCantShowFees' : 'success')
+        setStatus(applicationType === "renewal_no_change" || isSpreadsheetMode ? 'successCantShowFees' : 'success')
         clearForm()
       }
 
