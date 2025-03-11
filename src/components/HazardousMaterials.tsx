@@ -3,12 +3,10 @@ import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
 import { useMaterials } from "../helpers/MaterialsContext";
-import { useState } from 'react';
 
-export function HazardousMaterials({ show = true }: { show?: boolean }) {
+export function HazardousMaterials({ show = true, isSpreadsheetMode, setIsSpreadsheetMode }: { show?: boolean, isSpreadsheetMode: boolean, setIsSpreadsheetMode: (isSpreadsheetMode: boolean) => void }) {
     const { t } = useTranslation();
     const { materials, appendMaterial, collapsedMaterials } = useMaterials();
-    const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
 
     if (!show) return null;
 

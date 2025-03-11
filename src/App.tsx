@@ -36,6 +36,8 @@ function App() {
   const [primaryCellPhone, setPrimaryCellPhone] = useState('');
   const [responsibleCellPhone, setResponsibleCellPhone] = useState('');
   const [emergencyCellPhone, setEmergencyCellPhone] = useState('');
+  const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
+
   const formRef = useRef<HTMLFormElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const fileAdditionalRef = useRef<HTMLInputElement | null>(null);
@@ -152,7 +154,8 @@ function App() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      if (applicationType !== 'renewal_no_change' && materials.length === 0) { //todo handle differently
+      if (applicationType !== 'renewal_no_change' && !isSpreadsheetMode && materials.length === 0) { //todo handle differently
+        console.log("No materials found")
         throw new IncompleteMaterialsError()
       }
 
@@ -256,13 +259,13 @@ function App() {
           setBusinessPhone={setEmergencyPhone}
           cellPhone={emergencyCellPhone}
           setCellPhone={setEmergencyCellPhone}
-           />
-        <HazardousMaterials show={applicationType !== 'renewal_no_change'} />
+        />
+        <HazardousMaterials show={applicationType !== 'renewal_no_change'} isSpreadsheetMode={isSpreadsheetMode} setIsSpreadsheetMode={setIsSpreadsheetMode} />
         <div className="section mb-4">
           <div className="mb-3">
             <label htmlFor='storage_map' className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
             <input ref={fileInputRef} id='storage_map' type="file" className="form-control mb-2" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
-            <button type="button" className="btn btn-secondary btn-sm" onClick={clearFile}>
+            <button type="button" className="btn btn-secondary btn-sm me-2" onClick={clearFile}>
               {t("clear")}
             </button>
             {applicationType !== 'new_permit' && (
