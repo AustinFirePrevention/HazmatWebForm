@@ -1,0 +1,75 @@
+# Cline Rules and Project Intelligence
+
+## Project Patterns
+1. Component Structure
+   - Form sections use dedicated components
+   - Preamble components for section introductions
+   - Material cards for hazardous material entries
+   - Modals for overlays and summaries
+
+2. State Management
+   - MaterialsContext for shared state
+   - Form-level state for local data
+   - Context used to avoid prop drilling
+
+3. Validation 
+   - JSON Schema for data validation
+   - Form-level validation rules
+   - Helper functions for verification
+
+4. File Organization
+   - Components in src/components/
+   - Helper functions in src/helpers/
+   - Translations in src/locales/
+   - Styles in src/scss/
+
+## Implementation Guidelines
+1. Forms and Sections
+   - Use FormSection component for consistency
+   - Include preamble when needed
+   - Implement proper validation
+   - Handle multilingual content
+
+2. Material Management
+   - Use MaterialCard for individual entries
+   - Integrate with CommonHazmatCards
+   - Apply proper fee calculations
+   - Maintain state in context
+
+3. Modals and UI
+   - Use Modal component for overlays
+   - Implement SummaryModal for reviews
+   - Ensure proper state handling
+   - Support multiple languages
+
+## Testing Requirements
+1. Component Testing
+   - Test user interactions
+   - Verify form validation
+   - Check state updates
+   - Validate translations
+
+2. Utility Testing
+   - Test helper functions
+   - Verify fee calculations
+   - Validate data transformations
+   - Check schema validation
+
+## Development Workflow
+1. Code Organization
+   - Component-based structure
+   - Utility function separation
+   - Clear file organization
+   - Consistent naming
+
+2. State Management
+   - Context for shared state
+   - Local state when appropriate
+   - Proper prop passing
+   - Clear data flow
+
+3. Documentation
+   - Clear component docs
+   - Helper function comments
+   - Schema documentation
+   - Translation management
