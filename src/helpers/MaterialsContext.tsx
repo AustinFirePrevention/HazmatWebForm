@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext, useState } from "react";
 import { Material as MaterialBase } from "./FeeProcessor";
 import { Unit } from '../helpers/FeeProcessor';

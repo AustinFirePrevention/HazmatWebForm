@@ -155,6 +155,10 @@
       "title": "¡Envío del formulario fallido!",
       "body": "Hubo un error al enviar su formulario. Por favor, inténtelo de nuevo. Si sus problemas persisten, contáctenos en FirePrevention@austintexas.gov"
     },
+    "fileError": {
+      "title": "¡Error de carga de archivo!",
+      "body": "Hubo un error al cargar sus archivos. Por favor, envíelos a FirePrevention@austintexas.gov."
+    },
     "close": "Cerrar"
   },
   "toast": {

@@ -80,9 +80,9 @@ function App() {
 
   const toBase64 = (file: File) => new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
+    reader.onerror = (err) => reject(err);
+    reader.readAsDataURL(file);
   });
 
   function clearForm() {
@@ -105,11 +105,9 @@ function App() {
     }
   }
 
-
   async function processForm(event: React.FormEvent) {
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     formData.forEach((_, key) => {
       if (key.startsWith('material_')) {
         formData.delete(key) // Remove all materials from the form data
@@ -151,6 +149,13 @@ function App() {
     return await schema.validate(data);
   }
 
+  class FileError extends Error {
+    constructor() {
+      super('Files are missing');
+      this.name = 'FileError';
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
@@ -171,6 +176,10 @@ function App() {
         body: JSON.stringify(data),
       })
 
+      if (data.additional_files.some((f: { content: string; })=>f.content === '')||data.storage_map.content === '') {
+        throw new FileError()
+      }
+
       if (response.ok) {
 
         setStatus(applicationType === "renewal_no_change" || isSpreadsheetMode ? 'successCantShowFees' : 'success')
@@ -187,6 +196,12 @@ function App() {
     } catch (error) {
       if (error instanceof IncompleteMaterialsError) {
         setShowErrorToast(true);
+        return;
+      }
+      if (error instanceof FileError) {
+        setStatus('fileError')
+        setShowModal(true);
+        console.error(error);
         return;
       }
       setStatus('error')

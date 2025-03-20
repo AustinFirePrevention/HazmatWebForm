@@ -123,7 +123,7 @@ const schema = {
                         "type": "string"
                     }
                 },
-                "required": ["content", "name"]
+                "required": ["name"]
             }
         },
         "fees": {

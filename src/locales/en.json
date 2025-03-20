@@ -151,6 +151,10 @@
       "title": "Form Submission Completed!",
       "body": "Your form has been submitted successfully."
     },
+    "fileError": {
+      "title": "File Upload Error!",
+      "body": "Your submission has been received although there was an error uploading your files. Please send them to FirePrevention@austintexas.gov."
+    },
     "successCantShowFees": {
       "title": "Form Submission Completed!",
       "body": "Your form has been submitted successfully. You will receive an email from the Prevention Team with fee totals."

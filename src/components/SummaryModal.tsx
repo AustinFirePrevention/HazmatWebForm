@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function SummaryModalContent({ totals }: { totals: any }) {
     return (
         <div className='summary-tables'>

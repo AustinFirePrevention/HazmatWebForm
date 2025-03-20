@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap"
 import { SummaryModalContent } from "./SummaryModal"
 import { FeeAggregate } from '../helpers/FeeProcessor';
 
-export type Status = "success" | "successCantShowFees" | "error"
+export type Status = "success" | "successCantShowFees" | "error" | "fileError"
 
 const content = {
     success: {
@@ -17,6 +17,12 @@ const content = {
         body: "modal.successCantShowFees.body",
         showSummary: false,
         isPassing: true
+    },
+    fileError: {
+        title: "modal.fileError.title",
+        body: "modal.fileError.body",
+        showSummary: false,
+        isPassing: false
     },
     error: {
         title: "modal.error.title",
