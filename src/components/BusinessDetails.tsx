@@ -2,7 +2,10 @@ import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
 import InputMask from 'react-input-mask';
 
-export default function BusinessDetails({ phone, setPhone }: { phone: string, setPhone: (arg0: string) => void }) {
+type BusinessDetailsProps = { phone: string, setPhone: (arg0: string) => void, setIsThirdParty: (arg0: boolean) => void };
+
+
+export default function BusinessDetails({ phone, setPhone, setIsThirdParty }: BusinessDetailsProps) {
     const { t } = useTranslation();
 
 
@@ -55,6 +58,20 @@ export default function BusinessDetails({ phone, setPhone }: { phone: string, se
                     <input type="text" className="form-control" name="hours_of_operation" />
                 </div>
             </div>
+            <div className="section mb-4">
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="isThirdParty"
+              name="is_third_party"
+              onChange={(e) => setIsThirdParty(e.target.checked)}
+            />
+            <label className="form-check-label" htmlFor="isThirdParty">
+              {t("requesting_party.checkbox_label", "I am a third party requesting this application on behalf of the business")}
+            </label>
+          </div>
+        </div>
         </FormSection>
     )
 }

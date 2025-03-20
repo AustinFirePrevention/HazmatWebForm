@@ -11,6 +11,7 @@ import { useMaterials, IncompleteMaterialsError } from './helpers/MaterialsConte
 import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import schema from './helpers/validationSchema';
+import { FileSelector } from './components/FileSelector';
 
 //const endpoint = "https://localhost"
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
@@ -176,7 +177,7 @@ function App() {
         body: JSON.stringify(data),
       })
 
-      if (data.additional_files.some((f: { content: string; })=>f.content === '')||data.storage_map.content === '') {
+      if (data.additional_files.some((f: { content: string; }) => f.content === '') || data.storage_map.content === '') {
         throw new FileError()
       }
 
@@ -220,22 +221,7 @@ function App() {
           {t("permit_details_preamble.public_info_notice")}
         </div>
         <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
-        <BusinessDetails phone={businessPhone} setPhone={setBusinessPhone} />
-        <div className="section mb-4">
-          <div className="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="isThirdParty"
-              name="is_third_party"
-              onChange={(e) => setIsThirdParty(e.target.checked)}
-            />
-            <label className="form-check-label" htmlFor="isThirdParty">
-              {t("requesting_party.checkbox_label", "I am a third party requesting this application on behalf of the business")}
-            </label>
-          </div>
-        </div>
-
+        <BusinessDetails phone={businessPhone} setPhone={setBusinessPhone} setIsThirdParty={setIsThirdParty} />
         {isThirdParty && (
           <ContactDetails
             prefix="requesting_party"
@@ -277,34 +263,25 @@ function App() {
         />
         <HazardousMaterials show={applicationType !== 'renewal_no_change'} isSpreadsheetMode={isSpreadsheetMode} setIsSpreadsheetMode={setIsSpreadsheetMode} />
         <div className="section mb-4">
-          <div className="mb-3">
-            <label htmlFor='storage_map' className={`form-label ${applicationType === 'new_permit' ? "required" : ""}`}>{t("storage_map")}</label>
-            <input ref={fileInputRef} id='storage_map' type="file" className="form-control mb-2" name="storage_map" onChange={handleFileChange} required={applicationType === 'new_permit'} />
-            <button type="button" className="btn btn-secondary btn-sm me-2" onClick={clearFile}>
-              {t("clear")}
-            </button>
-            {applicationType !== 'new_permit' && (
-              <small className="form-text text-muted">
-                {t("storage_map_note")}
-              </small>
-            )}
-          </div>
-          <div className="mb-3">
-            <label className="form-label">{t("additional_files")}</label>
-            <input
-              ref={fileAdditionalRef}
-              type="file"
-              className="form-control mb-2"
-              multiple
-              onChange={handleAdditionalFilesChange}
-            />
-            <button type="button" className="btn btn-secondary btn-sm me-2" onClick={clearAdditionalFiles}>
-              {t("clear")}
-            </button>
-            <small className="form-text text-muted">
-              {t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
-            </small>
-          </div>
+          <FileSelector
+            applicationType={applicationType}
+            fileInputRef={fileInputRef}
+            handleFileChange={handleFileChange}
+            clearFile={clearFile}
+            labelText={t("storage_map")}
+            labelId="storage_map"
+            note={t("storage_map_note")}
+          />
+          <FileSelector
+            applicationType={applicationType}
+            fileInputRef={fileAdditionalRef}
+            handleFileChange={handleAdditionalFilesChange}
+            clearFile={clearAdditionalFiles}
+            labelText={t("additional_files")}
+            labelId="additional_files"
+            note={t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
+            multiple
+          />
         </div>
         <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
 
