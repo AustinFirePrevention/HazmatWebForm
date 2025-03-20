@@ -4,11 +4,14 @@ import './scss/styles.scss'
 import App from './App.tsx'
 import { MaterialsProvider } from './helpers/MaterialsContext.tsx'
 import './i18n.ts'
+import { FormContextProvider } from './helpers/FormContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MaterialsProvider>
-      <App />
-    </MaterialsProvider>
+    <FormContextProvider>
+      <MaterialsProvider>
+        <App />
+      </MaterialsProvider>
+    </FormContextProvider>
   </StrictMode>,
 )

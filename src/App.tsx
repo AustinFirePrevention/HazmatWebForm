@@ -19,14 +19,17 @@ const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a1
 function App() {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  const [applicationType, setApplicationType] = useState<ApplicationType>('new_permit');
-  const { fees, calculateFees } = useFees();
-  const [file, setFile] = useState<File | null>(null);
-  const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<SubmissionStatus>('error');
-  const { materials, uncollapseIncompleteMaterialsAndThrow, setMaterials } = useMaterials();
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
+  const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
+  
+  const { fees, calculateFees } = useFees();
+  const { materials, uncollapseIncompleteMaterialsAndThrow, setMaterials } = useMaterials();
+  const [applicationType, setApplicationType] = useState<ApplicationType>('new_permit');
+  
+  const [file, setFile] = useState<File | null>(null);
+  const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
   const [isThirdParty, setIsThirdParty] = useState(false);
   const [businessPhone, setBusinessPhone] = useState('');
   const [requestPhone, setRequestPhone] = useState('');
@@ -37,8 +40,6 @@ function App() {
   const [primaryCellPhone, setPrimaryCellPhone] = useState('');
   const [responsibleCellPhone, setResponsibleCellPhone] = useState('');
   const [emergencyCellPhone, setEmergencyCellPhone] = useState('');
-  const [isSpreadsheetMode, setIsSpreadsheetMode] = useState(false);
-
   const formRef = useRef<HTMLFormElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const fileAdditionalRef = useRef<HTMLInputElement | null>(null);
