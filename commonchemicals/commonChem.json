@@ -2,7 +2,7 @@
     {
         "name": "custom_chemical",
         "label": "Custom Chemical",
-        "label_es": "",
+        "label_es": "Producto Químico Personalizado",
         "unit": "gallons",
         "fire_hazard": "0",
         "health_hazard": "0",
