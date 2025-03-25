@@ -12,9 +12,10 @@ import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import schema from './helpers/validationSchema';
 import { FileSelector } from './components/FileSelector';
+import { processForm, ProcessedFormData } from './helpers/processForm';
 
-//const endpoint = "https://localhost"
-const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
+const endpoint = "https://localhost"
+//const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
   const { t } = useTranslation();
@@ -79,13 +80,6 @@ function App() {
     }
   }
 
-  const toBase64 = (file: File) => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (err) => reject(err);
-    reader.readAsDataURL(file);
-  });
-
   function clearForm() {
     setBusinessPhone('')
     setRequestPhone('')
@@ -106,52 +100,6 @@ function App() {
     }
   }
 
-  async function processForm(event: React.FormEvent) {
-    const form = event.target as HTMLFormElement
-    const formData = new FormData(form)
-    formData.forEach((_, key) => {
-      if (key.startsWith('material_')) {
-        formData.delete(key) // Remove all materials from the form data
-      }
-    })
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data: { [key: string]: any } = {}
-    formData.forEach((value, key) => {
-      data[key] = value
-    })
-    data.fees = calculateFees(applicationType)
-
-    if (file) {
-      data.storage_map = {
-        content: await toBase64(file),
-        name: file.name
-      }
-    } else {
-      data.storage_map = undefined
-    }
-
-    // Process additional files
-    if (additionalFiles.length > 0) {
-      data.additional_files = await Promise.all(
-        additionalFiles.map(async (file) => ({
-          content: await toBase64(file),
-          name: file.name
-        }))
-      );
-    }else{
-      data.additional_files = []
-    }
-    data.is_third_party = isThirdParty
-
-    if (applicationType === 'renewal_no_change') {
-      data.materials = []
-    } else {
-      data.materials = materials
-    }
-    return await schema.validate(data);
-  }
-
   class FileError extends Error {
     constructor() {
       super('Files are missing');
@@ -162,14 +110,42 @@ function App() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      if (applicationType !== 'renewal_no_change' && !isSpreadsheetMode && materials.length === 0) { //todo handle differently
+      if (applicationType !== 'renewal_no_change' && !isSpreadsheetMode && materials.length === 0) {
         console.log("No materials found")
         throw new IncompleteMaterialsError()
       }
 
       uncollapseIncompleteMaterialsAndThrow();
 
-      const data = await processForm(event);
+      if (!formRef.current) {
+        throw new Error('Form not found');
+      }
+
+      const files = {
+        storage_map: file || undefined,
+        additional_files: additionalFiles
+      };
+
+      const options = {
+        isThirdParty,
+        applicationType,
+        isSpreadsheetMode
+      };
+
+      const data = await processForm(
+        formRef.current,
+        files,
+        materials,
+        options,
+        calculateFees,
+        schema
+      ) as ProcessedFormData;
+
+      // Check for empty file content
+      if (data.additional_files.some(f => !f.content) || 
+          (data.storage_map && !data.storage_map.content)) {
+        throw new FileError()
+      }
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -179,12 +155,7 @@ function App() {
         body: JSON.stringify(data),
       })
 
-      if (data.additional_files.some((f: { content: string; }) => f.content === '') || data.storage_map.content === '') {
-        throw new FileError()
-      }
-
       if (response.ok) {
-
         setStatus(applicationType === "renewal_no_change" || isSpreadsheetMode ? 'successCantShowFees' : 'success')
         clearForm()
       }
