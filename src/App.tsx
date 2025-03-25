@@ -139,6 +139,8 @@ function App() {
           name: file.name
         }))
       );
+    }else{
+      data.additional_files = []
     }
     data.is_third_party = isThirdParty
 
