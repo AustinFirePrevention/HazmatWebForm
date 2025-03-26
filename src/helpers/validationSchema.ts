@@ -262,7 +262,7 @@ const schema = {
         "primary_contact_email",
         "responsible_official_name",
         "responsible_official_business_phone",
-        "responsible_official_email"
+        "responsible_official_email",
     ]
 }
 
