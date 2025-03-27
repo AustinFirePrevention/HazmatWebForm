@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext, useState } from "react";
-import { Material as MaterialBase } from "./FeeProcessor";
-import { Unit } from '../helpers/FeeProcessor';
-
-export type Material = {
-    id: number;
-    name?: string;
-    location?: string;
-} & Partial<MaterialBase>;
+import { Unit } from './types';
+import { Material } from "./types";
 
 export type CommonChemical = {
     name: string,
@@ -20,20 +14,21 @@ export type CommonChemical = {
     minimumReportableAmount: string
 }
 
+export type PartialMaterial = Partial<Omit<Material, 'id'>> & Required<Pick<Material, 'id'>> 
 
 const MaterialsContext = createContext({
-    materials: [] as Array<Material>,
-    setMaterials: (_: Array<Material>) => { },
+    materials: [] as Array<PartialMaterial>,
+    setMaterials: (_: Array<PartialMaterial>) => { },
     collapsedMaterials: [] as boolean[],
     setCollapsedMaterials: (_: boolean[]) => { },
     toggleCollapseState: (_: number, __?: boolean) => { },
     removeMaterial: (_: number) => { },
     appendMaterial: (_: CommonChemical) => { },
-    uncollapseIncompleteMaterialsAndThrow: () => { }
+    uncollapseIncompleteMaterialsAndThrow: () => [] as Material[]
 });
 
 export function MaterialsProvider({ children }: { children: React.ReactNode }) {
-    const [materials, setMaterials] = useState([] as Array<Material>);
+    const [materials, setMaterials] = useState([] as Array<PartialMaterial>);
     const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([]);
 
     const toggleCollapseState = (index: number, forceOpen?: boolean) => {
@@ -51,7 +46,7 @@ export function MaterialsProvider({ children }: { children: React.ReactNode }) {
         setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
     };
 
-    const getIncompleteFieldsCount = (material: Material) => {
+    const getIncompleteFieldsCount = (material: PartialMaterial) => {
         const requiredFields: (keyof Material)[] = ['name', 'location', 'health_hazard', 'fire_hazard', 'instability_hazard'];
         const missingFields = requiredFields.filter(field => !material[field]).length;
         const quantityMissing = !material.quantity || material.quantity === "0" ? 1 : 0;
@@ -68,6 +63,7 @@ export function MaterialsProvider({ children }: { children: React.ReactNode }) {
         if (materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
             throw new IncompleteMaterialsError();
         }
+        return materials as Material[]
     };
 
     return (

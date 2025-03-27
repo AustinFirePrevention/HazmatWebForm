@@ -1,7 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import commonChemicals from '../../commonchemicals/commonChem.json';
-import { CommonChemical } from '../helpers/MaterialsContext';
+import { Unit } from '../helpers/types';
+
+type CommonChemical = {
+    name: string,
+    label: string,
+    label_es?: string,
+    unit: Unit,
+    health_hazard: string,
+    fire_hazard: string,
+    instability_hazard: string,
+    minimumReportableAmount: string
+}
 
 export default function CommonHazmatChemicals({ appendMaterial }: { appendMaterial: (chemical: CommonChemical) => void }) {
     const { t, i18n } = useTranslation();

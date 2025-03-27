@@ -2,9 +2,10 @@
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
-import { Material, useMaterials } from '../helpers/MaterialsContext';
+import { PartialMaterial, useMaterials } from '../helpers/MaterialsContext';
+import { Material } from '../helpers/types'
 
-export function MaterialCard({ material, index, isCollapsed }: { material: Material; index: number; isCollapsed: boolean; }) {
+export function MaterialCard({ material, index, isCollapsed }: { material: PartialMaterial; index: number; isCollapsed: boolean; }) {
     const { t } = useTranslation();
     const { setMaterials, removeMaterial, toggleCollapseState } = useMaterials();
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
