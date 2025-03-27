@@ -115,7 +115,7 @@ function App() {
         throw new IncompleteMaterialsError()
       }
 
-      uncollapseIncompleteMaterialsAndThrow();
+      const cleanMaterials = uncollapseIncompleteMaterialsAndThrow();
 
       if (!formRef.current) {
         throw new Error('Form not found');
@@ -135,7 +135,7 @@ function App() {
       const data = await processForm(
         formRef.current,
         files,
-        materials,
+        cleanMaterials,
         options,
         calculateFees,
         schema

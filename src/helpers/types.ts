@@ -1,8 +1,11 @@
 // Shared types used across multiple files
+
+export type Unit = "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours";
+
 export interface Material {
   id: number;
   name: string;
-  unit: string;
+  unit: Unit;
   health_hazard: string;
   fire_hazard: string;
   instability_hazard: string;
