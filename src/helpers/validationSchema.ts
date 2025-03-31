@@ -49,6 +49,9 @@ const schema = {
         "hours_of_operation": {
             "type": "string"
         },
+        "primary_contact_title":{
+            "type":"string"
+        },
         "primary_contact_name": {
             "type": "string"
         },
@@ -60,6 +63,9 @@ const schema = {
         },
         "primary_contact_email": {
             "type": "string"
+        },
+        "responsible_official_title":{
+            "type":"string"
         },
         "responsible_official_name": {
             "type": "string"

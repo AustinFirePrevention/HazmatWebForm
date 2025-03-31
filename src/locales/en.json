@@ -61,6 +61,7 @@
     "hours_of_operation": "Hours of Operations:"
   },
   "contact_details": {
+    "title": "Title",
     "name": "Full Name",
     "phone": "Phone",
     "cell_phone": "Cell Phone",

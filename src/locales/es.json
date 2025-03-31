@@ -23,7 +23,8 @@
     "name": "Nombre completo",
     "phone": "Teléfono",
     "cell_phone": "Teléfono Celular",
-    "email": "Correo Electrónico"
+    "email": "Correo Electrónico",
+    "title": "Título"
   },
   "storage_map": "Mapa de Almacenamiento de Instalaciones:",
   "storage_map_note": "Si se han realizado cambios en el mapa, debe proporcionar un nuevo mapa.",
