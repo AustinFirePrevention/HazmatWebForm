@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next';
 import { HazardousMaterials } from './components/HazardousMaterials';
 import { ContactDetails } from './components/ContactDetails';
@@ -7,14 +7,14 @@ import BusinessDetails from './components/BusinessDetails';
 import { NavBar } from './components/NavBar'
 import { SubmissionModal, Status as SubmissionStatus } from './components/Modal';
 import { useFees } from './helpers/FeeProcessor';
-import { useMaterials, IncompleteMaterialsError } from './helpers/MaterialsContext';
+import { MaterialsContext } from './helpers/MaterialsContext';
 import { PrimaryContactPreamble } from './components/PrimaryContactPreamble';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import schema from './helpers/validationSchema';
 import { FileSelector } from './components/FileSelector';
 import { processForm, ProcessedFormData } from './helpers/processForm';
+import { IncompleteMaterialsError } from './helpers/useMaterialsState';
 
-// const endpoint = "https://localhost"
 const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
   const [file, setFile] = useState<File | null>(null);
   const [additionalFiles, setAdditionalFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<SubmissionStatus>('error');
-  const { materials, uncollapseIncompleteMaterialsAndThrow, setMaterials } = useMaterials();
+  const { materials, uncollapseIncompleteMaterialsAndThrow, setMaterials } = useContext(MaterialsContext);
   const [showMaterialToast, setShowMaterialToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [isThirdParty, setIsThirdParty] = useState(false);

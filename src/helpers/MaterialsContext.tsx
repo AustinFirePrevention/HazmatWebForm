@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createContext, useContext, useState } from "react";
+import { createContext} from "react";
 import { Unit } from './types';
 import { Material } from "./types";
+import { useMaterialsState } from "./useMaterialsState";
 
 export type CommonChemical = {
     name: string,
@@ -15,8 +16,7 @@ export type CommonChemical = {
 }
 
 export type PartialMaterial = Partial<Omit<Material, 'id'>> & Required<Pick<Material, 'id'>> 
-
-const MaterialsContext = createContext({
+export const MaterialsContext = createContext({
     materials: [] as Array<PartialMaterial>,
     setMaterials: (_: Array<PartialMaterial>) => { },
     collapsedMaterials: [] as boolean[],
@@ -28,65 +28,12 @@ const MaterialsContext = createContext({
 });
 
 export function MaterialsProvider({ children }: { children: React.ReactNode }) {
-    const [materials, setMaterials] = useState([] as Array<PartialMaterial>);
-    const [collapsedMaterials, setCollapsedMaterials] = useState<boolean[]>([]);
-
-    const toggleCollapseState = (index: number, forceOpen?: boolean) => {
-        setCollapsedMaterials(collapsedMaterials.map((isCollapsed, i) => i === index ? (forceOpen !== undefined ? !forceOpen : !isCollapsed) : isCollapsed));
-    };
-
-    const removeMaterial = (id: number) => {
-        setMaterials(materials.filter(material => material.id !== id));
-        setCollapsedMaterials(collapsedMaterials.filter((_, i) => i !== materials.findIndex(material => material.id === id)));
-    };
-
-    const appendMaterial = (material: CommonChemical) => {
-        const { minimumReportableAmount, name, label, ...mat } = material;
-        setMaterials([...materials, { id: Date.now(), ...{ name: label, ...mat } }]);
-        setCollapsedMaterials(Array(collapsedMaterials.length).fill(true).concat(false));
-    };
-
-    const getIncompleteFieldsCount = (material: PartialMaterial) => {
-        const requiredFields: (keyof Material)[] = ['name', 'location', 'health_hazard', 'fire_hazard', 'instability_hazard'];
-        const missingFields = requiredFields.filter(field => !material[field]).length;
-        const quantityMissing = !material.quantity || material.quantity === "0" ? 1 : 0;
-        return missingFields + quantityMissing;
-    };
-
-
-    const uncollapseIncompleteMaterialsAndThrow = () => {
-        materials.forEach((material, index) => {
-            if (getIncompleteFieldsCount(material) > 0) {
-                toggleCollapseState(index, true);
-            }
-        });
-        if (materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
-            throw new IncompleteMaterialsError();
-        }
-        return materials as Material[]
-    };
+    
+  const context = useMaterialsState()
 
     return (
-        <MaterialsContext.Provider value={{ materials, setMaterials, collapsedMaterials, setCollapsedMaterials, toggleCollapseState, removeMaterial, appendMaterial, uncollapseIncompleteMaterialsAndThrow }}>
+        <MaterialsContext.Provider value={context}>
             {children}
         </MaterialsContext.Provider>
     );
-}
-
-export class IncompleteMaterialsError extends Error {
-    constructor() {
-        super('Incomplete materials');
-        this.name = 'IncompleteMaterials';
-    }
-}
-
-export function useMaterials() {
-    const context = useContext(MaterialsContext);
-    if (context === undefined) {
-        throw new Error("useMaterials must be used within a MaterialsProvider");
-    }
-    const newSetMaterials = (materials: Array<Material>) => {
-        context.setMaterials(materials);
-    }
-    return { ...context, setMaterials: newSetMaterials };
 }

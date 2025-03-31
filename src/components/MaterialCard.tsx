@@ -2,12 +2,13 @@
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
-import { PartialMaterial, useMaterials } from '../helpers/MaterialsContext';
+import { PartialMaterial, MaterialsContext } from '../helpers/MaterialsContext';
 import { Material } from '../helpers/types'
+import { useContext } from 'react'
 
 export function MaterialCard({ material, index, isCollapsed }: { material: PartialMaterial; index: number; isCollapsed: boolean; }) {
     const { t } = useTranslation();
-    const { setMaterials, removeMaterial, toggleCollapseState } = useMaterials();
+    const { setMaterials, removeMaterial, toggleCollapseState } = useContext(MaterialsContext);
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
 
     const updateMaterial = (field: string, value: any) => {
@@ -86,12 +87,12 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.location")}:</label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            name={`material_location_${material.id}`} 
-                            value={material.location || ''} 
-                            onChange={(e) => updateMaterial('location', e.target.value)} 
+                        <input
+                            type="text"
+                            className="form-control"
+                            name={`material_location_${material.id}`}
+                            value={material.location || ''}
+                            onChange={(e) => updateMaterial('location', e.target.value)}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
                         />
@@ -146,11 +147,11 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.units")}:</label>
-                        <select 
-                            className="form-select" 
-                            value={material.unit || 'gallons'} 
-                            name={`material_units_${material.id}`} 
-                            onChange={(e) => updateMaterial('unit', e.target.value)} 
+                        <select
+                            className="form-select"
+                            value={material.unit || 'gallons'}
+                            name={`material_units_${material.id}`}
+                            onChange={(e) => updateMaterial('unit', e.target.value)}
                             required={!isCollapsed}
                         >
                             <option value="gallons">{t("material_card.gallons")}</option>

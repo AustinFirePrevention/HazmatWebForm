@@ -14,9 +14,9 @@
  * 
 */
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { ApplicationType } from "../components/PermitDetails"
-import { useMaterials } from "./MaterialsContext"
+import { MaterialsContext } from "./MaterialsContext"
 import { Unit } from "./types"
 
 
@@ -258,7 +258,7 @@ export function useFees(): { fees: FeeAggregate, calculateFees: (applicationType
         total: 0,
     };
     const [fees, setFees] = useState(defaultFees);
-    const { materials } = useMaterials();
+    const { materials } = useContext(MaterialsContext);
 
 
     const calculateFees = (applicationType: ApplicationType) => {
