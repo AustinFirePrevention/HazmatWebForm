@@ -49,8 +49,8 @@ const schema = {
         "hours_of_operation": {
             "type": "string"
         },
-        "primary_contact_title":{
-            "type":"string"
+        "primary_contact_title": {
+            "type": "string"
         },
         "primary_contact_name": {
             "type": "string"
@@ -64,8 +64,8 @@ const schema = {
         "primary_contact_email": {
             "type": "string"
         },
-        "responsible_official_title":{
-            "type":"string"
+        "responsible_official_title": {
+            "type": "string"
         },
         "responsible_official_name": {
             "type": "string"
@@ -93,6 +93,9 @@ const schema = {
         },
         "is_third_party": {
             "type": "boolean"
+        },
+        "requesting_party_business_name": {
+            "type": "string"
         },
         "requesting_party_name": {
             "type": "string"
@@ -269,6 +272,8 @@ const schema = {
         "responsible_official_name",
         "responsible_official_business_phone",
         "responsible_official_email",
+        "business_activity",
+        "hours_of_operation"
     ]
 }
 

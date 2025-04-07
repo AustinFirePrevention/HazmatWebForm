@@ -205,6 +205,7 @@ function App() {
             setBusinessPhone={setRequestPhone}
             cellPhone={requestCellPhone}
             setCellPhone={setRequestCellPhone}
+            hasBusinessName
           />
         )}
         <ContactDetails

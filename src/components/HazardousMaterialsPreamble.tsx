@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import CommonHazmatCards from "./CommonHazmatCards"
+import ChemicalComboBox from "./ChemicalComboBox";
 import { FaChevronDown } from 'react-icons/fa';
 import { CommonChemical } from '../helpers/MaterialsContext';
 
@@ -140,10 +140,10 @@ export function HazardousMaterialsPreamble({
         </div>
         <div className="alert alert-info mt-3">
             <Trans i18nKey="hazardous_materials_preamble.add_chemicals_note">
-                You can add common chemicals using the cards above or add blank chemicals below. Use the blue button <FaChevronDown /> to expand and collapse the materials.
+                You can search or add custom chemicals by typing the chemical name below and selecting the chemical name. Use the blue button <FaChevronDown /> to expand and collapse the materials.
             </Trans>
         </div>
-        {!isSpreadsheetMode && <CommonHazmatCards appendMaterial={appendMaterial} />}
+        {!isSpreadsheetMode && <ChemicalComboBox appendMaterial={appendMaterial} />}
         
     </>
     )

@@ -23,7 +23,8 @@
     "name": "Nombre completo",
     "phone": "Teléfono",
     "cell_phone": "Teléfono Celular",
-    "email": "Correo Electrónico"
+    "email": "Correo Electrónico",
+    "business_name": "Nombre del Negocio"
   },
   "storage_map": "Mapa de Almacenamiento de Instalaciones:",
   "storage_map_note": "Si se han realizado cambios en el mapa, debe proporcionar un nuevo mapa.",
@@ -110,7 +111,7 @@
     "ess_lead_acid_qty": "15 galones",
     "aboveground_inventory_note": "El inventario sobre el suelo debe incluir cantidades reportables en el sitio tanto en interiores como en exteriores.",
     "underground_storage_note": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado con <1>la Solicitud de Permiso de Almacenamiento de Materiales Peligrosos</1> del Departamento de Servicios de Desarrollo. Esto excluye el propano, que debe ser reportado bajo esta solicitud.",
-    "add_chemicals_note": "Puede agregar productos químicos comunes usando las tarjetas de arriba o agregar productos químicos en blanco a continuación. Use el botón azul con el símbolo \"<1/>\" para expandir y colapsar los materiales.",
+    "add_chemicals_note": "Puede buscar o agregar productos químicos personalizados escribiendo el nombre del producto químico a continuación y seleccionando el nombre del producto químico. Use el botón azul con el símbolo \"<1/>\" para expandir y colapsar los materiales.",
     "4": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 4",
     "3": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 3",
     "2": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 2",
@@ -140,7 +141,8 @@
   "quantity": "Cantidad",
   "common_hazmat_cards": {
     "title": "Agregar Productos Químicos",
-    "add_to_list": "Agregar a la Lista"
+    "add_to_list": "Agregar a la Lista",
+    "search_chemicals": "Buscar químicos"
   },
   "modal": {
     "success": {

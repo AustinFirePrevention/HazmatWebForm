@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createContext} from "react";
+import { createContext, SetStateAction,Dispatch} from "react";
 import { Unit } from './types';
 import { Material } from "./types";
 import { useMaterialsState } from "./useMaterialsState";
@@ -13,12 +13,16 @@ export type CommonChemical = {
     fire_hazard: string,
     instability_hazard: string,
     minimumReportableAmount: string
+    isDefaultChemical?: boolean
+    conversionNote?: string
+    conversionNoteEs?: string
 }
 
-export type PartialMaterial = Partial<Omit<Material, 'id'>> & Required<Pick<Material, 'id'>> 
+export type PartialMaterial = Partial<Omit<Material, 'id'>> & Required<Pick<Material, 'id'>> & { isDefaultChemical?: boolean} & { conversionNote?: string} & { conversionNoteEs?: string}
+
 export const MaterialsContext = createContext({
     materials: [] as Array<PartialMaterial>,
-    setMaterials: (_: Array<PartialMaterial>) => { },
+    setMaterials:  (() => {}) as Dispatch<SetStateAction<PartialMaterial[]>>,
     collapsedMaterials: [] as boolean[],
     setCollapsedMaterials: (_: boolean[]) => { },
     toggleCollapseState: (_: number, __?: boolean) => { },

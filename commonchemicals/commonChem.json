@@ -1,14 +1,5 @@
 [
     {
-        "name": "custom_chemical",
-        "label": "Custom Chemical",
-        "label_es": "Producto Químico Personalizado",
-        "unit": "gallons",
-        "fire_hazard": "0",
-        "health_hazard": "0",
-        "instability_hazard": "0"
-    },
-    {
         "name": "indoor_diesel_tank",
         "label": "Indoor Diesel Tank",
         "label_es": "Tanques de Diesel Interiores",
@@ -86,7 +77,9 @@
         "health_hazard": "1",
         "fire_hazard": "4",
         "instability_hazard": "0",
-        "minimumReportableAmount": "100"
+        "minimumReportableAmount": "100",
+        "conversionNote": "(8.75 cubic feet x pound of propane) (36.7 Cu. Ft. x gallons of propane)",
+        "conversionNoteEs": "(8.75 pies cúbicos x libra de propano) (36.7 pies cúbicos x galones de propano)"
     },
     {
         "name": "acetylene",

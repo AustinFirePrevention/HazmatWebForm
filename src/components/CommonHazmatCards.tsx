@@ -27,7 +27,7 @@ export default function CommonHazmatChemicals({ appendMaterial }: { appendMateri
         <div className="common-chemicals">
             <h3>{t("common_hazmat_cards.title")}</h3>
             <Row>
-                {(commonChemicals as CommonChemical[]).map((chemical, index) => (
+                {(commonChemicals as CommonChemical[]).slice(0, 1).map((chemical, index) => (
                     <Col key={index} xs={12} sm={6} md={4} lg={3} className="mb-2">
                         <Card style={{ height: '100%' }}>
                             <Card.Body className="d-flex flex-column">

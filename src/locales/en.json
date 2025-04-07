@@ -61,11 +61,12 @@
     "hours_of_operation": "Hours of Operations:"
   },
   "contact_details": {
-    "title": "Title",
+    "title": "Job Title",
     "name": "Full Name",
     "phone": "Phone",
     "cell_phone": "Cell Phone",
-    "email": "Email"
+    "email": "Email",
+    "business_name": "Business Name"
   },
   "hazardous_materials": {
     "title": "Hazardous Materials",
@@ -111,7 +112,7 @@
     "ess_lead_acid_qty": "15 gallons",
     "aboveground_inventory_note": "The aboveground inventory must include reportable quantities at the site both indoors and outdoors.",
     "underground_storage_note": "Report underground storage of flammable and combustible liquids separately using the <1>Hazardous Materials Storage Permit Application</1> from the Development Services Department. This excludes propane, which must be reported under this application.",
-    "add_chemicals_note": "You can add common chemicals using the cards above or add blank chemicals below. Use the blue button with the \"<1/>\" symbol to expand and collapse the materials to add all of the details required.",
+    "add_chemicals_note": "You can search or add custom chemicals by typing the chemical name below and selecting the chemical name. Use the blue button with the \"<1/>\" symbol to expand and collapse the materials to add all of the details required.",
     "4": "EXTREME HAZARD NFPA 704 RATING = 4",
     "3": "EXTREME HAZARD NFPA 704 RATING = 3",
     "2": "EXTREME HAZARD NFPA 704 RATING = 2",
@@ -141,11 +142,8 @@
   "quantity": "Quantity",
   "common_hazmat_cards": {
     "title": "Add Chemicals",
-    "add_to_list": "Add to List"
-  },
-  "toast": {
-    "materials_count_message": "You now have {{count}} Hazardous Materials in the materials list!",
-    "error_message": "Please add chemicals to your application."
+    "add_to_list": "Add to List",
+    "search_chemicals": "Search for chemicals"
   },
   "modal": {
     "success": {
@@ -165,5 +163,9 @@
       "body": "There was an error submitting your form. Please try again. If your issues persist please contact us at FirePrevention@austintexas.gov"
     },
     "close": "Close"
+  },
+  "toast": {
+    "materials_count_message": "You now have {{count}} Hazardous Materials in the materials list!",
+    "error_message": "Please add chemicals to your application."
   }
 }

@@ -13,6 +13,7 @@ export interface ContactDetailsProps {
     setBusinessPhone: (arg0: string) => void;
     cellPhone: string;
     setCellPhone: (arg0: string) => void;
+    hasBusinessName?: boolean
 }
 
 function useCopy(prefix: string, setBusinessPhone: (arg0: string) => void, setCellPhone: (arg0: string) => void){
@@ -45,7 +46,7 @@ function useCopy(prefix: string, setBusinessPhone: (arg0: string) => void, setCe
     return {isCopied, handleCopy}
 }
 
-export function ContactDetails({ prefix, title, note, required, copyFromPrimary, businessPhone, setBusinessPhone, cellPhone, setCellPhone }: ContactDetailsProps) {
+export function ContactDetails({ prefix, title, note, required, copyFromPrimary, businessPhone, setBusinessPhone, cellPhone, setCellPhone, hasBusinessName }: ContactDetailsProps) {
     const { t } = useTranslation();
     const {isCopied, handleCopy} = useCopy(prefix, setBusinessPhone, setCellPhone);
 
@@ -53,6 +54,12 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary,
         <FormSection title={title}>
             <>
                 {note && (typeof note === 'string' ? <p>{note}</p> : note)}
+                {hasBusinessName && (
+                    <div className="mb-3">
+                        <label className='form label' htmlFor={`${prefix}_business_name`}>{t("contact_details.business_name")}:</label>
+                        <input type="text" className='form-control' name={`${prefix}_business_name`} id={`${prefix}_business_name`}/>
+                    </div>
+                )}
                 {copyFromPrimary && (
                     <button type="button" className="btn btn-secondary mb-3" onClick={handleCopy}>
                         {isCopied ? t("responsible_official.clear_primary_contact") : t("responsible_official.copy_primary_contact")}
