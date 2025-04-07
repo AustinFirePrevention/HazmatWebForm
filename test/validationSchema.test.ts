@@ -20,7 +20,9 @@ describe('Validation Schema', () => {
         primary_contact_email: 'contact@example.com',
         responsible_official_name: 'Jane Smith',
         responsible_official_business_phone: '555-555-5557',
-        responsible_official_email: 'official@example.com'
+        responsible_official_email: 'official@example.com',
+        business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
       };
 
       const validated = await validationSchema.validate(validData);
@@ -131,7 +133,9 @@ describe('Validation Schema', () => {
       primary_contact_email: 'contact@example.com',
       responsible_official_name: 'Jane Smith',
       responsible_official_business_phone: '555-555-5557',
-      responsible_official_email: 'official@example.com'
+      responsible_official_email: 'official@example.com',
+      business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
     };
 
     it('validates storage map object correctly', async () => {
@@ -215,7 +219,9 @@ describe('Validation Schema', () => {
       primary_contact_email: 'contact@example.com',
       responsible_official_name: 'Jane Smith',
       responsible_official_business_phone: '555-555-5557',
-      responsible_official_email: 'official@example.com'
+      responsible_official_email: 'official@example.com',
+      business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
     };
 
     it('validates materials array correctly', async () => {
@@ -296,7 +302,9 @@ describe('Validation Schema', () => {
         responsible_official_email: 'official@example.com',
         suite_no: '',
         building_permit: '',
-        permit_number: ''
+        permit_number: '',
+        business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
       };
 
       const validated = await validationSchema.validate(testData);
@@ -321,7 +329,9 @@ describe('Validation Schema', () => {
         responsible_official_business_phone: '555-555-5557',
         responsible_official_email: 'official@example.com',
         materials: [],
-        additional_files: []
+        additional_files: [],
+        business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
       };
 
       const validated = await validationSchema.validate(testData);
@@ -344,7 +354,9 @@ describe('Validation Schema', () => {
         primary_contact_email: 'contact@example.com',
         responsible_official_name: 'Jane Smith',
         responsible_official_business_phone: '555-555-5557',
-        responsible_official_email: 'official@example.com'
+        responsible_official_email: 'official@example.com',
+        business_activity: 'Retail',
+        hours_of_operation: '9-5 M-F',
       };
 
       await expect(validationSchema.validate(testData))
