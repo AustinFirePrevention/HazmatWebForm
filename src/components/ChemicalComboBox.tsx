@@ -3,7 +3,7 @@ import CreatableSelect from 'react-select/creatable';
 import commonChemicals from '../../commonchemicals/commonChem.json';
 import { Unit } from '../helpers/types';
 import { CommonChemical } from '../helpers/MaterialsContext';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 type Option = {
     value: string;
@@ -13,7 +13,6 @@ type Option = {
 
 export default function ChemicalComboBox({ appendMaterial }: { appendMaterial: (chemical: CommonChemical) => void }) {
     const { t, i18n } = useTranslation();
-    const ref = useRef(null);
     const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
     const options: Option[] = (commonChemicals as CommonChemical[]).map(chemical => ({
@@ -47,7 +46,6 @@ export default function ChemicalComboBox({ appendMaterial }: { appendMaterial: (
         <div className="chemical-combo-box mb-3">
             <h3>{t("common_hazmat_cards.title")}</h3>
             <CreatableSelect
-                ref={ref}
                 isClearable
                 isSearchable
                 options={options}
