@@ -141,12 +141,6 @@ function App() {
         schema
       ) as ProcessedFormData;
 
-      // Check for empty file content
-      if (data.additional_files.some(f => !f.content) || 
-          (data.storage_map && !data.storage_map.content)) {
-        throw new FileError()
-      }
-
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -154,6 +148,16 @@ function App() {
         },
         body: JSON.stringify(data),
       })
+
+      // AFter form submission if there are missing content that indicates that the content was too
+      //  big and should be sent manually. 
+      if (data.additional_files.some(f => !(!f.content === !f.name))) {
+        throw new FileError()
+      }
+
+      if (!(!data.storage_map?.content === !data.storage_map?.name)) {
+        throw new FileError()
+      }
 
       if (response.ok) {
         setStatus(applicationType === "renewal_no_change" || isSpreadsheetMode ? 'successCantShowFees' : 'success')
