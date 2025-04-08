@@ -2,11 +2,12 @@ import { useTranslation } from 'react-i18next';
 import FormSection from "./FormSection";
 import { MaterialCard } from "./MaterialCard";
 import { HazardousMaterialsPreamble } from "./HazardousMaterialsPreamble";
-import { useMaterials } from "../helpers/MaterialsContext";
+import { MaterialsContext } from "../helpers/MaterialsContext";
+import { useContext } from 'react';
 
 export function HazardousMaterials({ show = true, isSpreadsheetMode, setIsSpreadsheetMode }: { show?: boolean, isSpreadsheetMode: boolean, setIsSpreadsheetMode: (isSpreadsheetMode: boolean) => void }) {
     const { t } = useTranslation();
-    const { materials, appendMaterial, collapsedMaterials } = useMaterials();
+    const { materials, appendMaterial, collapsedMaterials } = useContext(MaterialsContext);
 
     if (!show) return null;
 

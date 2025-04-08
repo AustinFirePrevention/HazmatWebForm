@@ -50,12 +50,12 @@ export default function BusinessDetails({ phone, setPhone, setIsThirdParty }: Bu
                     <input type="email" className="form-control" name="email_address" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">{t("business_details.business_activity")}</label>
-                    <input type="text" className="form-control" name="business_activity" />
+                    <label className="form-label required">{t("business_details.business_activity")}</label>
+                    <input type="text" className="form-control" name="business_activity" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">{t("business_details.hours_of_operation")}</label>
-                    <input type="text" className="form-control" name="hours_of_operation" />
+                    <label className="form-label required">{t("business_details.hours_of_operation")}</label>
+                    <input type="text" className="form-control" name="hours_of_operation" required />
                 </div>
             </div>
             <div className="section mb-4">

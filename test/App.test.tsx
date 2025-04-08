@@ -96,7 +96,7 @@ describe('App', () => {
     fireEvent.submit(form)
 
     await waitFor(() => {
-      expect(screen.getByText('There are errors found in the hazardous materials.')).toBeInTheDocument()
+      expect(screen.getByText('Please add chemicals to your application.')).toBeInTheDocument()
     })
   })
 

@@ -2,16 +2,17 @@
 import { useTranslation } from 'react-i18next';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
-import { Material, useMaterials } from '../helpers/MaterialsContext';
+import { PartialMaterial, MaterialsContext } from '../helpers/MaterialsContext';
+import { Material } from '../helpers/types'
+import { useContext } from 'react'
 
-export function MaterialCard({ material, index, isCollapsed }: { material: Material; index: number; isCollapsed: boolean; }) {
-    const { t } = useTranslation();
-    const { setMaterials, removeMaterial, toggleCollapseState } = useMaterials();
+export function MaterialCard({ material, index, isCollapsed }: { material: PartialMaterial; index: number; isCollapsed: boolean; }) {
+    const { t, i18n } = useTranslation();
+    const conversionNote = i18n.language === "es" ? material.conversionNoteEs : material.conversionNote
+    const { setMaterials, removeMaterial, toggleCollapseState } = useContext(MaterialsContext);
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
 
     const updateMaterial = (field: string, value: any) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-expect-error
         setMaterials((prevMaterials: any) => {
             return prevMaterials.map((m: Material) => {
                 if (m.id === material.id) {
@@ -46,6 +47,8 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
             material.instability_hazard === "0";
     };
 
+    const isChemicalSelected = material.isDefaultChemical
+    
     return (
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
@@ -85,12 +88,12 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.location")}:</label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            name={`material_location_${material.id}`} 
-                            value={material.location || ''} 
-                            onChange={(e) => updateMaterial('location', e.target.value)} 
+                        <input
+                            type="text"
+                            className="form-control"
+                            name={`material_location_${material.id}`}
+                            value={material.location || ''}
+                            onChange={(e) => updateMaterial('location', e.target.value)}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
                         />
@@ -109,6 +112,7 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
+                            readOnly={isChemicalSelected}
                         />
                     </div>
                     <div className="mb-3">
@@ -125,6 +129,7 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
+                            readOnly={isChemicalSelected}
                         />
                     </div>
                     <div className="mb-3">
@@ -141,16 +146,18 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
+                            readOnly={isChemicalSelected}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.units")}:</label>
-                        <select 
-                            className="form-select" 
-                            value={material.unit || 'gallons'} 
-                            name={`material_units_${material.id}`} 
-                            onChange={(e) => updateMaterial('unit', e.target.value)} 
+                        <select
+                            className="form-select"
+                            value={material.unit || 'gallons'}
+                            name={`material_units_${material.id}`}
+                            onChange={(e) => updateMaterial('unit', e.target.value)}
                             required={!isCollapsed}
+                            disabled={isChemicalSelected}
                         >
                             <option value="gallons">{t("material_card.gallons")}</option>
                             <option value="cubic_feet">{t("material_card.cubic_feet")}</option>
@@ -173,6 +180,8 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Mater
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
                         />
+                        {conversionNote && <div className="form-text" id="basic-addon4">{conversionNote}</div>
+                        }
                     </div>
                 </div>
             </Collapse>

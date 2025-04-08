@@ -14,9 +14,10 @@
  * 
 */
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { ApplicationType } from "../components/PermitDetails"
-import { useMaterials } from "./MaterialsContext"
+import { MaterialsContext } from "./MaterialsContext"
+import { Unit } from "./types"
 
 
 const FEES = [130, 260, 390, 520, 650]
@@ -73,7 +74,6 @@ function getCurrentHazardType(health: number, fire: number, instability: number)
     }
 }
 
-export type Unit = "gallons" | "cubic_feet" | "pounds" | "kilowatt_hours";
 
 export type Material = {
     health_hazard: string,
@@ -258,7 +258,7 @@ export function useFees(): { fees: FeeAggregate, calculateFees: (applicationType
         total: 0,
     };
     const [fees, setFees] = useState(defaultFees);
-    const { materials } = useMaterials();
+    const { materials } = useContext(MaterialsContext);
 
 
     const calculateFees = (applicationType: ApplicationType) => {
