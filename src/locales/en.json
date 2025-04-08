@@ -152,7 +152,7 @@
     },
     "fileError": {
       "title": "File Upload Error!",
-      "body": "Your submission has been received although there was an error uploading your files. Please send them to FirePrevention@austintexas.gov."
+      "body": "Your submission has been received although there was an error uploading your files. Please send them to afdhazmat@austintexas.gov."
     },
     "successCantShowFees": {
       "title": "Form Submission Completed!",
@@ -160,7 +160,7 @@
     },
     "error": {
       "title": "Form Submission Failed!",
-      "body": "There was an error submitting your form. Please try again. If your issues persist please contact us at FirePrevention@austintexas.gov"
+      "body": "There was an error submitting your form. Please try again. If your issues persist please contact us at afdhazmat@austintexas.gov"
     },
     "close": "Close"
   },
