@@ -56,7 +56,7 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary,
                 {note && (typeof note === 'string' ? <p>{note}</p> : note)}
                 {hasBusinessName && (
                     <div className="mb-3">
-                        <label className='form label' htmlFor={`${prefix}_business_name`}>{t("contact_details.business_name")}:</label>
+                        <label className='form-label' htmlFor={`${prefix}_business_name`}>{t("contact_details.business_name")}:</label>
                         <input type="text" className='form-control' name={`${prefix}_business_name`} id={`${prefix}_business_name`}/>
                     </div>
                 )}
@@ -66,8 +66,8 @@ export function ContactDetails({ prefix, title, note, required, copyFromPrimary,
                     </button>
                 )}
                 <div className="mb-3">
-                    <label className='form label' htmlFor={`${prefix}_title`}>{t("contact_details.title")}:</label>
-                    <input type="text" className='form-control' name={`${prefix}_title`} id={`${prefix}_title`} readOnly={isCopied}/>
+                    <label className={`form-label${required ? ' required' : ''}`} htmlFor={`${prefix}_title`}>{t("contact_details.title")}:</label>
+                    <input type="text" className='form-control' name={`${prefix}_title`} id={`${prefix}_title`} required={required} readOnly={isCopied}/>
                 </div>
                 <div className="mb-3">
                     <label className={`form-label${required ? ' required' : ''}`} htmlFor={`${prefix}_name`}>{t("contact_details.name")}:</label>
