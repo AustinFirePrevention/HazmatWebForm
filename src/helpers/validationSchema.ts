@@ -49,6 +49,9 @@ const schema = {
         "hours_of_operation": {
             "type": "string"
         },
+        "number_of_ERT": {
+            "type": "string"
+        },
         "primary_contact_title": {
             "type": "string"
         },

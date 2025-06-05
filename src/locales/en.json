@@ -15,7 +15,7 @@
     "title": "Emergency Contact - 24 hour contact"
   },
   "requesting_party": {
-    "checkbox_label": "I am a third party requesting this application on behalf of the business",
+    "checkbox_label": "I am a third party requesting this application on behalf of the business.",
     "title": "Requesting Party",
     "note": "Please provide the contact details of the person requesting this application."
   },
@@ -58,7 +58,8 @@
     "main_phone_number": "Main Phone Number:",
     "email_address": "Email Address:",
     "business_activity": "Principal Business Activity:",
-    "hours_of_operation": "Hours of Operations:"
+    "hours_of_operation": "Hours of Operations:",
+    "number_of_ERT": "Number of Emergency Response Team Personnel on-site each shift:"
   },
   "contact_details": {
     "title": "Job Title",

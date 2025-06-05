@@ -15,7 +15,7 @@
     "title": "Contacto de Emergencia - Contacto 24 horas"
   },
   "requesting_party": {
-    "checkbox_label": "Soy un tercero que solicita esta aplicación en nombre del negocio",
+    "checkbox_label": "Soy un tercero que solicita esta aplicación en nombre del negocio.",
     "title": "Parte Solicitante",
     "note": "Por favor proporcione los datos de contacto de la persona que solicita esta aplicación."
   },
@@ -65,7 +65,8 @@
     "main_phone_number": "Número de Teléfono Principal:",
     "email_address": "Correo Electrónico:",
     "business_activity": "Actividad Principal del Negocio:",
-    "hours_of_operation": "Horas de Operación:"
+    "hours_of_operation": "Horas de Operación:",
+    "number_of_ERT": "Número de personal del equipo de respuesta a emergencias por turno:"
   },
   "hazardous_materials": {
     "title": "Materiales Peligrosos",
