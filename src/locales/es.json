@@ -94,7 +94,7 @@
     "sulfuric_acid_battery_qty": "15 GAL",
     "sulfuric_acid_pool": "ÁCIDO SULFÚRICO - MANTENIMIENTO DE PISCINAS",
     "sulfuric_acid_pool_qty": "4 GAL",
-    "ess_stationary_mobile": "Sistema de Almacenamiento de Energía Estacionario y Móvil (ESS)",
+    "ess_stationary_mobile": "Sistema de Almacenamiento de Energía Estacionaria y Móvil (ESS)",
     "ess_stationary_mobile_qty": "Capacidad o Cantidad de Energía",
     "ess_capacitor": "ESS de Capacitor – clasificación de placa de identificación",
     "ess_capacitor_qty": "3 kWh",
@@ -143,7 +143,7 @@
   "common_hazmat_cards": {
     "title": "Agregar Productos Químicos",
     "add_to_list": "Agregar a la Lista",
-    "search_chemicals": "Buscar químicos"
+    "search_chemicals": "Busque y agregue el nombre de su quimico unico"
   },
   "modal": {
     "success": {

@@ -170,5 +170,14 @@
         "fire_hazard": "0",
         "instability_hazard": "1",
         "minimumReportableAmount": "110"
+    },
+    {
+        "name": "lithium_ion_battery_storage",
+        "label": "Lithium Ion Battery Storage",
+        "label_es": "Almacenamiento de baterías de iones de litio",
+        "unit": "cubic_feet",
+        "health_hazard":"3",
+        "instability_hazard": "2",
+        "fire_hazard": "3"
     }
 ]
