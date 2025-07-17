@@ -145,34 +145,34 @@ const schema = {
                     "type": "object",
                     "properties": {
                         "healthLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilityLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "healthGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilityGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "healthSolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireSolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilitySolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "ESS": {
-                            "type": "integer"
+                            "type": "number"
                         }
                     }
                 },
@@ -180,39 +180,39 @@ const schema = {
                     "type": "object",
                     "properties": {
                         "healthLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilityLiquid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "healthGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilityGas": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "healthSolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "fireSolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "instabilitySolid": {
-                            "type": "integer"
+                            "type": "number"
                         },
                         "ESS": {
-                            "type": "integer"
+                            "type": "number"
                         }
                     }
                 },
                 "total": {
-                    "type": "integer"
+                    "type": "number"
                 }
             }
         },
