@@ -11,7 +11,7 @@ export function NavBar() {
         <nav className="navbar sticky-top border-bottom bg-body border-3">
             <div className="container-fluid">
                 <a className="navbar-brand mb-0 h1 fs-1" href="https://www.austintexas.gov/department/fire">
-                    <img src="/HazmatWebForm/AFD.gif" alt="Logo" width="30" height="30" className="d-inline-block align-text me-3 logo" />
+                    <img src="/HazmatWebForm/COA-Icon-Official-CMYK.png" alt="Logo" width="30" height="30" className="d-inline-block align-text me-3 logo" />
                     {t('navbar.title')}
                 </a>
                 <div className="d-flex flex-column align-items-end fs-4">

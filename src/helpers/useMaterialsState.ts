@@ -36,14 +36,29 @@ export function useMaterialsState() {
         return missingFields + quantityMissing;
     };
 
+    const getIncorrectHazardValuesCount = (material: PartialMaterial) => {
+        let incorrectCount = 0;
+        const hazardFields: (keyof Material)[] = ['health_hazard', 'fire_hazard', 'instability_hazard'];
+        hazardFields.forEach(field => {
+            const value = material[field];
+            if (value === undefined || isNaN(Number(value)) || Number(value) < 0 || Number(value) > 4) {
+                incorrectCount += 1;
+            }
+        });
+        return incorrectCount;
+    };
+
 
     const uncollapseIncompleteMaterialsAndThrow = () => {
         materials.forEach((material, index) => {
             if (getIncompleteFieldsCount(material) > 0) {
                 toggleCollapseState(index, true);
             }
+            if (getIncorrectHazardValuesCount(material) > 0) {
+                toggleCollapseState(index, true);
+            }
         });
-        if (materials.some(mat => getIncompleteFieldsCount(mat) > 0)) {
+        if (materials.some(mat => getIncompleteFieldsCount(mat)+getIncorrectHazardValuesCount(mat) > 0)) {
             throw new IncompleteMaterialsError();
         }
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -26,7 +26,7 @@
   "clear": "Clear",
   "submit": "Submit",
   "navbar": {
-    "title": "Austin Fire Department",
+    "title": "Austin Fire",
     "fire_marshal": "Fire Marshal's Office",
     "hazmat_program": "Hazmat Program"
   },
@@ -59,7 +59,9 @@
     "email_address": "Email Address:",
     "business_activity": "Principal Business Activity:",
     "hours_of_operation": "Hours of Operations:",
-    "number_of_ERT": "Number of Emergency Response Team Personnel on-site each shift:"
+    "total_employees": "Total number of employees:",
+    "number_of_ERT": "Number of Emergency Response Team Personnel on-site each shift:",
+    "number_of_ERT_note": "The IFC requires certain facilities to designate and train on-site emergency response teams. These teams act as a liaison to the fire department, aiding in pre-planning and helping to identify the location, quantity, and chemical nature of hazardous materials during an incident."
   },
   "contact_details": {
     "title": "Job Title",
@@ -135,6 +137,7 @@
     "pounds": "Pounds",
     "kilowatt_hours": "Kilowatt-Hours",
     "quantity": "Quantity",
+    "quantity_note": "Please enter the capacity of the chemical container.",
     "fields_missing": "{{count}} fields missing!",
     "material_complete": "Material Complete",
     "all_hazards_zero": "All hazard ratings are 0!"

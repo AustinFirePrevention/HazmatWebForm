@@ -66,7 +66,9 @@
     "email_address": "Correo Electrónico:",
     "business_activity": "Actividad Principal del Negocio:",
     "hours_of_operation": "Horas de Operación:",
-    "number_of_ERT": "Número de personal del equipo de respuesta a emergencias por turno:"
+    "total_employees": "Número total de empleados:",
+    "number_of_ERT": "Número de miembros del equipo de emergencia presentes en el lugar durante cada turno:",
+    "number_of_ERT_note": "La IFC exige que ciertas instalaciones designen y capaciten equipos de respuesta a emergencias en el lugar. Estos equipos actúan como enlace con el departamento de bomberos, colaborando en la planificación previa y ayudando a identificar la ubicación, la cantidad y la naturaleza química de los materiales peligrosos durante un incidente." 
   },
   "hazardous_materials": {
     "title": "Materiales Peligrosos",
@@ -134,6 +136,7 @@
     "pounds": "Libras",
     "kilowatt_hours": "Kilovatios-Hora",
     "quantity": "Cantidad",
+    "quantity_note": "Por favor, de agregar la capacidad del envase químico.",
     "fields_missing": "¡{{count}} campos faltantes!",
     "material_complete": "Material Completo",
     "all_hazards_zero": "¡Todas las clasificaciones de peligro son 0!"

@@ -4,7 +4,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Collapse } from 'react-bootstrap';
 import { PartialMaterial, MaterialsContext } from '../helpers/MaterialsContext';
 import { Material } from '../helpers/types'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 export function MaterialCard({ material, index, isCollapsed }: { material: PartialMaterial; index: number; isCollapsed: boolean; }) {
     const { t, i18n } = useTranslation();
@@ -12,6 +12,17 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
     const { setMaterials, removeMaterial, toggleCollapseState } = useContext(MaterialsContext);
     const materialSummary = `${index + 1}. ${material.name || t("material_card.material")} - ${material.quantity || 0} ${material.unit || t("material_card.units")}`;
 
+    const [state, setState] = useState<Omit<Material, 'id'>>(
+        {
+            name: "",
+            unit: "gallons",
+            health_hazard: "",
+            fire_hazard: "",
+            instability_hazard: "",
+            quantity: "",
+            location: "",
+        }
+    )
     const updateMaterial = (field: string, value: any) => {
         setMaterials((prevMaterials: any) => {
             return prevMaterials.map((m: Material) => {
@@ -21,16 +32,6 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                 return m;
             });
         });
-    };
-
-    const validateHazardInput = (value: string) => {
-        const num = parseInt(value);
-        return num >= 1 && num <= 4;
-    };
-
-    const validateQuantityInput = (value: string) => {
-        const num = parseInt(value);
-        return num > 0;
     };
 
     const getIncompleteFieldsCount = () => {
@@ -47,8 +48,6 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
             material.instability_hazard === "0";
     };
 
-    const isChemicalSelected = material.isDefaultChemical
-    
     return (
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
@@ -102,51 +101,57 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                         <label className="form-label required">{t("material_card.health_hazard")}:</label>
                         <input
                             type="text"
-                            value={material.health_hazard || ''}
+                            value={material.isDefaultChemical ? material.health_hazard : state.health_hazard || ''}
                             className="form-control"
                             name={`material_health_hazard_${material.id}`}
                             onChange={(e) => {
-                                if (validateHazardInput(e.target.value)) {
-                                    updateMaterial('health_hazard', e.target.value);
-                                }
+                                setState({ ...state, health_hazard: e.target.value })
+                            }}
+                            onBlur={() => {
+                                updateMaterial('health_hazard', material.isDefaultChemical ? material.health_hazard : state.health_hazard || '')
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
-                            readOnly={isChemicalSelected}
+                            pattern={`${isCollapsed ? ".*" : "[0-4]"}`}
+
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.fire_hazard")}:</label>
                         <input
                             type="text"
-                            value={material.fire_hazard || ''}
+                            value={material.isDefaultChemical ? material.fire_hazard : state.fire_hazard || ''}
                             className="form-control"
                             name={`material_fire_hazard_${material.id}`}
                             onChange={(e) => {
-                                if (validateHazardInput(e.target.value)) {
-                                    updateMaterial('fire_hazard', e.target.value);
-                                }
+                                setState({ ...state, fire_hazard: e.target.value })
+                            }}
+                            onBlur={() => {
+                                updateMaterial('fire_hazard', material.isDefaultChemical ? material.fire_hazard : state.fire_hazard || '')
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
-                            readOnly={isChemicalSelected}
+                            pattern={`${isCollapsed ? ".*" : "[0-4]"}`}
+
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.instability_hazard")}:</label>
                         <input
                             type="text"
-                            value={material.instability_hazard || ''}
+                            value={material.isDefaultChemical ? material.instability_hazard : state.instability_hazard || ''}
                             className="form-control"
                             name={`material_instability_hazard_${material.id}`}
                             onChange={(e) => {
-                                if (validateHazardInput(e.target.value)) {
-                                    updateMaterial('instability_hazard', e.target.value);
-                                }
+                                setState({ ...state, instability_hazard: e.target.value })
                             }}
+                            onBlur={() => {
+                                updateMaterial('instability_hazard', material.isDefaultChemical ? material.instability_hazard : state.instability_hazard || '')
+                            }}
+                            aria-label={`${""}`}
+                            pattern={`${isCollapsed ? ".*" : "[0-4]"}`}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
-                            readOnly={isChemicalSelected}
                         />
                     </div>
                     <div className="mb-3">
@@ -157,7 +162,6 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                             name={`material_units_${material.id}`}
                             onChange={(e) => updateMaterial('unit', e.target.value)}
                             required={!isCollapsed}
-                            disabled={isChemicalSelected}
                         >
                             <option value="gallons">{t("material_card.gallons")}</option>
                             <option value="cubic_feet">{t("material_card.cubic_feet")}</option>
@@ -172,16 +176,15 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                             value={material.quantity || ''}
                             className="form-control"
                             name={`material_quantity_${material.id}`}
-                            onChange={(e) => {
-                                if (validateQuantityInput(e.target.value)) {
-                                    updateMaterial('quantity', e.target.value);
-                                }
+                            onInput={(e) => {
+                                updateMaterial('quantity', e.target.value);
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
+                            pattern={`${isCollapsed ? ".*" : "(?!0$)[0-9]{1,999}"}`}
                         />
-                        {conversionNote && <div className="form-text" id="basic-addon4">{conversionNote}</div>
-                        }
+                        {conversionNote && <div className="form-text" id="basic-addon4">{conversionNote}</div>}
+                        <small className="form-text text-muted">{t("material_card.quantity_note")}</small>
                     </div>
                 </div>
             </Collapse>
