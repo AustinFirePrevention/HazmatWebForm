@@ -177,7 +177,7 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                             className="form-control"
                             name={`material_quantity_${material.id}`}
                             onInput={(e) => {
-                                updateMaterial('quantity', e.target.value);
+                                updateMaterial('quantity', (e as any).target.value);
                             }}
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
