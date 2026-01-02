@@ -22,6 +22,7 @@ export interface ProcessedFormData {
   materials: Material[];
   fees: Fees;
   is_third_party: boolean;
+  total_employees: string;
 }
 
 const toBase64 = (file: File) => new Promise<string>((resolve, reject) => {

@@ -23,6 +23,7 @@ describe('Validation Schema', () => {
         responsible_official_email: 'official@example.com',
         business_activity: 'Retail',
         hours_of_operation: '9-5 M-F',
+        total_employees: 100,
       };
 
       const validated = await validationSchema.validate(validData);
@@ -58,6 +59,8 @@ describe('Validation Schema', () => {
         responsible_official_name: 'Jane Smith',
         responsible_official_business_phone: '555-555-5557',
         responsible_official_email: 'official@example.com',
+        total_employees: 100,
+
         // Optional fields
         suite_no: '100',
         business_activity: 'Retail',
@@ -135,7 +138,9 @@ describe('Validation Schema', () => {
       responsible_official_business_phone: '555-555-5557',
       responsible_official_email: 'official@example.com',
       business_activity: 'Retail',
-        hours_of_operation: '9-5 M-F',
+      hours_of_operation: '9-5 M-F',
+      total_employees: 100,
+
     };
 
     it('validates storage map object correctly', async () => {
@@ -221,7 +226,9 @@ describe('Validation Schema', () => {
       responsible_official_business_phone: '555-555-5557',
       responsible_official_email: 'official@example.com',
       business_activity: 'Retail',
-        hours_of_operation: '9-5 M-F',
+      hours_of_operation: '9-5 M-F',
+      total_employees: 100,
+
     };
 
     it('validates materials array correctly', async () => {
@@ -305,6 +312,7 @@ describe('Validation Schema', () => {
         permit_number: '',
         business_activity: 'Retail',
         hours_of_operation: '9-5 M-F',
+        total_employees: 100,
       };
 
       const validated = await validationSchema.validate(testData);
@@ -332,6 +340,7 @@ describe('Validation Schema', () => {
         additional_files: [],
         business_activity: 'Retail',
         hours_of_operation: '9-5 M-F',
+        total_employees: 100,
       };
 
       const validated = await validationSchema.validate(testData);
