@@ -22,7 +22,7 @@ Fees can be modified in the `FeeProcessor.ts` file by updating the following arr
 
    Example: To decrease the quantity threshold by 10 units, subtract 10 from the values in the respective array.
 
-After updating the fees the website bust be built and deployed. (see below)
+After updating the fees the website must be built and deployed. (see below)
 
 Current fee structure:
 - Level 1: $130 
@@ -146,7 +146,3 @@ It is currently deployed [here](https://github.austintexas.gov/pages/AFDPreventi
 3. Upload the changes to github with `git push`
 
 Shortly after these commands are run the changes should be available at the website listed above.
-
-
-
-

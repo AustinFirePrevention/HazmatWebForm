@@ -49,8 +49,23 @@ const schema = {
         "hours_of_operation": {
             "type": "string"
         },
+        "total_employees": {
+            "type": "number",
+            "yupType": "number",
+            "constraints": [
+                {
+                    "type": "positive"
+                }
+            ]
+        },
         "number_of_ERT": {
-            "type": "string"
+            "type": "string",
+            "yupType": "number",
+            "constraints": [
+                {   
+                    "type": "positive"
+                }
+            ]
         },
         "primary_contact_title": {
             "type": "string"
@@ -276,7 +291,8 @@ const schema = {
         "responsible_official_business_phone",
         "responsible_official_email",
         "business_activity",
-        "hours_of_operation"
+        "hours_of_operation",
+        "total_employees"
     ]
 }
 

@@ -18,7 +18,7 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                     <small className="form-text text-muted">
                         <Trans i18nKey="permit_details.abc_id_note">
                             To locate your Austin Build + Connect ID number, log into your 
-                            <a href="https://abc.austintexas.gov">AB+C account</a> 
+                            <a href="https://abc.austintexas.gov" target="_blank" rel="noopener noreferrer">AB+C account</a> 
                             and go to "My Profile" from the top menu pane.
                         </Trans>
                     </small>
