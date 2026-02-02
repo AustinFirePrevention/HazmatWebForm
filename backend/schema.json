@@ -52,7 +52,10 @@
         "primary_contact_name": {
             "type": "string"
         },
-        "primary_contact_phone": {
+        "primary_contact_business_phone": {
+            "type": "string"
+        },
+        "primary_contact_cell_phone": {
             "type": "string"
         },
         "primary_contact_email": {
@@ -61,7 +64,10 @@
         "responsible_official_name": {
             "type": "string"
         },
-        "responsible_official_phone": {
+        "responsible_official_business_phone": {
+            "type": "string"
+        },
+        "responsible_official_cell_phone": {
             "type": "string"
         },
         "responsible_official_email": {
@@ -70,7 +76,10 @@
         "emergency_contact_name": {
             "type": "string"
         },
-        "emergency_contact_phone": {
+        "emergency_contact_business_phone": {
+            "type": "string"
+        },
+        "emergency_contact_cell_phone": {
             "type": "string"
         },
         "emergency_contact_email": {
@@ -219,10 +228,10 @@
         "main_phone_number",
         "email_address",
         "primary_contact_name",
-        "primary_contact_phone",
+        "primary_contact_business_phone",
         "primary_contact_email",
         "responsible_official_name",
-        "responsible_official_phone",
+        "responsible_official_business_phone",
         "responsible_official_email"
     ]
 }
