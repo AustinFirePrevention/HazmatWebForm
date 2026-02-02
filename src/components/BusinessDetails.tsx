@@ -52,6 +52,7 @@ export default function BusinessDetails({ phone, setPhone, setIsThirdParty }: Bu
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.business_activity")}</label>
                     <input type="text" className="form-control" name="business_activity" required />
+                    <small className="form-text text-muted">{t("business_details.business_activity_note")}</small>
                 </div>
                 <div className="mb-3">
                     <label className="form-label required">{t("business_details.hours_of_operation")}</label>

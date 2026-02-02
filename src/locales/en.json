@@ -58,6 +58,7 @@
     "main_phone_number": "Main Phone Number:",
     "email_address": "Email Address:",
     "business_activity": "Principal Business Activity:",
+    "business_activity_note":"What is the main or core operation of the business?",
     "hours_of_operation": "Hours of Operations:",
     "total_employees": "Total number of employees:",
     "number_of_ERT": "Number of Emergency Response Team Personnel on-site each shift:",

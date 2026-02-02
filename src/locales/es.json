@@ -65,6 +65,7 @@
     "main_phone_number": "Número de Teléfono Principal:",
     "email_address": "Correo Electrónico:",
     "business_activity": "Actividad Principal del Negocio:",
+    "business_activity_note":"¿Cuál es la operación principal o central del negocio?",
     "hours_of_operation": "Horas de Operación:",
     "total_employees": "Número total de empleados:",
     "number_of_ERT": "Número de miembros del equipo de emergencia presentes en el lugar durante cada turno:",
