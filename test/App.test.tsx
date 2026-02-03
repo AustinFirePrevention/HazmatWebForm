@@ -37,7 +37,7 @@ describe('App', () => {
       </MaterialsProvider>
     )
 
-    expect(screen.getByRole('heading', { name: 'Aboveground Hazardous Materials Permit Application' })).toBeInTheDocument()
+    expect(screen.getByRole('main')).toHaveTextContent('Aboveground Hazardous Materials Permit Application')
     expect(screen.getByLabelText(/I am a third party/)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument()
   })

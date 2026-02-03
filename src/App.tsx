@@ -192,7 +192,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <h1 className="text-center mt-4">{t("title")}</h1>
+      <h1 role='main' className="text-center mt-4">{t("title")}</h1>
       <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
         <div className="alert alert-warning">
           {t("permit_details_preamble.public_info_notice")}
