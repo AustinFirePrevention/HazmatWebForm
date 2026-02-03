@@ -46,6 +46,7 @@ export default function ChemicalComboBox({ appendMaterial }: { appendMaterial: (
         <div className="chemical-combo-box mb-3">
             <h3>{t("common_hazmat_cards.title")}</h3>
             <CreatableSelect
+                aria-label='Chemical Search'
                 isClearable
                 isSearchable
                 options={options}

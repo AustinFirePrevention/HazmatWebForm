@@ -13,8 +13,8 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
             <div>
                 <PermitDetailsPreamble />
                 <div className="mb-3">
-                    <label className="form-label required">{t("permit_details.abc_id")}</label>
-                    <InputMask mask="9999999" className="form-control" name="abc_id" required />
+                    <label htmlFor='abc_id' className="form-label required">{t("permit_details.abc_id")}</label>
+                    <InputMask id='abc_id' mask="9999999" className="form-control" name="abc_id" required />
                     <small className="form-text text-muted">
                         <Trans i18nKey="permit_details.abc_id_note">
                             To locate your Austin Build + Connect ID number, log into your 
@@ -24,12 +24,13 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                     </small>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("permit_details.abc_email")}</label>
-                    <input type="email" className="form-control" name="abc_email" required />
+                    <label htmlFor='abc_email' className="form-label required">{t("permit_details.abc_email")}</label>
+                    <input id='abc_email' type="email" className="form-control" name="abc_email" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("permit_details.application_type")}</label>
+                    <label htmlFor='application_type' className="form-label required">{t("permit_details.application_type")}</label>
                     <select
+                        id='application_type'
                         className="form-select"
                         name="application_type"
                         required
@@ -42,12 +43,12 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 </div>
                 {applicationType === "new_permit" ?
                     <div className="mb-3">
-                        <label className="form-label">{t("permit_details.building_permit")}</label>
-                        <InputMask mask="99-999999-BP" className="form-control" name="building_permit" />
+                        <label htmlFor='building_permit' className="form-label">{t("permit_details.building_permit")}</label>
+                        <InputMask id='building_permit' mask="99-999999-BP" className="form-control" name="building_permit" />
                     </div> :
                     <div className="mb-3">
-                        <label className="form-label required">{t("permit_details.permit_number")}</label>
-                        <InputMask mask="9999999" type="text" className="form-control" name="permit_number" required />
+                        <label htmlFor='permit_number' className="form-label required">{t("permit_details.permit_number")}</label>
+                        <InputMask id='permit_number' mask="9999999" type="text" className="form-control" name="permit_number" required />
                     </div>
                 }
             </div>

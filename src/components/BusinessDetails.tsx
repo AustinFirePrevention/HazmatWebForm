@@ -13,31 +13,32 @@ export default function BusinessDetails({ phone, setPhone, setIsThirdParty }: Bu
         <FormSection title={t("business_details.title")}>
             <div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.business_name")}</label>
-                    <input type="text" className="form-control" name="business_name" required />
+                    <label htmlFor='business_name' className="form-label required">{t("business_details.business_name")}</label>
+                    <input id='business_name' type="text" className="form-control" name="business_name" required />
                     <small className="form-text text-muted">
                         {t("business_details.business_name_note")}
                     </small>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.street_address")}</label>
-                    <input type="text" className="form-control" name="street_address" required />
+                    <label htmlFor='street_address' className="form-label required">{t("business_details.street_address")}</label>
+                    <input id='street_address' type="text" className="form-control" name="street_address" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">{t("business_details.suite_no")}</label>
-                    <input type="text" className="form-control" name="suite_no" />
+                    <label htmlFor='suite_no' className="form-label">{t("business_details.suite_no")}</label>
+                    <input id='suite_no' type="text" className="form-control" name="suite_no" />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.city")}</label>
-                    <input type="text" className="form-control" name="city" required />
+                    <label htmlFor='city' className="form-label required">{t("business_details.city")}</label>
+                    <input id="city" type="text" className="form-control" name="city" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.zip")}</label>
-                    <InputMask mask="99999" maskChar="_" className="form-control" name="zip" required />
+                    <label htmlFor='zip' className="form-label required">{t("business_details.zip")}</label>
+                    <InputMask id='zip' mask="99999" maskChar="_" className="form-control" name="zip" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.main_phone_number")}</label>
+                    <label htmlFor='main_phone_number' className="form-label required">{t("business_details.main_phone_number")}</label>
                     <InputMask
+                        id='main_phone_number'
                         mask="(999)999-9999"
                         className="form-control"
                         name="main_phone_number"
@@ -46,25 +47,26 @@ export default function BusinessDetails({ phone, setPhone, setIsThirdParty }: Bu
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.email_address")}</label>
-                    <input type="email" className="form-control" name="email_address" required />
+                    <label htmlFor='email_address' className="form-label required">{t("business_details.email_address")}</label>
+                    <input id='email_address' type="email" className="form-control" name="email_address" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.business_activity")}</label>
-                    <input type="text" className="form-control" name="business_activity" required />
+                    <label htmlFor='business_activity' className="form-label required">{t("business_details.business_activity")}</label>
+                    <input id='business_activity' type="text" className="form-control" name="business_activity" required />
                     <small className="form-text text-muted">{t("business_details.business_activity_note")}</small>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.hours_of_operation")}</label>
-                    <input type="text" className="form-control" name="hours_of_operation" required />
+                    <label htmlFor='hours_of_operations' className="form-label required">{t("business_details.hours_of_operation")}</label>
+                    <input id='hours_of_operations' type="text" className="form-control" name="hours_of_operation" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label required">{t("business_details.total_employees")}</label>
-                    <input type="text" className="form-control" name="total_employees" pattern="[0-9]{1,999}" required />
+                    <label htmlFor='total_employees' className="form-label required">{t("business_details.total_employees")}</label>
+                    <input id='total_employees' type="text" className="form-control" name="total_employees" pattern="[0-9]{1,99999}" required />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">{t("business_details.number_of_ERT")}</label>
+                    <label htmlFor='number_of_ERT' className="form-label">{t("business_details.number_of_ERT")}</label>
                     <input
+                        id='number_of_ERT'
                         type="text"
                         className="form-control"
                         name="number_of_ERT"

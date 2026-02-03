@@ -20,20 +20,24 @@ function useCopy(prefix: string, setBusinessPhone: (arg0: string) => void, setCe
     const [isCopied, setIsCopied] = useState(false);
 
     const handleCopy = () => {
+        const primaryTitle = (document.querySelector('input[name="primary_contact_title"]') as HTMLInputElement).value;
         const primaryName = (document.querySelector('input[name="primary_contact_name"]') as HTMLInputElement).value;
         const primaryPhone = (document.querySelector('input[name="primary_contact_business_phone"]') as HTMLInputElement).value;
         const primaryCellPhone = (document.querySelector('input[name="primary_contact_cell_phone"]') as HTMLInputElement).value;
         const primaryEmail = (document.querySelector('input[name="primary_contact_email"]') as HTMLInputElement).value;
 
+        const titleInput = document.querySelector(`input[name="${prefix}_title"]`) as HTMLInputElement;
         const nameInput = document.querySelector(`input[name="${prefix}_name"]`) as HTMLInputElement;
         const emailInput = document.querySelector(`input[name="${prefix}_email"]`) as HTMLInputElement;
 
         if (!isCopied) {
+            titleInput.value = primaryTitle;
             nameInput.value = primaryName;
             setBusinessPhone(primaryPhone);
             setCellPhone(primaryCellPhone);
             emailInput.value = primaryEmail;
         } else {
+            titleInput.value = '';
             nameInput.value = '';
             setBusinessPhone('');
             setCellPhone('');
