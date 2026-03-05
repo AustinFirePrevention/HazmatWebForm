@@ -96,6 +96,7 @@ export function MaterialCard({ material, index, isCollapsed }: { material: Parti
                             required={!isCollapsed}
                             formNoValidate={isCollapsed}
                         />
+                        <small className="form-text text-muted">{t("material_card.location_note")}</small>
                     </div>
                     <div className="mb-3">
                         <label className="form-label required">{t("material_card.health_hazard")}:</label>

@@ -1,124 +1,125 @@
 {
-  "title": "Solicitud de Permiso de Materiales Peligrosos Sobre el Suelo",
+  "title": "Solicitud de Permiso para Materiales Peligrosos sobre el Nivel del Suelo",
   "primary_contact": {
     "title": "Contacto Principal",
-    "note": "Esta persona es responsable de obtener el permiso inicial, renovarlo cada 3 años y responder preguntas sobre la solicitud. Se le listará como contacto de emergencia.",
-    "preamble": "Nota: La Sección 5001.5.1 del Código Internacional de Incendios requiere que un representante, conocedor de las operaciones en las áreas de materiales peligrosos en el sitio, sea responsable de la comunicación con el Departamento de Bomberos de Austin. Los avisos de renovación de permisos se enviarán por correo a esta persona. Además, las solicitudes de Hojas de Datos de Seguridad de Materiales, resultados de Inspecciones de Materiales Peligrosos/Incendios, información de planificación previa para respuestas de emergencia, etc. se dirigirán a este representante en el sitio cuando sea necesario."
+    "note": "Esta persona es responsable de obtener el permiso inicial, renovarlo cada tres (3) años y responder las preguntas de la solicitud. Será incluida como uno de los contactos de emergencia disponibles las 24 horas.",
+    "preamble": "La Sección 5001.5.1 del Código Internacional de Incendios establece que un representante, con conocimiento de las operaciones en las áreas de materiales peligrosos del lugar, será responsable de la comunicación con el Departamento de Bomberos de Austin. Los avisos de renovación del permiso se enviarán a esta persona. Además, cualquier solicitud de Fichas de Datos de Seguridad, Resultados de Inspecciones de materiales peligrosos o de incendios, información para la planificación de emergencias, entre otros, se dirigirá a este representante en el sitio cuando sea necesario"
   },
   "responsible_official": {
-    "title": "Oficial Responsable - Propietario del Negocio, Gerente, Presidente, etc.",
-    "copy_primary_contact": "Copiar Detalles del Contacto Principal",
-    "clear_primary_contact": "Borrar Detalles del Contacto Principal",
+    "title": "Funcionario Responsable – Propietario, Gerente, Presidente, etc.",
+    "copy_primary_contact": "Copiar los datos del Contacto Principal ",
+    "clear_primary_contact": "Eliminar la información del Contacto Principal ",
     "note": "Esta persona es legal y financieramente responsable del negocio y puede ser utilizada como contacto de emergencia."
   },
   "emergency_contact": {
-    "title": "Contacto de Emergencia - Contacto 24 horas"
+    "title": "Contacto de Emergencia – Atención 24 horas"
   },
   "requesting_party": {
-    "checkbox_label": "Soy un tercero que solicita esta aplicación en nombre del negocio.",
-    "title": "Parte Solicitante",
-    "note": "Por favor proporcione los datos de contacto de la persona que solicita esta aplicación."
+    "checkbox_label": "Solicito esta aplicación como tercero, en representación del negocio.",
+    "title": "Solicitante",
+    "note": "Proporcione los datos de contacto de la persona que solicita esta aplicación."
   },
   "contact_details": {
-    "name": "Nombre completo",
+    "title": "Título del Puesto",
+    "name": "Nombre Completo",
     "phone": "Teléfono",
     "cell_phone": "Teléfono Celular",
     "email": "Correo Electrónico",
     "business_name": "Nombre del Negocio"
   },
-  "storage_map": "Mapa de Almacenamiento de Instalaciones:",
-  "storage_map_note": "Si se han realizado cambios en el mapa, debe proporcionar un nuevo mapa.",
+  "storage_map": "Mapa de Almacenamiento de las Instalaciones:",
+  "storage_map_note": "Si ha habido cambios desde la última renovación, debe proporcionar un nuevo mapa actualizado.",
   "additional_files": "Documentos Adicionales:",
-  "additional_files_note": "Suba Hojas de Datos de Seguridad (SDS), planes de respuesta u otros documentos relevantes.",
-  "clear": "Limpiar",
+  "additional_files_note": "Suba las Fichas de Datos de Seguridad (SDS), planes de respuesta u otros documentos relevantes.",
+  "clear": "Borrar",
   "submit": "Enviar",
   "navbar": {
-    "title": "Departamento de Bomberos de Austin",
+    "title": "Bomberos de Austin",
     "fire_marshal": "Oficina del Jefe de Bomberos",
-    "hazmat_program": "Programa de Materiales Peligrosos"
+    "hazmat_program": "Programa de Materiales Peligrosos (Hazmat)"
   },
   "permit_details": {
     "title": "Detalles del Permiso",
     "abc_id": "ID de Austin Build + Connect:",
-    "abc_id_note": "Para localizar su número de ID de Austin Build + Connect, inicie sesión en su <1>cuenta de AB+C</1> y vaya a \"Mi Perfil\" desde el panel de menú superior.",
-    "abc_email": "Correo Electrónico de Austin Build + Connect:",
-    "application_type": "Tipo de Solicitud:",
+    "abc_id_note": "Para localizar su número de ID de Austin Build + Connect, inicie sesión en su <1>cuenta AB+C</1> y vaya a \"Mi Perfil\" desde el menú superior",
+    "abc_email": "Correo electrónico asociado con su cuenta de Austin Build + Connect:",
+    "application_type": "Tipo de Aplicación:",
     "new_permit": "Nuevo Permiso",
-    "renewal_no_change": "Renovación de Permiso - Sin cambio de inventario",
-    "renewal_with_change": "Renovación de Permiso - Cambio de inventario",
+    "renewal_no_change": "Renovación de Permiso – Sin cambios en inventario",
+    "renewal_with_change": "Renovación de Permiso – Con cambios en inventario",
     "building_permit": "Número de Permiso de Construcción:",
-    "permit_number": "Número de Permiso de Materiales Peligrosos Sobre el Suelo:"
+    "permit_number": "Número de Permiso de Materiales Peligrosos sobre el Nivel del Suelo:"
   },
   "permit_details_preamble": {
-    "description": "Los pagos se procesan a través del portal en línea Austin Build + Connect (AB+C). Regístrese en el <1>Austin Build + Connect</1> sitio web para continuar. Las facturas no se agregan automáticamente a la cuenta, se agregarán manualmente después de que la solicitud sea revisada y aprobada. Se enviará un correo electrónico a la dirección asociada con la cuenta cuando las tarifas estén listas para ser pagadas.",
-    "no_mail": "No envíe solicitudes y pagos por correo.",
-    "public_info_notice": "La Ciudad de Austin está sujeta a los requisitos de la Ley de Información Pública de Texas y, por lo tanto, cualquier información que proporcione puede considerarse información pública y estar sujeta a divulgación previa solicitud."
+    "description": "Los pagos se procesan a través del portal de clientes en línea de Austin Build + Connect (AB+C). Regístrese en el sitio web de <1>Austin Build + Connect</1> para continuar. Las facturas no se agregan automáticamente a la cuenta AB+C. Las facturas se agregarán manualmente después de que la solicitud sea revisada y aprobada. Se enviará un correo electrónico a la dirección asociada con la cuenta cuando las tarifas estén listas para ser pagadas.",
+    "no_mail": "No envíe solicitudes ni pagos por correo postal o electrónico.",
+    "public_info_notice": "La Ciudad de Austin está sujeta a los requisitos de la Ley de Información Pública de Texas, y por lo tanto, cualquier información que proporcione puede considerarse información pública y estar sujeta a divulgación si se solicita."
   },
   "business_details": {
     "title": "Detalles del Negocio",
     "business_name": "Nombre del Negocio:",
     "business_name_note": "Este debe ser el nombre que se muestra en su edificio",
     "street_address": "Dirección:",
-    "suite_no": "Suite o Número de Edificio:",
+    "suite_no": "Número de Suite o del Edificio:",
     "city": "Ciudad:",
     "zip": "Código Postal:",
-    "main_phone_number": "Número de Teléfono Principal:",
+    "main_phone_number": "Teléfono Principal:",
     "email_address": "Correo Electrónico:",
     "business_activity": "Actividad Principal del Negocio:",
     "business_activity_note":"¿Cuál es la operación principal o central del negocio?",
-    "hours_of_operation": "Horas de Operación:",
+    "hours_of_operation": "Horario de Operación:",
     "total_employees": "Número total de empleados:",
-    "number_of_ERT": "Número de miembros del equipo de emergencia presentes en el lugar durante cada turno:",
-    "number_of_ERT_note": "La IFC exige que ciertas instalaciones designen y capaciten equipos de respuesta a emergencias en el lugar. Estos equipos actúan como enlace con el departamento de bomberos, colaborando en la planificación previa y ayudando a identificar la ubicación, la cantidad y la naturaleza química de los materiales peligrosos durante un incidente." 
+    "number_of_ERT": "Número de Personal del Equipo de Respuesta a Emergencias en el sitio por turno:",
+    "number_of_ERT_note": "El Código Internacional de Incendios (IFC) requiere que ciertas instalaciones designen y capaciten equipos de respuesta a emergencias en el sitio. Estos equipos actúan como enlace con el departamento de bomberos, ayudando en job title la planificación previa y colaborando para identificar la ubicación, cantidad y naturaleza química de los materiales peligrosos durante un incidente." 
   },
   "hazardous_materials": {
     "title": "Materiales Peligrosos",
     "list_title": "Lista de Materiales Peligrosos",
     "add_material": "Agregar un Material",
-    "spreadsheet_mode": "Estoy enviando 30 o más productos químicos a través de una hoja de cálculo presentada en \"Documentos Adicionales\" a continuación.",
-    "download_spreadsheet": "Descargar Hoja de Cálculo de Productos Químicos"
+    "spreadsheet_mode": "Estoy enviando 30 o más químicos mediante una hoja de cálculo adjunta en \"Documentos Adicionales\" abajo.",
+    "download_spreadsheet": "Descargar Ejemplo de Hoja de Cálculo de Químicos"
   },
   "hazardous_materials_preamble": {
-    "intro": "Los materiales peligrosos almacenados o utilizados sobre el suelo en cantidades agregadas mayores que las requeridas para el informe por la Sección 105.5.22 del Código Internacional de Incendios 2021 según enmendado por la Ciudad de Austin deben ser listados en la solicitud. Las cantidades reportables se basan en la Norma NFPA 704, edición 2017:",
-    "table_alt": "Tabla de productos químicos reportables",
-    "hazard_ratings": "Las calificaciones de peligro se determinan utilizando los criterios descritos en la Norma NFPA No. 704. Las calificaciones varían de \"0\" para poco peligro, a \"4\" para peligro extremo, y se asignan para la salud, la inflamabilidad y la reactividad o inestabilidad. Muchos productos tendrán calificaciones en dos o más categorías de peligro. Estas calificaciones generalmente se encuentran en la Hoja de Datos de Seguridad (SDS) de cada producto. Si no se dan calificaciones, se pueden determinar a partir de la dosis letal, el punto de inflamación y la información de estabilidad que se muestra en la SDS. Si tiene dificultades para determinar las calificaciones de peligro, envíenos un correo electrónico a",
-    "min_quantity_title": "Cantidad Mínima Agregada",
-    "compressed_gases": "GASES COMPRIMIDOS Y LICUADOS INCLUYENDO OXÍGENO",
+    "intro": "Los materiales peligrosos almacenados o utilizados sobre el nivel del suelo en cantidades agregadas mayores a las requeridas para su reporte según la Sección 105.5.22 del Código Internacional de Incendios 2021, modificada por la Ciudad de Austin, deben ser listados en la solicitud. Las cantidades sujetas a reporte se basan en el estándar NFPA 704 (National Fire Protection Association), edición 2017:",
+    "table_alt": "Tabla de químicos reportables",
+    "hazard_ratings": "Las Clasificaciones de Riesgo se determinan usando los criterios establecidos en la Norma NFPA No. 704.  Las clasificaciones van de \"0\" para riesgo bajo, a \"4\" para riesgo extremo, y se asignan para salud, inflamabilidad y reactividad o inestabilidad. Muchos productos tendrán clasificaciones en dos o más categorías de riesgo. Estas clasificaciones generalmente se encuentran en la Ficha de Datos de Seguridad (FDS) de cada producto, en las secciones de Información de Transporte o Información Regulatoria. Si no se proporcionan clasificaciones, se pueden determinar a partir de las secciones de propiedades físicas y químicas, estabilidad y reactividad, e información toxicológica de la FDS. Si tiene dificultades para determinar las clasificaciones de riesgo, envíenos un correo electrónico a [dirección de contacto]",
+    "min_quantity_title": "Cantidad Agregada Mínima",
+    "compressed_gases": "GASES COMPRIMIDOS Y LICUADOS, INCLUIDO EL OXÍGENO",
     "compressed_gases_qty": "100 PIES CÚBICOS",
-    "co2_systems": "SISTEMAS DE DIÓXIDO DE CARBONO (C02)",
+    "co2_systems": "SISTEMAS DE DIÓXIDO DE CARBONO (C02) ",
     "co2_systems_qty": "101 LB",
     "cryogenic_fluids": "FLUIDOS CRIOGÉNICOS",
     "cryogenic_fluids_qty": "1 GAL",
-    "indoor_diesel_tanks": "TANQUES DE DIESEL INTERIORES",
+    "indoor_diesel_tanks": "TANQUES DE DIESEL EN INTERIORES",
     "indoor_diesel_tanks_qty": "125 GAL",
-    "outdoor_diesel_tanks": "TANQUES DE DIESEL EXTERIORES",
+    "outdoor_diesel_tanks": "TANQUES DE DIESEL EN EXTERIORES",
     "outdoor_diesel_tanks_qty": "275 GAL",
     "sulfuric_acid_battery": "ÁCIDO SULFÚRICO - ELECTROLITO DE BATERÍA",
     "sulfuric_acid_battery_qty": "15 GAL",
-    "sulfuric_acid_pool": "ÁCIDO SULFÚRICO - MANTENIMIENTO DE PISCINAS",
+    "sulfuric_acid_pool": "ÁCIDO SULFÚRICO - MANTENIMIENTO DE PISCINA",
     "sulfuric_acid_pool_qty": "4 GAL",
-    "ess_stationary_mobile": "Sistema de Almacenamiento de Energía Estacionaria y Móvil (ESS)",
-    "ess_stationary_mobile_qty": "Capacidad o Cantidad de Energía",
-    "ess_capacitor": "ESS de Capacitor – clasificación de placa de identificación",
+    "ess_stationary_mobile": "Sistemas de Almacenamiento de Energía (ESS) Estacionarios y Móviles",
+    "ess_stationary_mobile_qty": "Capacidad de Energía o Cantidad",
+    "ess_capacitor": "Condensador ESS – calificación de placa",
     "ess_capacitor_qty": "3 kWh",
-    "ess_flow_batteries": "Baterías de flujo – clasificación de placa de identificación",
+    "ess_flow_batteries": "Baterías de flujo – calificación de placa",
     "ess_flow_batteries_qty": "20 kWh",
-    "ess_lithium_ion": "ESS de ion de litio – clasificación de placa de identificación",
+    "ess_lithium_ion": "ESS de iones de litio – calificación de placa",
     "ess_lithium_ion_qty": "20 kwh",
-    "ess_nickel_metal_hydride": "Hidruro metálico de níquel – clasificación de placa de identificación",
+    "ess_nickel_metal_hydride": "Hidruro metálico de níquel – calificación de placa",
     "ess_nickel_metal_hydride_qty": "70 kWh",
-    "ess_other_battery": "Otras tecnologías de baterías – clasificación de placa de identificación",
+    "ess_other_battery": "Otras tecnologías de baterías – calificación de placa",
     "ess_other_battery_qty": "10 kWh",
-    "ess_other_electrochemical": "Otras tecnologías de ESS electroquímicas – clasificación de placa de identificación",
+    "ess_other_electrochemical": "Otras tecnologías electroquímicas de ESS – calificación de placa",
     "ess_other_electrochemical_qty": "3 kWh",
     "ess_lead_acid": "Baterías de plomo-ácido estacionarias - inundadas y reguladas por válvula, y ESS de níquel-cadmio. Los ESS móviles que utilizan tecnología de baterías de plomo-ácido están exentos.",
     "ess_lead_acid_qty": "15 galones",
-    "aboveground_inventory_note": "El inventario sobre el suelo debe incluir cantidades reportables en el sitio tanto en interiores como en exteriores.",
-    "underground_storage_note": "El almacenamiento subterráneo de líquidos inflamables y combustibles debe ser reportado por separado con <1>la Solicitud de Permiso de Almacenamiento de Materiales Peligrosos</1> del Departamento de Servicios de Desarrollo. Esto excluye el propano, que debe ser reportado bajo esta solicitud.",
-    "add_chemicals_note": "Puede buscar o agregar productos químicos personalizados escribiendo el nombre del producto químico a continuación y seleccionando el nombre del producto químico. Use el botón azul con el símbolo \"<1/>\" para expandir y colapsar los materiales.",
-    "4": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 4",
-    "3": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 3",
-    "2": "PELIGRO EXTREMO NFPA 704 CLASIFICACIÓN = 2",
+    "aboveground_inventory_note": "El inventario sobre el nivel del suelo debe incluir las cantidades sujetas a reporte en el sitio, tanto en interiores como en exteriores.",
+    "underground_storage_note": "Reporte por separado el almacenamiento subterráneo de líquidos inflamables y combustibles utilizando la <1> Solicitud de Permiso de Almacenamiento de Materiales Peligrosos </1> del Departamento de Servicios de Desarrollo. Esto excluye el propano, que debe reportarse en esta solicitud.",
+    "add_chemicals_note": "Puede buscar o agregar químicos personalizados escribiendo el nombre del químico a continuación y seleccionándolo en la lista. Use el botón azul con el \"<1/>\"símbolo para expandir y contraer los materiales y agregar todos los detalles requeridos.",
+    "4": "CLASIFICACIÓN DE PELIGRO EXTREMO NFPA 704 = 4",
+    "3": "CLASIFICACIÓN DE PELIGRO EXTREMO NFPA 704 = 3",
+    "2": "CLASIFICACIÓN DE PELIGRO EXTREMO NFPA 704 = 2",
     "health": "SALUD",
     "flammability": "INFLAMABILIDAD",
     "instability": "INESTABILIDAD"
@@ -128,48 +129,49 @@
     "remove": "Eliminar",
     "material_name": "Nombre del Material",
     "location": "Ubicación",
-    "health_hazard": "Calificación de Peligro para la Salud NFPA 704 (0-4)",
-    "fire_hazard": "Calificación de Peligro de Incendio NFPA 704 (0-4)",
-    "instability_hazard": "Calificación de Peligro de Inestabilidad NFPA 704 (0-4)",
+    "location_note": "¿Dónde se almacena el químico en la propiedad?",
+    "health_hazard": "Clasificación de Riesgo para la Salud NFPA 704 (0-4)",
+    "fire_hazard": "Clasificación de Riesgo de Incendio NFPA 704 (0-4)",
+    "instability_hazard": "Clasificación de Riesgo de Inestabilidad NFPA 704 (0-4)",
     "units": "Unidades",
     "gallons": "Galones",
     "cubic_feet": "Pies Cúbicos",
     "pounds": "Libras",
     "kilowatt_hours": "Kilovatios-Hora",
     "quantity": "Cantidad",
-    "quantity_note": "Por favor, de agregar la capacidad del envase químico.",
+    "quantity_note": "Por favor, ingrese la capacidad del contenedor del químico.",
     "fields_missing": "¡{{count}} campos faltantes!",
     "material_complete": "Material Completo",
-    "all_hazards_zero": "¡Todas las clasificaciones de peligro son 0!"
+    "all_hazards_zero": "Todas las clasificaciones de riesgo son 0!"
   },
   "chemical": "Químico",
   "quantity": "Cantidad",
   "common_hazmat_cards": {
-    "title": "Agregar Productos Químicos",
+    "title": "Agregar Químicos",
     "add_to_list": "Agregar a la Lista",
-    "search_chemicals": "Busque y agregue el nombre de su quimico unico"
+    "search_chemicals": "Busque o agregue su químico personalizado"
   },
   "modal": {
     "success": {
-      "title": "¡Envío del formulario completado!",
-      "body": "Su formulario ha sido enviado con éxito."
+      "title": "Envío del Formulario Completado!",
+      "body": "Su formulario ha sido enviado correctamente."
     },
     "successCantShowFees": {
-      "title": "¡Envío del formulario completado!",
-      "body": "Su formulario ha sido enviado con éxito. Recibirá un correo electrónico del equipo de prevención con los totales de las tarifas."
+      "title": "Envío del Formulario Completado!",
+      "body": "Su formulario ha sido enviado correctamente. Recibirá un correo electrónico del Equipo de Prevención con los totales de las tarifas."
     },
     "error": {
-      "title": "¡Envío del formulario fallido!",
-      "body": "Hubo un error al enviar su formulario. Por favor, inténtelo de nuevo. Si sus problemas persisten, contáctenos en afdhazmat@austintexas.gov"
+      "title": "El Envío del Formulario Falló!",
+      "body": "Hubo un error al enviar su formulario. Por favor, intente nuevamente. Si el problema persiste, contáctenos en afdhazmat@austintexas.gov"
     },
     "fileError": {
-      "title": "¡Error de carga de archivo!",
-      "body": "Hubo un error al cargar sus archivos. Por favor, envíelos a afdhazmat@austintexas.gov."
+      "title": "Error al Cargar Archivo!",
+      "body": "Su envío ha sido recibido, aunque hubo un error al cargar sus archivos. Por favor, envíelos a afdhazmat@austintexas.gov."
     },
     "close": "Cerrar"
   },
   "toast": {
-    "materials_count_message": "Ahora tienes {{count}} Materiales Peligrosos en la lista de materiales.",
-    "error_message": "Por favor, agregue productos químicos a su solicitud."
+    "materials_count_message": "Ahora tiene {{count}} Materiales Peligrosos en la lista de materiales!",
+    "error_message": "Por favor, agregue químicos a su solicitud."
   }
 }
