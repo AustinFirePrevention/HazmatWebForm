@@ -1,0 +1,56 @@
+{
+    "materials": [
+        {
+            "id": 465,
+            "name": "Propane",
+            "label_es": "Propano",
+            "unit": "cubic_feet",
+            "health_hazard": "1",
+            "fire_hazard": "4",
+            "instability_hazard": "0",
+            "conversionNoteEs": "(8.75 pies cúbicos x libra de propano) (36.7 pies cúbicos x galones de propano)",
+            "quantity": "555",
+            "location": ""
+        },
+        {
+            "id": 456,
+            "name": "Carbon Dioxide (CO2) for beverage dispensing",
+            "label_es": "Dióxido de Carbono (CO2) para dispensación de bebidas",
+            "unit": "pounds",
+            "health_hazard": "3",
+            "fire_hazard": "0",
+            "instability_hazard": "0",
+            "location": "",
+            "quantity": "600"
+        }
+    ],
+    "fees": {
+        "aggregateAmounts": {
+            "healthLiquid": 0,
+            "fireLiquid": 0,
+            "instabilityLiquid": 0,
+            "healthGas": 0,
+            "fireGas": 3,
+            "instabilityGas": 0,
+            "healthSolid": 600,
+            "fireSolid": 0,
+            "instabilitySolid": 0,
+            "ESS": 0
+        },
+        "fees": {
+            "healthLiquid": 0,
+            "fireLiquid": 0,
+            "instabilityLiquid": 0,
+            "healthGas": 0,
+            "fireGas": 0,
+            "instabilityGas": 0,
+            "healthSolid": 260,
+            "fireSolid": 0,
+            "instabilitySolid": 0,
+            "ESS": 0
+        },
+        "total": 260
+    },
+    "additional_files": [],
+    "is_third_party": false
+}

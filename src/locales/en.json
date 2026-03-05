@@ -129,6 +129,7 @@
     "remove": "Remove",
     "material_name": "Material Name",
     "location": "Location",
+    "location_note": "Where is the chemical stored on the property?",
     "health_hazard": "NFPA 704 Health Hazard Rating (0-4)",
     "fire_hazard": "NFPA 704 Fire Hazard Rating (0-4)",
     "instability_hazard": "NFPA 704 Instability Hazard Rating (0-4)",

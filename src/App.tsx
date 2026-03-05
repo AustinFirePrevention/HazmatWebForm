@@ -192,78 +192,80 @@ function App() {
   return (
     <>
       <NavBar />
-      <h1 role='main' className="text-center mt-4">{t("title")}</h1>
-      <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
-        <div className="alert alert-warning">
-          {t("permit_details_preamble.public_info_notice")}
-        </div>
-        <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
-        <BusinessDetails phone={businessPhone} setPhone={setBusinessPhone} setIsThirdParty={setIsThirdParty} />
-        {isThirdParty && (
+      <main>
+        <h1 className="text-center mt-4">{t("title")}</h1>
+        <form ref={formRef} data-testid="form" className="form container mt-4" onSubmit={handleSubmit}>
+          <div className="alert alert-warning">
+            {t("permit_details_preamble.public_info_notice")}
+          </div>
+          <PermitDetails applicationType={applicationType} onApplicationTypeChange={(type) => setApplicationType(type)} />
+          <BusinessDetails phone={businessPhone} setPhone={setBusinessPhone} setIsThirdParty={setIsThirdParty} />
+          {isThirdParty && (
+            <ContactDetails
+              prefix="requesting_party"
+              title={t("requesting_party.title", "Requesting Party")}
+              note={<div className="alert alert-info">{t("requesting_party.note", "Please provide the contact details of the person requesting this application.")}</div>}
+              required
+              businessPhone={requestPhone}
+              setBusinessPhone={setRequestPhone}
+              cellPhone={requestCellPhone}
+              setCellPhone={setRequestCellPhone}
+              hasBusinessName
+            />
+          )}
           <ContactDetails
-            prefix="requesting_party"
-            title={t("requesting_party.title", "Requesting Party")}
-            note={<div className="alert alert-info">{t("requesting_party.note", "Please provide the contact details of the person requesting this application.")}</div>}
             required
-            businessPhone={requestPhone}
-            setBusinessPhone={setRequestPhone}
-            cellPhone={requestCellPhone}
-            setCellPhone={setRequestCellPhone}
-            hasBusinessName
+            prefix="primary_contact"
+            title={t("primary_contact.title")}
+            note={<PrimaryContactPreamble />}
+            businessPhone={primaryPhone}
+            setBusinessPhone={setPrimaryPhone}
+            cellPhone={primaryCellPhone}
+            setCellPhone={setPrimaryCellPhone}
           />
-        )}
-        <ContactDetails
-          required
-          prefix="primary_contact"
-          title={t("primary_contact.title")}
-          note={<PrimaryContactPreamble />}
-          businessPhone={primaryPhone}
-          setBusinessPhone={setPrimaryPhone}
-          cellPhone={primaryCellPhone}
-          setCellPhone={setPrimaryCellPhone}
-        />
-        <ContactDetails
-          prefix="responsible_official"
-          title={t("responsible_official.title")}
-          note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
-          required
-          copyFromPrimary
-          businessPhone={responsiblePhone}
-          setBusinessPhone={setResponsiblePhone}
-          cellPhone={responsibleCellPhone}
-          setCellPhone={setResponsibleCellPhone}
-        />
-        <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")}
-          businessPhone={emergencyPhone}
-          setBusinessPhone={setEmergencyPhone}
-          cellPhone={emergencyCellPhone}
-          setCellPhone={setEmergencyCellPhone}
-        />
-        <HazardousMaterials show={applicationType !== 'renewal_no_change'} isSpreadsheetMode={isSpreadsheetMode} setIsSpreadsheetMode={setIsSpreadsheetMode} />
-        <div className="section mb-4">
-          <FileSelector
-            applicationType={applicationType}
-            fileInputRef={fileInputRef}
-            handleFileChange={handleFileChange}
-            clearFile={clearFile}
-            labelText={t("storage_map")}
-            labelId="storage_map"
-            note={t("storage_map_note")}
+          <ContactDetails
+            prefix="responsible_official"
+            title={t("responsible_official.title")}
+            note={<div className="alert alert-info">{t("responsible_official.note")}</div>}
+            required
+            copyFromPrimary
+            businessPhone={responsiblePhone}
+            setBusinessPhone={setResponsiblePhone}
+            cellPhone={responsibleCellPhone}
+            setCellPhone={setResponsibleCellPhone}
           />
-          <FileSelector
-            applicationType={applicationType}
-            fileInputRef={fileAdditionalRef}
-            handleFileChange={handleAdditionalFilesChange}
-            clearFile={clearAdditionalFiles}
-            labelText={t("additional_files")}
-            labelId="additional_files"
-            note={t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
-            multiple
+          <ContactDetails prefix="emergency_contact" title={t("emergency_contact.title")}
+            businessPhone={emergencyPhone}
+            setBusinessPhone={setEmergencyPhone}
+            cellPhone={emergencyCellPhone}
+            setCellPhone={setEmergencyCellPhone}
           />
-        </div>
-        <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
+          <HazardousMaterials show={applicationType !== 'renewal_no_change'} isSpreadsheetMode={isSpreadsheetMode} setIsSpreadsheetMode={setIsSpreadsheetMode} />
+          <div className="section mb-4">
+            <FileSelector
+              applicationType={applicationType}
+              fileInputRef={fileInputRef}
+              handleFileChange={handleFileChange}
+              clearFile={clearFile}
+              labelText={t("storage_map")}
+              labelId="storage_map"
+              note={t("storage_map_note")}
+            />
+            <FileSelector
+              applicationType={applicationType}
+              fileInputRef={fileAdditionalRef}
+              handleFileChange={handleAdditionalFilesChange}
+              clearFile={clearAdditionalFiles}
+              labelText={t("additional_files")}
+              labelId="additional_files"
+              note={t("additional_files_note", "Upload SDS, response plans, or other relevant documents")}
+              multiple
+            />
+          </div>
+          <button type="submit" className="btn btn-success mb-3">{t("submit")}</button>
 
-      </form>
+        </form>
+      </main>
       <ToastContainer position="bottom-center" containerPosition="sticky" className="p-3">
         <Toast bg={showErrorToast ? "danger" : ""} show={showMaterialToast || showErrorToast} onClose={() => { setShowMaterialToast(false); setShowErrorToast(false) }} delay={5000} autohide>
           <Toast.Body className='text-center'>
