@@ -44,7 +44,10 @@ export default function PermitDetails({ applicationType, onApplicationTypeChange
                 {applicationType === "new_permit" ?
                     <div className="mb-3">
                         <label htmlFor='building_permit' className="form-label">{t("permit_details.building_permit")}</label>
-                        <InputMask id='building_permit' mask="9999-999999-BP" className="form-control" name="building_permit" />
+                        <InputMask id='building_
+                        
+                        
+                         permit' mask="9999-999999-BP" className="form-control" name="building_permit" />
                     </div> :
                     <div className="mb-3">
                         <label htmlFor='permit_number' className="form-label required">{t("permit_details.permit_number")}</label>
