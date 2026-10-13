@@ -15,7 +15,7 @@ import { FileSelector } from './components/FileSelector';
 import { processForm, ProcessedFormData } from './helpers/processForm';
 import { IncompleteMaterialsError } from './helpers/useMaterialsState';
 
-const endpoint = 'https://prod-08.usgovtexas.logic.azure.us:443/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-aivnhs83y1zB8GXU2C5G28RrHdUtmzo8xP_7brUl10'
+const endpoint = 'https://default5c5e19f6a6ab4b45b1d0be4608a9a67.f.environment.api.gov.powerplatform.microsoft.us:443/powerautomate/automations/direct/cu/26/workflows/cc81a18f43ca44d38a582cbb2558b91e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AKlR4dD0XCk-4YZUQO0zbqfoxnmSPLC3qYhMP2UlDVQ'
 
 function App() {
   const { t } = useTranslation();

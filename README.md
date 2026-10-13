@@ -138,7 +138,7 @@ Navigate to [http://127.0.0.1:8080/pages/AFDPreventionDevTeam/hazmat](http://127
 
 This tool is currently deployed in [github pages](https://pages.github.com/).
 
-It is currently deployed [here](https://github.austintexas.gov/pages/AFDPreventionDevTeam/hazmat/).
+It is currently deployed [here](https://austinfireprevention.github.io/HazmatWebForm/).
 
 ### To deploy your changes you must
 1. Build the changes with `npm run build`. This command puts the built website into /docs folder. 
